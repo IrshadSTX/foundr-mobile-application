@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foundr_project/views/home_screen/home_screen.dart';
 import 'package:foundr_project/core/colors.dart';
+
+import 'sign_/sign_in/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,9 +19,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigateToHome() async {
     await Future.delayed(const Duration(milliseconds: 3000), () {});
-    // ignore: use_build_context_synchronously
+
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+        context, MaterialPageRoute(builder: (context) => SignInScreen()));
   }
 
   @override

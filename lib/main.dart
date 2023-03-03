@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/landing_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/splash_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());
@@ -31,9 +34,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: createMaterialColor(kBrown)),
-      home: const SplashScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (BuildContext context) => OnBoardingProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primarySwatch: createMaterialColor(kBrown),
+            fontFamily: GoogleFonts.poppins().fontFamily),
+        home: const SplashScreen(),
+      ),
     );
   }
 }
