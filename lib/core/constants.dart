@@ -19,7 +19,6 @@ SizedBox kHeight30 = const SizedBox(
 SizedBox kHeight40 = const SizedBox(
   height: 40,
 );
-
 //textstyle
 
 TextStyle kHeading = GoogleFonts.poppins(
