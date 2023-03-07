@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foundr_project/controllers/provider/landing_provider.dart';
+import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (BuildContext context) => OnBoardingProvider(),
+          create: (BuildContext context) => SigninProvider(),
         ),
       ],
       child: MaterialApp(

@@ -14,10 +14,10 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kYellow,
       body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
+        scrollDirection: Axis.vertical,
         child: SafeArea(
           child: SizedBox(
-            height: size.height,
+            height: 700,
             width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

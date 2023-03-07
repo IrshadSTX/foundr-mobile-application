@@ -26,3 +26,5 @@ TextStyle kHeading = GoogleFonts.poppins(
   fontSize: 24,
   fontWeight: FontWeight.bold,
 );
+//snackbars
+const snackBar = SnackBar(content: Text('Invalid Email or Password'));

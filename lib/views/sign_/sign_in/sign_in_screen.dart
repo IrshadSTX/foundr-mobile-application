@@ -1,30 +1,27 @@
-import 'dart:developer';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
 
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
+import 'package:provider/provider.dart';
 
 import '../sign_up/sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
   final formkey = GlobalKey<FormState>();
-  final emailcontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kYellow,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: SafeArea(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: SizedBox(
-            height: size.height,
+            height: 700,
             width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 kHeight40,
                 Container(
-                  height: size.height * 0.50,
+                  height: size.height * 0.60,
                   width: size.width * 0.92,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
@@ -56,28 +53,40 @@ class SignInScreen extends StatelessWidget {
                               padding: const EdgeInsets.all(15.0),
                               child: Column(
                                 children: [
-                                  TextFormField(
-                                    controller: emailcontroller,
-                                    decoration: const InputDecoration(
+                                  Consumer<SigninProvider>(
+                                      builder: (context, data, child) {
+                                    return TextFormField(
+                                      controller: data.emailcontroller,
+                                      validator: (value) =>
+                                          data.emailValidation(value),
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 3, horizontal: 3),
+                                          prefixIcon: Icon(CupertinoIcons.at,
+                                              color: kBrown),
+                                          border: OutlineInputBorder(),
+                                          labelText: 'Email'),
+                                    );
+                                  }),
+                                  kHeight20,
+                                  Consumer<SigninProvider>(
+                                      builder: (context, data, child) {
+                                    return TextFormField(
+                                      controller: data.passwordcontroller,
+                                      obscureText: true,
+                                      validator: (value) =>
+                                          data.passwordValidation(value),
+                                      decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 3, horizontal: 3),
-                                        prefixIcon: Icon(CupertinoIcons.at,
+                                        prefixIcon: Icon(CupertinoIcons.padlock,
                                             color: kBrown),
                                         border: OutlineInputBorder(),
-                                        labelText: 'Email'),
-                                  ),
-                                  kHeight20,
-                                  TextFormField(
-                                    obscureText: true,
-                                    decoration: const InputDecoration(
-                                      contentPadding: EdgeInsets.symmetric(
-                                          vertical: 3, horizontal: 3),
-                                      prefixIcon: Icon(CupertinoIcons.padlock,
-                                          color: kBrown),
-                                      border: OutlineInputBorder(),
-                                      labelText: 'Password',
-                                    ),
-                                  ),
+                                        labelText: 'Password',
+                                      ),
+                                    );
+                                  }),
                                   TextButton(
                                     onPressed: () {},
                                     child: const Text(
@@ -88,14 +97,24 @@ class SignInScreen extends StatelessWidget {
                                       textAlign: TextAlign.right,
                                     ),
                                   ),
-                                  ElevatedButton(
-                                    onPressed: () {},
-                                    child: const Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 3, horizontal: 50),
-                                      child: Text('Login'),
-                                    ),
-                                  ),
+                                  Consumer<SigninProvider>(
+                                      builder: (context, data, child) {
+                                    return ElevatedButton(
+                                      onPressed: () {
+                                        final validate =
+                                            formkey.currentState!.validate();
+                                        if (!validate) {
+                                          return;
+                                        }
+                                        data.signinCheck(context);
+                                      },
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 3, horizontal: 50),
+                                        child: Text('Login'),
+                                      ),
+                                    );
+                                  }),
                                   kHeight10,
                                   const Divider(
                                     thickness: 3,
