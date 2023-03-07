@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
+import 'package:foundr_project/controllers/provider/sign_up_provider/sign_up_provider.dart';
+import 'package:foundr_project/controllers/provider/splash_provider/splash_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -37,7 +39,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
+          create: (BuildContext context) => SplashScreenProvider(),
+        ),
+        ChangeNotifierProvider(
           create: (BuildContext context) => SigninProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => SignUpProvider(),
         ),
       ],
       child: MaterialApp(

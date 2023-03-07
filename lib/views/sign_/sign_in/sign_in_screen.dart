@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 kHeight40,
                 Container(
-                  height: size.height * 0.60,
+                  height: size.height * 0.58,
                   width: size.width * 0.92,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
