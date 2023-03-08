@@ -8,7 +8,8 @@ import 'package:foundr_project/views/sign_/sign_in/sign_in_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+  final formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class SignUpScreen extends StatelessWidget {
                   'assets/images/foundr_logo.png',
                   width: 150,
                 ),
-                kHeight40,
+                kHeight20,
                 Container(
-                  height: size.height * 0.52,
+                  height: size.height * 0.60,
                   width: size.width * 0.92,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(20)),
@@ -44,81 +45,101 @@ class SignUpScreen extends StatelessWidget {
                       children: [
                         kHeight20,
                         Text('Register', style: kHeading),
-                        kHeight10,
                         Form(
+                            key: formkey,
                             child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 3, horizontal: 3),
-                                    prefixIcon: Icon(CupertinoIcons.person,
-                                        color: kBrown),
-                                    border: OutlineInputBorder(),
-                                    labelText: 'User Name'),
-                              ),
-                              kHeight10,
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 3, horizontal: 3),
-                                    prefixIcon:
-                                        Icon(CupertinoIcons.at, color: kBrown),
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Email'),
-                              ),
-                              kHeight10,
-                              TextFormField(
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 3),
-                                  prefixIcon: Icon(CupertinoIcons.padlock,
-                                      color: kBrown),
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Password',
-                                ),
-                              ),
-                              kHeight10,
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50),
-                                  child: Text('Register'),
-                                ),
-                              ),
-                              kHeight10,
-                              const Divider(
-                                thickness: 3,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text("Already have an account ?"),
-                                  TextButton(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Consumer<SignUpProvider>(
+                                  builder: (context, data, child) {
+                                return Column(
+                                  children: [
+                                    TextFormField(
+                                      controller: data.userNameController,
+                                      validator: (value) =>
+                                          data.userNameValidation(value),
+                                      decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 3, horizontal: 3),
+                                          prefixIcon: Icon(
+                                              CupertinoIcons.person,
+                                              color: kBrown),
+                                          border: OutlineInputBorder(),
+                                          labelText: 'User Name'),
+                                    ),
+                                    kHeight10,
+                                    TextFormField(
+                                      controller: data.emailController,
+                                      validator: (value) =>
+                                          data.emailValidation(value),
+                                      decoration: const InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              vertical: 3, horizontal: 3),
+                                          prefixIcon: Icon(CupertinoIcons.at,
+                                              color: kBrown),
+                                          border: OutlineInputBorder(),
+                                          labelText: 'Email'),
+                                    ),
+                                    kHeight10,
+                                    TextFormField(
+                                      controller: data.passwordController,
+                                      obscureText: true,
+                                      validator: (value) =>
+                                          data.passwordValidation(value),
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 3, horizontal: 3),
+                                        prefixIcon: Icon(CupertinoIcons.padlock,
+                                            color: kBrown),
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Password',
+                                      ),
+                                    ),
+                                    kHeight10,
+                                    ElevatedButton(
                                       onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignInScreen(),
-                                          ),
-                                        );
+                                        final validate =
+                                            formkey.currentState!.validate();
+                                        if (!validate) {
+                                          return;
+                                        }
                                       },
-                                      child: const Text(
-                                        'Log in',
-                                        style: TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ))
-                                ],
-                              ),
-                            ],
-                          ),
-                        ))
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 3, horizontal: 50),
+                                        child: Text('Register'),
+                                      ),
+                                    ),
+                                    kHeight10,
+                                    const Divider(
+                                      thickness: 3,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Text("Already have an account ?"),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SignInScreen(),
+                                                ),
+                                              );
+                                            },
+                                            child: const Text(
+                                              'Log in',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ))
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              }),
+                            ))
                       ],
                     ),
                   ),

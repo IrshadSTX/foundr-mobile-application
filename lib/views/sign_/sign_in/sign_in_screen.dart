@@ -31,7 +31,7 @@ class SignInScreen extends StatelessWidget {
                   'assets/images/foundr_logo.png',
                   width: 150,
                 ),
-                kHeight40,
+                kHeight20,
                 Container(
                   height: size.height * 0.58,
                   width: size.width * 0.92,
@@ -69,7 +69,7 @@ class SignInScreen extends StatelessWidget {
                                           labelText: 'Email'),
                                     );
                                   }),
-                                  kHeight20,
+                                  kHeight10,
                                   Consumer<SigninProvider>(
                                       builder: (context, data, child) {
                                     return TextFormField(
