@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
 import 'package:foundr_project/core/constants.dart';
-import 'package:foundr_project/services/sign_in/sign_in_service.dart';
 import 'package:foundr_project/services/sign_up_services/sign_up_services.dart';
+import 'package:foundr_project/views/sign_/otp/otp_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignUpProvider with ChangeNotifier {
@@ -21,6 +20,25 @@ class SignUpProvider with ChangeNotifier {
               if (value == "Email Already Exists")
                 {
                   ScaffoldMessenger.of(context).showSnackBar(emailExists),
+                }
+              else if (value != null)
+                {
+                  ApiServiceSignUp()
+                      .sendMail(email, context, value, userName)
+                      .then((value) => {
+                            if (value == true)
+                              {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => OtpScreen(
+                                      textFormFieldValue:
+                                          textFormFieldValue.toString()),
+                                ))
+                              }
+                          })
+                }
+              else
+                {
+                  ScaffoldMessenger.of(context).showSnackBar(sWWrong),
                 }
             });
   }
@@ -53,5 +71,12 @@ class SignUpProvider with ChangeNotifier {
     } else {
       return null;
     }
+  }
+
+  //copying textfrom field to otp page
+  String? textFormFieldValue;
+  void updateTextFormFieldValue(String newValue) {
+    textFormFieldValue = newValue;
+    notifyListeners();
   }
 }

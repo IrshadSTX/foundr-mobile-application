@@ -9,5 +9,27 @@ class ApiServiceOTP {
   Future<bool?> verifyOTP(String code) async {
     log(code);
     String path = kBaseurl + ApiEndPoints.verifyOTP;
+    try {
+      Response response = await dio.post(
+        path,
+        queryParameters: {"code": code},
+        options: Options(
+          validateStatus: (status) {
+            return status! < 599;
+          },
+        ),
+      );
+      log("after response from verify otp");
+      if (response.statusCode == 200) {
+        log(response.data.toString());
+        return true;
+      } else {
+        log(response.statusCode.toString());
+        return false;
+      }
+    } on DioError catch (e) {
+      log(e.message.toString());
+    }
+    return null;
   }
 }

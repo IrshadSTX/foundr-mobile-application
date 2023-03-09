@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/model/api/sign_up/signup_request.dart';
-import 'package:foundr_project/model/api/sign_up/signup_response.dart';
 import 'package:foundr_project/services/otp_services/otp_services.dart';
 import 'package:foundr_project/services/sign_up_services/sign_up_services.dart';
 import 'package:foundr_project/views/home_screen/home_screen.dart';
@@ -18,6 +17,7 @@ class OtpProvider with ChangeNotifier {
   final otpController = TextEditingController();
 
   Future<void> verifyotpProvider(BuildContext context) async {
+    final otp = otpController.text;
     final email = emailController.text.trim();
     final userName = usernameController.text;
     final password = passwordController.text.trim();
@@ -27,16 +27,12 @@ class OtpProvider with ChangeNotifier {
       email: email,
       password: password,
     );
-    log("model ${signupUser}");
 
-    final otp = otpController.text;
     ApiServiceOTP().verifyOTP(otp).then((value) => {
           if (value == true)
             {
               ScaffoldMessenger.of(context).showSnackBar(oTPvarified),
-              ApiServiceSignUp()
-                  .signUp(signupUser as SignupResModel, context)
-                  .then(
+              ApiServiceSignUp().signUp(signupUser, context).then(
                     (value) => {
                       if (value?.token != null)
                         {

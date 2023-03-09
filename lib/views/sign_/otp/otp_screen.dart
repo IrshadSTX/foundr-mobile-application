@@ -1,16 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
+
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
+import 'package:provider/provider.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  OtpScreen({super.key, required this.textFormFieldValue});
+  final GlobalKey<FormState> formKey = GlobalKey();
+  final String textFormFieldValue;
 
   @override
   Widget build(BuildContext context) {
+    final providerWOL = Provider.of<OtpProvider>(context, listen: false);
+
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: kYellow,
       body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: SafeArea(
@@ -42,58 +50,58 @@ class OtpScreen extends StatelessWidget {
                         Text('OTP', style: kHeading),
                         kHeight10,
                         Form(
+                            key: formKey,
                             child: Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Column(
-                            children: [
-                              TextFormField(
-                                decoration: const InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 3, horizontal: 3),
-                                    prefixIcon:
-                                        Icon(CupertinoIcons.at, color: kBrown),
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Email'),
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    readOnly: true,
+                                    controller: TextEditingController(
+                                        text: textFormFieldValue),
+                                    decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 3, horizontal: 3),
+                                        prefixIcon: Icon(CupertinoIcons.at,
+                                            color: kBrown),
+                                        border: OutlineInputBorder(),
+                                        labelText: 'Email'),
+                                  ),
+                                  kHeight20,
+                                  TextFormField(
+                                    controller: providerWOL.otpController,
+                                    keyboardType: TextInputType.number,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 3),
+                                      prefixIcon: Icon(CupertinoIcons.padlock,
+                                          color: kBrown),
+                                      border: OutlineInputBorder(),
+                                      labelText: 'otp',
+                                    ),
+                                  ),
+                                  kHeight10,
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      if (formKey.currentState!.validate()) {
+                                        providerWOL.verifyotpProvider(context);
+                                      }
+                                    },
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 3, horizontal: 50),
+                                      child: Text('Submit'),
+                                    ),
+                                  ),
+                                  kHeight10,
+                                  const Divider(
+                                    thickness: 3,
+                                  ),
+                                  const Text(
+                                      "The password has been sent to email!"),
+                                ],
                               ),
-                              kHeight20,
-                              TextFormField(
-                                obscureText: true,
-                                decoration: const InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 3),
-                                  prefixIcon: Icon(CupertinoIcons.padlock,
-                                      color: kBrown),
-                                  border: OutlineInputBorder(),
-                                  labelText: 'otp',
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Forgot password?',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12),
-                                  textAlign: TextAlign.right,
-                                ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 3, horizontal: 50),
-                                  child: Text('Login'),
-                                ),
-                              ),
-                              kHeight10,
-                              const Divider(
-                                thickness: 3,
-                              ),
-                              const Text(
-                                  "The password has been sent to the registered email"),
-                            ],
-                          ),
-                        ))
+                            ))
                       ],
                     ),
                   ),

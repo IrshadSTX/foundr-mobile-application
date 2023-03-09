@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
+import 'package:foundr_project/model/api/sign_up/signup_request.dart';
 import 'package:foundr_project/model/api/sign_up/signup_response.dart';
 import 'package:foundr_project/utils/exceptions/exception.dart';
 
@@ -17,11 +18,13 @@ class ApiServiceSignUp {
     String path = kBaseurl + ApiEndPoints.verifyUser;
 
     try {
-      Response response = await dio.get(path,
-          queryParameters: {"email": email},
-          options: Options(
-            validateStatus: (status) => status! < 50,
-          ));
+      Response response = await dio.get(
+        path,
+        queryParameters: {"email": email},
+        options: Options(
+          validateStatus: (status) => status! < 500,
+        ),
+      );
       if (response.statusCode == 400) {
         return 'Email Already Exists';
       } else if (response.statusCode == 201) {
@@ -49,8 +52,10 @@ class ApiServiceSignUp {
 
       log("response from send mail");
       if (response.statusCode == 201) {
+        //message sent successfully
         return true;
       } else {
+        //message not successful
         return false;
       }
     } on DioError catch (e) {
@@ -59,8 +64,9 @@ class ApiServiceSignUp {
     return null;
   }
 
+//collecting datas using model and signup
   Future<SignupResModel?> signUp(
-      SignupResModel model, BuildContext context) async {
+      SignupReqModel model, BuildContext context) async {
     String path = kBaseurl + ApiEndPoints.signUp;
     try {
       Response response = await dio.post(path, data: jsonEncode(model.toJson()),
@@ -80,7 +86,6 @@ class ApiServiceSignUp {
         log(response.statusCode.toString());
       }
     } on DioError catch (e) {
-      log(e.message.toString());
       log("error part in sign up");
       DioException().dioError(e, context);
     }

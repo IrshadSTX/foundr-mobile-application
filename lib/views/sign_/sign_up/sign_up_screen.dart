@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_up_provider/sign_up_provider.dart';
 
 import 'package:foundr_project/core/colors.dart';
@@ -13,6 +14,8 @@ class SignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final providerWOL = Provider.of<SignUpProvider>(context, listen: false);
+    final providerWOLOTP = Provider.of<OtpProvider>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kYellow,
@@ -48,15 +51,14 @@ class SignUpScreen extends StatelessWidget {
                         Form(
                             key: formkey,
                             child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Consumer<SignUpProvider>(
-                                  builder: (context, data, child) {
-                                return Column(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Column(
                                   children: [
                                     TextFormField(
-                                      controller: data.userNameController,
+                                      controller:
+                                          providerWOLOTP.usernameController,
                                       validator: (value) =>
-                                          data.userNameValidation(value),
+                                          providerWOL.userNameValidation(value),
                                       decoration: const InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),
@@ -68,9 +70,14 @@ class SignUpScreen extends StatelessWidget {
                                     ),
                                     kHeight10,
                                     TextFormField(
-                                      controller: data.emailController,
+                                      controller:
+                                          providerWOLOTP.emailController,
+                                      onChanged: (newValue) {
+                                        providerWOL
+                                            .updateTextFormFieldValue(newValue);
+                                      },
                                       validator: (value) =>
-                                          data.emailValidation(value),
+                                          providerWOL.emailValidation(value),
                                       decoration: const InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),
@@ -81,10 +88,11 @@ class SignUpScreen extends StatelessWidget {
                                     ),
                                     kHeight10,
                                     TextFormField(
-                                      controller: data.passwordController,
+                                      controller:
+                                          providerWOLOTP.passwordController,
                                       obscureText: true,
                                       validator: (value) =>
-                                          data.passwordValidation(value),
+                                          providerWOL.passwordValidation(value),
                                       decoration: const InputDecoration(
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 3, horizontal: 3),
@@ -102,6 +110,7 @@ class SignUpScreen extends StatelessWidget {
                                         if (!validate) {
                                           return;
                                         }
+                                        providerWOL.verifyUserProvider(context);
                                       },
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
@@ -137,9 +146,7 @@ class SignUpScreen extends StatelessWidget {
                                       ],
                                     ),
                                   ],
-                                );
-                              }),
-                            ))
+                                )))
                       ],
                     ),
                   ),
