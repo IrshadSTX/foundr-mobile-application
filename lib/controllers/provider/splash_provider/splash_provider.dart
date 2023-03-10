@@ -32,7 +32,7 @@ class SplashScreenProvider with ChangeNotifier {
             MaterialPageRoute(builder: (context) => SignInScreen()));
       } else if (isExpired == false) {
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => HomeScreen()));
+            MaterialPageRoute(builder: (context) => const HomeScreen()));
       }
     });
   }
