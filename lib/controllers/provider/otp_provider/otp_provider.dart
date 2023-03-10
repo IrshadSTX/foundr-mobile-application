@@ -7,7 +7,7 @@ import 'package:foundr_project/model/api/sign_up/signup_request.dart';
 import 'package:foundr_project/services/otp_services/otp_services.dart';
 import 'package:foundr_project/services/sign_up_services/sign_up_services.dart';
 
-import '../../../views/home_screen/home_screen.dart';
+import '../../../views/main_screens/home_screen/home_screen.dart';
 
 class OtpProvider with ChangeNotifier {
   FlutterSecureStorage storage = const FlutterSecureStorage();

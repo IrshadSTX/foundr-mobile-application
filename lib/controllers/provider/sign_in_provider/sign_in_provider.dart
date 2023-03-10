@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/model/api/sign_in/signin_req.dart';
 import 'package:foundr_project/services/sign_in/sign_in_service.dart';
-import '../../../views/home_screen/home_screen.dart';
+import '../../../views/main_screens/home_screen/home_screen.dart';
 
 class SigninProvider with ChangeNotifier {
   final emailcontroller = TextEditingController();

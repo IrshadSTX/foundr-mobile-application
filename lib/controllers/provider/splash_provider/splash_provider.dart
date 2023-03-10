@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:foundr_project/views/home_screen/home_screen.dart';
+import 'package:foundr_project/views/main_screens/home_screen/home_screen.dart';
 import 'package:foundr_project/views/sign_/sign_in/sign_in_screen.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
