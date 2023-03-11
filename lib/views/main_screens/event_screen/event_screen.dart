@@ -26,7 +26,7 @@ class EventScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: kRoseCream,
+      backgroundColor: kCream,
       body: const Center(
         child: Text(
           'Event',

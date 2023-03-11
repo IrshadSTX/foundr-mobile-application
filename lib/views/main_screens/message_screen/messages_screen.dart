@@ -27,7 +27,7 @@ class MessageScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: kRoseCream,
+      backgroundColor: kCream,
       body: Container(
         child: const Center(
           child: Text(

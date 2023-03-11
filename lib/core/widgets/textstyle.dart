@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleWidget extends StatelessWidget {
   const TextStyleWidget({
@@ -15,14 +16,11 @@ class TextStyleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: TextStyle(
-        fontWeight: thick,
-        color: textcolor,
-        fontSize: fontsize,
-        fontFamily: 'poppins',
-      ),
-    );
+    return Text(title,
+        style: GoogleFonts.poppins(
+          fontWeight: thick,
+          color: textcolor,
+          fontSize: fontsize,
+        ));
   }
 }

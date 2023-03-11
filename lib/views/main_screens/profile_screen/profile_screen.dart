@@ -11,7 +11,7 @@ class ProfieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     return Scaffold(
-        backgroundColor: kRoseCream,
+        backgroundColor: kCream,
         appBar: AppBar(
           backgroundColor: kYellow,
           title: const TextStyleWidget(

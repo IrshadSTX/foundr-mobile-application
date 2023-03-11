@@ -26,7 +26,7 @@ class ArticleScreen extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: kRoseCream,
+      backgroundColor: kCream,
     );
   }
 }

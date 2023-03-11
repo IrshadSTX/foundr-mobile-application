@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
             blurShadowRadius: 30.0,
             circleColor: kRose,
             activeIconColor: Colors.white,
-            inactiveIconColor: Colors.grey,
+            inactiveIconColor: kBrown,
             tabs: getTabsData(),
             onTabChangedListener: (index) => model.setCurrentPage(index),
           ),
