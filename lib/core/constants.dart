@@ -3,6 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
 
+//width
+SizedBox kWidth10 = const SizedBox(
+  height: 10,
+);
+SizedBox kWidth20 = const SizedBox(
+  height: 20,
+);
 //heights
 SizedBox kHeight10 = const SizedBox(
   height: 10,

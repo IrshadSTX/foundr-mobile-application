@@ -38,7 +38,7 @@ class OtpProvider with ChangeNotifier {
                           storage.write(key: "token", value: value!.token),
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
+                                builder: (context) => HomeScreen(),
                               ),
                               (route) => false)
                         }
