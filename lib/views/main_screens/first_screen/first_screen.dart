@@ -73,10 +73,10 @@ class FirstScreen extends StatelessWidget {
               ),
               kHeight10,
               const MatchingFoundLists(),
-              MoreButtonWidget(),
+              const MoreButtonWidget(),
               kHeight10,
               SizedBox(
-                height: 150,
+                height: 180,
                 child:
                     ListView(scrollDirection: Axis.horizontal, children: const [
                   CardDetailsWidget(

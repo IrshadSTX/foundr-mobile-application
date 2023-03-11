@@ -18,7 +18,7 @@ class CardDetailsWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: Container(
           margin: const EdgeInsets.all(15),
-          width: 250,
+          width: 200,
           child: Column(
             children: [
               TextStyleWidget(
