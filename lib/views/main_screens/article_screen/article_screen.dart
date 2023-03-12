@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
-import 'package:foundr_project/views/main_screens/article_screen/widgets/article_card_widget.dart';
+
+import 'widgets/article_card_widget.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key});
@@ -54,16 +55,12 @@ class ArticleScreen extends StatelessWidget {
               ],
             ),
             kHeight20,
-            Card(
-              color: kRose,
-              elevation: 6,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) => ArticleCardWidget(size: size),
+                itemCount: 3,
               ),
-              child: ArticleCardWIdget(size: size),
-            )
+            ),
           ],
         ),
       ),
