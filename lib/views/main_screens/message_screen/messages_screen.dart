@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
+import 'package:foundr_project/core/constants.dart';
+import 'package:foundr_project/views/main_screens/message_screen/widgets/list_tile_widget.dart';
 
 import '../../../core/widgets/textstyle.dart';
 
@@ -28,15 +30,14 @@ class MessageScreen extends StatelessWidget {
         ],
       ),
       backgroundColor: kCream,
-      body: Container(
-        child: const Center(
-          child: Text(
-            'Message',
-            style: TextStyle(
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.separated(
+          itemBuilder: (context, index) {
+            return const ListTileWidget();
+          },
+          separatorBuilder: (context, index) => kHeight10,
+          itemCount: 3,
         ),
       ),
     );
