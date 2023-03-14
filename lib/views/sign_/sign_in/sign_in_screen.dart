@@ -61,11 +61,15 @@ class SignInScreen extends StatelessWidget {
                                           data.emailValidation(value),
                                       keyboardType: TextInputType.emailAddress,
                                       decoration: const InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),
                                           prefixIcon: Icon(CupertinoIcons.at,
                                               color: kBrown),
-                                          border: OutlineInputBorder(),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
                                           labelText: 'Email'),
                                     );
                                   }),
@@ -78,11 +82,15 @@ class SignInScreen extends StatelessWidget {
                                       validator: (value) =>
                                           data.passwordValidation(value),
                                       decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 3, horizontal: 3),
                                         prefixIcon: Icon(CupertinoIcons.padlock,
                                             color: kBrown),
-                                        border: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
                                         labelText: 'Password',
                                       ),
                                     );

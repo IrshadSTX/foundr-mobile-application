@@ -60,12 +60,16 @@ class SignUpScreen extends StatelessWidget {
                                       validator: (value) =>
                                           providerWOL.userNameValidation(value),
                                       decoration: const InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),
                                           prefixIcon: Icon(
                                               CupertinoIcons.person,
                                               color: kBrown),
-                                          border: OutlineInputBorder(),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
                                           labelText: 'User Name'),
                                     ),
                                     kHeight10,
@@ -79,11 +83,15 @@ class SignUpScreen extends StatelessWidget {
                                       validator: (value) =>
                                           providerWOL.emailValidation(value),
                                       decoration: const InputDecoration(
+                                          filled: true,
+                                          fillColor: Colors.white,
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),
                                           prefixIcon: Icon(CupertinoIcons.at,
                                               color: kBrown),
-                                          border: OutlineInputBorder(),
+                                          border: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
                                           labelText: 'Email'),
                                     ),
                                     kHeight10,
@@ -94,11 +102,15 @@ class SignUpScreen extends StatelessWidget {
                                       validator: (value) =>
                                           providerWOL.passwordValidation(value),
                                       decoration: const InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.white,
                                         contentPadding: EdgeInsets.symmetric(
                                             vertical: 3, horizontal: 3),
                                         prefixIcon: Icon(CupertinoIcons.padlock,
                                             color: kBrown),
-                                        border: OutlineInputBorder(),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
                                         labelText: 'Password',
                                       ),
                                     ),

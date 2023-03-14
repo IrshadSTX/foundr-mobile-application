@@ -43,6 +43,11 @@ class ApiServiceSignUp {
     try {
       Response response = await dio.post(
         path,
+        options: Options(
+          validateStatus: (status) {
+            return status! < 599;
+          },
+        ),
         data: {
           "email": email,
           "content": "OTP for Email Varification is $code",
@@ -50,7 +55,7 @@ class ApiServiceSignUp {
         },
       );
 
-      log("response from send mail");
+      log("response from send mail :${response.data}");
       if (response.statusCode == 201) {
         //message sent successfully
         return true;

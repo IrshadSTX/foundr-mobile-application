@@ -28,5 +28,6 @@ class ApiServiceSignIn {
       log(e.message.toString());
       DioException().dioError(e, context);
     }
+    return null;
   }
 }

@@ -1,10 +1,3 @@
-import 'dart:convert';
-
-SigninreqModel signinrequestFromJson(String str) =>
-    SigninreqModel.fromJson(json.decode(str));
-
-String signinrequestToJson(SigninreqModel data) => json.encode(data.toJson());
-
 class SigninreqModel {
   SigninreqModel({
     this.password,
