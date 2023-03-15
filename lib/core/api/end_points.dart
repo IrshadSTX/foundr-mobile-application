@@ -5,4 +5,5 @@ class ApiEndPoints {
   static String signUp = "/api/user/signup";
   static String verifyOTP = "/api/user/verifyOtp";
   static String getArticles = "/api/user/getArticles";
+  static String getEvents = "/api/user/getEvents";
 }

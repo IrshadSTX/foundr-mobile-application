@@ -58,14 +58,14 @@ class ArticleCardWidget extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           width: size.width * 0.83,
-                          height: size.width * 0.09,
+                          height: size.width * 0.10,
                           decoration: const BoxDecoration(
                               color: Colors.black54,
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
                           child: Container(
-                            margin: const EdgeInsets.only(left: 10),
+                            margin: const EdgeInsets.only(left: 10, top: 5),
                             child: TextStyleWidget(
                               title: title,
                               thick: FontWeight.bold,
