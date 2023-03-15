@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
-import 'package:foundr_project/views/main_screens/article_screen/article_content/article_content_screen.dart';
 
 import '../../../../core/widgets/textstyle.dart';
 

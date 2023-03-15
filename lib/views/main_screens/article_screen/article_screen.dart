@@ -37,74 +37,80 @@ class ArticleScreen extends StatelessWidget {
       backgroundColor: kCream,
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            kHeight10,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                TextStyleWidget(
-                  title: 'Gain some ideas!',
-                  thick: FontWeight.bold,
-                  textcolor: kBrown,
-                  fontsize: 24,
-                ),
-                TextStyleWidget(
-                  title:
-                      "Read Articles and gain ideas about different sections of startups.",
-                  thick: FontWeight.w500,
-                  textcolor: kGreen,
-                  fontsize: 12,
-                ),
-              ],
-            ),
-            kHeight20,
-            FutureBuilder<List<Article>?>(
-                future: ArticleService().getArticleService(context),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Expanded(
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ArticleContentScreen(
-                                    content: snapshot.data![index].content!,
-                                    name: snapshot.data![index].title!,
-                                    date: dateChange(
-                                      snapshot.data![index].createdAt
-                                          .toString(),
-                                    ),
-                                    image: snapshot.data![index].coverImage!),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              kHeight10,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  TextStyleWidget(
+                    title: 'Gain some ideas!',
+                    thick: FontWeight.bold,
+                    textcolor: kBrown,
+                    fontsize: 24,
+                  ),
+                  TextStyleWidget(
+                    title:
+                        "Read Articles and gain ideas about different sections of startups.",
+                    thick: FontWeight.w500,
+                    textcolor: kGreen,
+                    fontsize: 12,
+                  ),
+                ],
+              ),
+              kHeight20,
+              SizedBox(
+                child: FutureBuilder<List<Article>?>(
+                    future: ArticleService().getArticleService(context),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Expanded(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ArticleContentScreen(
+                                        content: snapshot.data![index].content!,
+                                        name: snapshot.data![index].title!,
+                                        date: dateChange(
+                                          snapshot.data![index].createdAt
+                                              .toString(),
+                                        ),
+                                        image:
+                                            snapshot.data![index].coverImage!),
+                                  ),
+                                );
+                              },
+                              child: ArticleCardWidget(
+                                avatar: snapshot.data![index].coverImage!,
+                                title: snapshot.data![index].title!,
+                                dateTime: dateChange(
+                                    snapshot.data![index].createdAt.toString()),
+                                size: size,
                               ),
-                            );
-                          },
-                          child: ArticleCardWidget(
-                            avatar: snapshot.data![index].coverImage!,
-                            title: snapshot.data![index].title!,
-                            dateTime: dateChange(
-                                snapshot.data![index].createdAt.toString()),
-                            size: size,
+                            ),
+                            itemCount: snapshot.data!.length,
                           ),
-                        ),
-                        itemCount: snapshot.data!.length,
-                      ),
-                    );
-                  } else if (snapshot.connectionState ==
-                      ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                }),
-          ],
+                        );
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }),
+              ),
+            ],
+          ),
         ),
       ),
     );
