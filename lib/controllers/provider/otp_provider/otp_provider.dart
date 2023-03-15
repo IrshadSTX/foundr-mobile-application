@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/model/api/sign_up/signup_request.dart';
 import 'package:foundr_project/services/otp_services/otp_services.dart';
 import 'package:foundr_project/services/sign_up_services/sign_up_services.dart';
+import 'package:provider/provider.dart';
 
 import '../../../views/main_screens/home_screen/home_screen.dart';
 
@@ -35,12 +38,14 @@ class OtpProvider with ChangeNotifier {
                     (value) => {
                       if (value?.token != null)
                         {
-                          storage.write(key: "token", value: value!.token),
+                          storage.write(
+                              key: "token", value: jsonEncode(value!.token)),
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                 builder: (context) => HomeScreen(),
                               ),
-                              (route) => false)
+                              (route) => false),
+                          disposeTextfield(context)
                         }
                       else
                         {
@@ -48,7 +53,6 @@ class OtpProvider with ChangeNotifier {
                         }
                     },
                   ),
-              disposeText()
             }
           else if (value == false)
             {
@@ -61,7 +65,11 @@ class OtpProvider with ChangeNotifier {
         });
   }
 
-  void disposeText() {
-    otpController.clear();
+  void disposeTextfield(context) {
+    final provider = Provider.of<OtpProvider>(context, listen: false);
+    provider.otpController.clear();
+    provider.usernameController.clear();
+    provider.emailController.clear();
+    provider.passwordController.clear();
   }
 }

@@ -12,7 +12,7 @@ class ApiServiceOTP {
     try {
       Response response = await dio.post(
         path,
-        queryParameters: {"code": code},
+        data: {"code": code},
         options: Options(
           validateStatus: (status) {
             return status! < 599;

@@ -7,7 +7,9 @@ import 'package:foundr_project/views/main_screens/home_screen/widgets/get_tabs_d
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key});
+  const HomeScreen({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

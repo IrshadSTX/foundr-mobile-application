@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
+import 'package:foundr_project/views/main_screens/article_screen/article_content/article_content_screen.dart';
 
 import '../../../../core/widgets/textstyle.dart';
 
@@ -7,9 +8,16 @@ class ArticleCardWidget extends StatelessWidget {
   const ArticleCardWidget({
     super.key,
     required this.size,
+    required this.avatar,
+    required this.title,
+    required this.dateTime,
   });
 
   final Size size;
+  final String avatar;
+  final String title;
+
+  final String dateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +48,8 @@ class ArticleCardWidget extends StatelessWidget {
                         height: size.width * 0.43,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/events.png',
+                          child: Image.network(
+                            avatar,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -56,11 +64,14 @@ class ArticleCardWidget extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   bottomRight: Radius.circular(10))),
-                          child: const TextStyleWidget(
-                            title: 'How to get startup ideas',
-                            thick: FontWeight.bold,
-                            textcolor: kCream,
-                            fontsize: 18,
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            child: TextStyleWidget(
+                              title: title,
+                              thick: FontWeight.bold,
+                              textcolor: kCream,
+                              fontsize: 18,
+                            ),
                           ),
                         ),
                       )
@@ -71,9 +82,9 @@ class ArticleCardWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10, right: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children: [
                       TextStyleWidget(
-                          title: 'Thursday, March 2',
+                          title: dateTime,
                           thick: FontWeight.w600,
                           textcolor: kCream,
                           fontsize: 16)

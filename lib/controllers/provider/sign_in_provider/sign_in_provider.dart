@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/model/api/sign_in/signin_req.dart';
@@ -19,7 +21,7 @@ class SigninProvider with ChangeNotifier {
           (value) => {
             if (value?.token != null)
               {
-                storage.write(key: "token", value: value!.token),
+                storage.write(key: "token", value: jsonEncode(value!.token)),
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => HomeScreen()),
                     (route) => false),

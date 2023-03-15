@@ -4,4 +4,5 @@ class ApiEndPoints {
   static String sendMail = "/api/user/sendMail";
   static String signUp = "/api/user/signup";
   static String verifyOTP = "/api/user/verifyOtp";
+  static String getArticles = "/api/user/getArticles";
 }
