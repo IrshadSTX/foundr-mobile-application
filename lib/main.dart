@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/bottom_navigation.dart/bottom_navigation.dart';
+import 'package:foundr_project/controllers/provider/event/event_payment_provider.dart';
 import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_up_provider/sign_up_provider.dart';
@@ -54,6 +55,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => NavigationBarProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => EventPaymentProvider(),
         ),
       ],
       child: MaterialApp(

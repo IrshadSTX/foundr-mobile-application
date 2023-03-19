@@ -3,6 +3,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/model/api/events/events_model.dart';
 import 'package:foundr_project/services/event_services/event_services.dart';
+
 import 'package:foundr_project/views/main_screens/event_screen/widgets/events_card_widget.dart';
 import 'package:intl/intl.dart';
 
@@ -68,11 +69,18 @@ class EventScreen extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, index) => EventCardWidget(
-                              size: size,
-                              celebrity: snapshot.data![index].mentorName!,
-                              image: snapshot.data![index].mentorImage!,
-                              date: dateChange(snapshot.data![index].dateAndTime
-                                  .toString())),
+                            size: size,
+                            celebrity: snapshot.data![index].mentorName!,
+                            image: snapshot.data![index].mentorImage!,
+                            date: dateChange(
+                                snapshot.data![index].dateAndTime.toString()),
+                            content: snapshot.data![index].description!,
+                            fee: snapshot.data![index].enrollmentFee!,
+                            venue: snapshot.data![index].venue!,
+                            title: snapshot.data![index].title!,
+                            eventId: snapshot.data![index].id!,
+                            joinLink: snapshot.data![index].joinLink!,
+                          ),
                           itemCount: snapshot.data!.length,
                         );
                       }
@@ -93,7 +101,7 @@ class EventScreen extends StatelessWidget {
     String formattedDate = formatteddate.replaceFirst(
         formatteddate.substring(3, 4),
         formatteddate.substring(3, 4).toUpperCase());
-    String timeDate = formattedDate + " " + time;
+    String timeDate = "$formattedDate $time";
     return timeDate;
   }
 }

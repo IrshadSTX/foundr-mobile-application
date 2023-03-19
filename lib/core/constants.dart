@@ -5,12 +5,15 @@ import 'colors.dart';
 
 //width
 SizedBox kWidth10 = const SizedBox(
-  height: 10,
+  width: 10,
 );
 SizedBox kWidth20 = const SizedBox(
-  height: 20,
+  width: 20,
 );
 //heights
+SizedBox kHeight5 = const SizedBox(
+  height: 5,
+);
 SizedBox kHeight10 = const SizedBox(
   height: 10,
 );

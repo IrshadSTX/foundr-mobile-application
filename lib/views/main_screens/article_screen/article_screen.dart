@@ -65,37 +65,34 @@ class ArticleScreen extends StatelessWidget {
                     future: ArticleService().getArticleService(context),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) => InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ArticleContentScreen(
-                                        content: snapshot.data![index].content!,
-                                        name: snapshot.data![index].title!,
-                                        date: dateChange(
-                                          snapshot.data![index].createdAt
-                                              .toString(),
-                                        ),
-                                        image:
-                                            snapshot.data![index].coverImage!),
-                                  ),
-                                );
-                              },
-                              child: ArticleCardWidget(
-                                avatar: snapshot.data![index].coverImage!,
-                                title: snapshot.data![index].title!,
-                                dateTime: dateChange(
-                                    snapshot.data![index].createdAt.toString()),
-                                size: size,
-                              ),
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (context, index) => InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ArticleContentScreen(
+                                      content: snapshot.data![index].content!,
+                                      name: snapshot.data![index].title!,
+                                      date: dateChange(
+                                        snapshot.data![index].createdAt
+                                            .toString(),
+                                      ),
+                                      image: snapshot.data![index].coverImage!),
+                                ),
+                              );
+                            },
+                            child: ArticleCardWidget(
+                              avatar: snapshot.data![index].coverImage!,
+                              title: snapshot.data![index].title!,
+                              dateTime: dateChange(
+                                  snapshot.data![index].createdAt.toString()),
+                              size: size,
                             ),
-                            itemCount: snapshot.data!.length,
                           ),
+                          itemCount: snapshot.data!.length,
                         );
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {

@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
+import 'package:foundr_project/views/main_screens/event_screen/widgets/event_join_screen.dart';
 
 import '../../../../core/widgets/textstyle.dart';
 
 class EventCardWidget extends StatelessWidget {
   const EventCardWidget({
+    required this.eventId,
+    required this.joinLink,
     super.key,
     required this.size,
     required this.celebrity,
     required this.image,
     required this.date,
+    required this.content,
+    required this.venue,
+    required this.fee,
+    required this.title,
   });
   final String celebrity;
   final String image;
   final String date;
   final Size size;
-
+  final String content;
+  final String venue;
+  final int fee;
+  final String title;
+  final String eventId;
+  final String joinLink;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -89,7 +101,25 @@ class EventCardWidget extends StatelessWidget {
                             color: kBrown,
                             borderRadius: BorderRadius.circular(10)),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EventJoinScreen(
+                                  image: image,
+                                  title: title,
+                                  content: content,
+                                  mentorImage: image,
+                                  mentorName: celebrity,
+                                  venue: venue,
+                                  dateAndTime: date,
+                                  fee: fee,
+                                  eventId: eventId,
+                                  joinLink: joinLink,
+                                ),
+                              ),
+                            );
+                          },
                           child: const TextStyleWidget(
                             title: 'Join Now',
                             thick: FontWeight.w600,

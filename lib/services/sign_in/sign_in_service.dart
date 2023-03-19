@@ -10,7 +10,7 @@ import 'package:foundr_project/model/api/sign_in/signin_res.dart';
 import 'package:foundr_project/utils/exceptions/exception.dart';
 
 class ApiServiceSignIn {
-  var dio = Dio();
+  Dio dio = Dio();
   Future<SigninRespModel?> signIn(
       SigninreqModel model, BuildContext context) async {
     String path = kBaseurl + ApiEndPoints.signIn;
