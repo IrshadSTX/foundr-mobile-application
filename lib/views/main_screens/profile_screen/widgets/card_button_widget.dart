@@ -3,8 +3,9 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 
 class CardButtonWidget extends StatelessWidget {
-  const CardButtonWidget({super.key, required this.title});
+  CardButtonWidget({super.key, required this.title, required this.onPressed});
   final String title;
+  Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class CardButtonWidget extends StatelessWidget {
         color: kYellow,
         shape: RoundedRectangleBorder(
           side: const BorderSide(color: Colors.brown, width: 1),
-          borderRadius: BorderRadius.circular(7),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: SizedBox(
           height: 45,

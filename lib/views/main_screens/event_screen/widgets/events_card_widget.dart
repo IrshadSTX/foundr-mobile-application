@@ -3,6 +3,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/main_screens/event_screen/widgets/event_join_screen.dart';
 
 import '../../../../core/widgets/textstyle.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class EventCardWidget extends StatelessWidget {
   const EventCardWidget({
@@ -53,16 +54,17 @@ class EventCardWidget extends StatelessWidget {
                   child: Stack(
                     children: [
                       SizedBox(
-                        width: size.width * 0.83,
-                        // height: size.width * 0.43,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            image,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                      ),
+                          width: size.width * 0.83,
+                          // height: size.width * 0.43,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: FadeInImage.assetNetwork(
+                              placeholder: 'assets/images/community.png',
+                              image: image,
+                              fit: BoxFit.cover,
+                              fadeInDuration: const Duration(milliseconds: 500),
+                            ),
+                          )),
                       Positioned(
                         bottom: 0,
                         child: Container(

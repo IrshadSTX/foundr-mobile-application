@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 
@@ -46,12 +47,17 @@ class ArticleCardWidget extends StatelessWidget {
                         width: size.width * 0.83,
                         height: size.width * 0.43,
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            avatar,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(10),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: FadeInImage.assetNetwork(
+                                placeholder: 'assets/images/events.png',
+                                image: avatar,
+                                fit: BoxFit.fill,
+                                fadeInDuration:
+                                    const Duration(milliseconds: 500),
+                              ),
+                            )),
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,

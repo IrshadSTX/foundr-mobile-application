@@ -34,15 +34,53 @@ class ProfieScreen extends StatelessWidget {
               color: Colors.white,
             ),
             onPressed: () {
-              storage.delete(key: "token");
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const SplashScreen()),
-                  (route) => false);
+              showDialog<void>(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(
+                      'Sign out!',
+                      style: kHeading,
+                    ),
+                    content: SingleChildScrollView(
+                      child: ListBody(
+                        children: const <Widget>[
+                          Text(
+                            'Are you sure want to Sign Out',
+                          ),
+                        ],
+                      ),
+                    ),
+                    actions: [
+                      ElevatedButton(
+                        child: const Text('Decline'),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                      TextButton(
+                        child: const Text(
+                          'Yes',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onPressed: () {
+                          storage.delete(key: "token");
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                  builder: (context) => const SplashScreen()),
+                              (route) => false);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
             },
           ),
         ],
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Center(
           child: Container(
             padding: const EdgeInsets.all(20),
@@ -67,12 +105,14 @@ class ProfieScreen extends StatelessWidget {
                 kHeight10,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     CardButtonWidget(
                       title: '4 Connections',
+                      onPressed: () {},
                     ),
                     CardButtonWidget(
                       title: 'Messages',
+                      onPressed: () {},
                     )
                   ],
                 ),
@@ -87,17 +127,76 @@ class ProfieScreen extends StatelessWidget {
                         fontsize: 18),
                   ],
                 ),
-                Form(
-                  child: Column(
-                    children: [
-                      kHeight10,
-                      TextFormWidget(
-                        hinttext: 'About yourself',
+                Column(
+                  children: [
+                    Form(
+                      child: Column(
+                        children: [
+                          kHeight10,
+                          const TextFormWidget(
+                            hinttext: 'About yourself',
+                          ),
+                          kHeight10,
+                          FieldsInRowWidget(),
+                          kHeight10,
+                          Row(
+                            children: [
+                              const Expanded(
+                                child: TextFormWidget(
+                                  hinttext: 'state',
+                                ),
+                              ),
+                              kWidth10,
+                              const Expanded(
+                                child: TextFormWidget(
+                                  hinttext: 'city/Town',
+                                ),
+                              ),
+                            ],
+                          ),
+                          kHeight10,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              ElevatedButton(
+                                  onPressed: () {}, child: const Text('Save')),
+                            ],
+                          ),
+                        ],
                       ),
-                      kHeight10,
-                      FieldsInRowWidget()
-                    ],
-                  ),
+                    ),
+                    kHeight10,
+                    const TextStyleWidget(
+                        title: 'More Details',
+                        thick: FontWeight.bold,
+                        textcolor: kBrown,
+                        fontsize: 18),
+                    kHeight10,
+                    Row(
+                      children: [
+                        CardButtonWidget(
+                          title: 'About Me',
+                          onPressed: () {},
+                        ),
+                        kWidth10,
+                        CardButtonWidget(
+                          title: 'Co-Founder',
+                          onPressed: () {},
+                        )
+                      ],
+                    ),
+                    kHeight5,
+                    SizedBox(
+                        width: size.width * 0.9,
+                        child: const Text(
+                          'Co-Founder Matches will be found according to the details provided in the About me and Co-Founder sections',
+                          style: TextStyle(
+                              color: kGreen,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        )),
+                  ],
                 ),
               ],
             ),
