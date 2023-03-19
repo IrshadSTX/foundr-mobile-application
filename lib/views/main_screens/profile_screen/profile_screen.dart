@@ -137,7 +137,7 @@ class ProfieScreen extends StatelessWidget {
                             hinttext: 'About yourself',
                           ),
                           kHeight10,
-                          FieldsInRowWidget(),
+                          const FieldsInRowWidget(),
                           kHeight10,
                           Row(
                             children: [
@@ -187,15 +187,16 @@ class ProfieScreen extends StatelessWidget {
                     ),
                     kHeight5,
                     SizedBox(
-                        width: size.width * 0.9,
-                        child: const Text(
-                          'Co-Founder Matches will be found according to the details provided in the About me and Co-Founder sections',
-                          style: TextStyle(
-                              color: kGreen,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        )),
+                      width: size.width * 0.9,
+                      child: const Text(
+                        'Co-Founder Matches will be found according to the details provided in the About me and Co-Founder sections',
+                        style: TextStyle(
+                            color: kGreen,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
               ],

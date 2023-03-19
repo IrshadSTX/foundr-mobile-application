@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/core/constants.dart';
 
 class FieldsInRowWidget extends StatelessWidget {
   const FieldsInRowWidget({
@@ -19,10 +20,10 @@ class FieldsInRowWidget extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               hintText: 'Gender',
             ),
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
           ),
         ),
-        SizedBox(width: 10), // Add some space between text fields
+        kWidth10, // Add some space between text fields
         Expanded(
           child: TextFormField(
             decoration: const InputDecoration(
@@ -33,10 +34,10 @@ class FieldsInRowWidget extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               hintText: 'Age',
             ),
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
           ),
         ),
-        SizedBox(width: 10), // Add some space between text fields
+        kWidth10, // Add some space between text fields
         Expanded(
           child: TextFormField(
             decoration: const InputDecoration(
@@ -47,7 +48,7 @@ class FieldsInRowWidget extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               hintText: 'Nation',
             ),
-            style: TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14),
           ),
         ),
       ],
