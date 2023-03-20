@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/bottom_navigation.dart/bottom_navigation.dart';
 import 'package:foundr_project/controllers/provider/event/event_payment_provider.dart';
 import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
+import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_up_provider/sign_up_provider.dart';
 import 'package:foundr_project/controllers/provider/splash_provider/splash_provider.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => EventPaymentProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => ProfileScreenProvider(),
         ),
       ],
       child: MaterialApp(

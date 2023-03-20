@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
-import 'package:foundr_project/views/main_screens/profile_screen/widgets/fields_row_widget.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:foundr_project/views/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 import 'widgets/card_button_widget.dart';
 
 class ProfieScreen extends StatelessWidget {
-  const ProfieScreen({super.key});
-
+  ProfieScreen({super.key});
+  final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -127,44 +128,80 @@ class ProfieScreen extends StatelessWidget {
                         fontsize: 18),
                   ],
                 ),
+                //
+                //textformfields start here
+                //
                 Column(
                   children: [
-                    Form(
-                      child: Column(
-                        children: [
-                          kHeight10,
-                          const TextFormWidget(
-                            hinttext: 'About yourself',
-                          ),
-                          kHeight10,
-                          const FieldsInRowWidget(),
-                          kHeight10,
-                          Row(
-                            children: [
-                              const Expanded(
-                                child: TextFormWidget(
-                                  hinttext: 'state',
+                    Consumer<ProfileScreenProvider>(
+                        builder: (context, value, child) {
+                      return Form(
+                        child: Column(
+                          children: [
+                            kHeight10,
+                            TextFormWidget(
+                              controller: value.aboutController,
+                              hinttext: 'About yourself',
+                            ),
+                            kHeight10,
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormWidget(
+                                    controller: value.genderController,
+                                    hinttext: 'Gender',
+                                  ),
                                 ),
-                              ),
-                              kWidth10,
-                              const Expanded(
-                                child: TextFormWidget(
-                                  hinttext: 'city/Town',
+                                kWidth10,
+                                Expanded(
+                                  child: TextFormWidget(
+                                    controller: value.ageController,
+                                    hinttext: 'Age',
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          kHeight10,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ElevatedButton(
-                                  onPressed: () {}, child: const Text('Save')),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
+                                kWidth10, // Add some space between text fields
+                                Expanded(
+                                  child: TextFormWidget(
+                                    controller: value.genderController,
+                                    hinttext: 'Nation',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            kHeight10,
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: TextFormWidget(
+                                    controller: value.stateController,
+                                    hinttext: 'state',
+                                  ),
+                                ),
+                                kWidth10,
+                                Expanded(
+                                  child: TextFormWidget(
+                                    controller: value.cityController,
+                                    hinttext: 'city/Town',
+                                  ),
+                                ),
+                              ],
+                            ),
+                            kHeight10,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Text('Save')),
+                              ],
+                            ),
+                          ],
+                        ),
+                      );
+                      //
+                      //Textform fields end here
+                      //
+                    }),
                     kHeight10,
                     const TextStyleWidget(
                         title: 'More Details',
