@@ -3,7 +3,8 @@ import 'package:foundr_project/controllers/provider/profile/profile_screen_provi
 import 'package:provider/provider.dart';
 
 class TextFormWidget extends StatelessWidget {
-  const TextFormWidget({
+  TextFormWidget({
+    required this.validator,
     required this.controller,
     required this.hinttext,
     super.key,
@@ -11,21 +12,23 @@ class TextFormWidget extends StatelessWidget {
   final String hinttext;
   final TextEditingController controller;
 
+  String? Function(String?) validator;
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
     return TextFormField(
       controller: controller,
-      validator: (value) => provider.checkingEmpty(value),
+      validator: validator,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        border: OutlineInputBorder(
+        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(10))),
         hintText: hinttext,
       ),
-      style: TextStyle(fontSize: 14),
+      style: const TextStyle(fontSize: 14),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:foundr_project/controllers/provider/profile/profile_screen_provi
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/profile_screen/widgets/bottom_buttons_widgets.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -136,12 +137,14 @@ class ProfieScreen extends StatelessWidget {
                     Consumer<ProfileScreenProvider>(
                         builder: (context, value, child) {
                       return Form(
+                        key: formkey,
                         child: Column(
                           children: [
                             kHeight10,
                             TextFormWidget(
                               controller: value.aboutController,
                               hinttext: 'About yourself',
+                              validator: (value) {},
                             ),
                             kHeight10,
                             Row(
@@ -150,6 +153,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.genderController,
                                     hinttext: 'Gender',
+                                    validator: (value) {},
                                   ),
                                 ),
                                 kWidth10,
@@ -157,6 +161,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.ageController,
                                     hinttext: 'Age',
+                                    validator: (value) {},
                                   ),
                                 ),
                                 kWidth10, // Add some space between text fields
@@ -164,6 +169,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.genderController,
                                     hinttext: 'Nation',
+                                    validator: (value) {},
                                   ),
                                 ),
                               ],
@@ -175,6 +181,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.stateController,
                                     hinttext: 'state',
+                                    validator: (value) {},
                                   ),
                                 ),
                                 kWidth10,
@@ -182,6 +189,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.cityController,
                                     hinttext: 'city/Town',
+                                    validator: (value) {},
                                   ),
                                 ),
                               ],
@@ -202,38 +210,7 @@ class ProfieScreen extends StatelessWidget {
                       //Textform fields end here
                       //
                     }),
-                    kHeight10,
-                    const TextStyleWidget(
-                        title: 'More Details',
-                        thick: FontWeight.bold,
-                        textcolor: kBrown,
-                        fontsize: 18),
-                    kHeight10,
-                    Row(
-                      children: [
-                        CardButtonWidget(
-                          title: 'About Me',
-                          onPressed: () {},
-                        ),
-                        kWidth10,
-                        CardButtonWidget(
-                          title: 'Co-Founder',
-                          onPressed: () {},
-                        )
-                      ],
-                    ),
-                    kHeight5,
-                    SizedBox(
-                      width: size.width * 0.9,
-                      child: const Text(
-                        'Co-Founder Matches will be found according to the details provided in the About me and Co-Founder sections',
-                        style: TextStyle(
-                            color: kGreen,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                    BottomButtonsWidget(size: size)
                   ],
                 ),
               ],
