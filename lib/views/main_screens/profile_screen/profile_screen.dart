@@ -144,7 +144,7 @@ class ProfieScreen extends StatelessWidget {
                             TextFormWidget(
                               controller: value.aboutController,
                               hinttext: 'About yourself',
-                              validator: (value) {},
+                              validator: (data) => value.checkingEmpty(data),
                             ),
                             kHeight10,
                             Row(
@@ -153,7 +153,7 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.genderController,
                                     hinttext: 'Gender',
-                                    validator: (value) {},
+                                    validator: (data) {},
                                   ),
                                 ),
                                 kWidth10,
@@ -161,15 +161,17 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.ageController,
                                     hinttext: 'Age',
-                                    validator: (value) {},
+                                    validator: (data) =>
+                                        value.ageValidation(data),
                                   ),
                                 ),
                                 kWidth10, // Add some space between text fields
                                 Expanded(
                                   child: TextFormWidget(
-                                    controller: value.genderController,
+                                    controller: value.nationController,
                                     hinttext: 'Nation',
-                                    validator: (value) {},
+                                    validator: (data) =>
+                                        value.checkingEmpty(data),
                                   ),
                                 ),
                               ],
@@ -181,7 +183,8 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.stateController,
                                     hinttext: 'state',
-                                    validator: (value) {},
+                                    validator: (data) =>
+                                        value.checkingEmpty(data),
                                   ),
                                 ),
                                 kWidth10,
@@ -189,7 +192,8 @@ class ProfieScreen extends StatelessWidget {
                                   child: TextFormWidget(
                                     controller: value.cityController,
                                     hinttext: 'city/Town',
-                                    validator: (value) {},
+                                    validator: (data) =>
+                                        value.checkingEmpty(data),
                                   ),
                                 ),
                               ],
@@ -199,7 +203,9 @@ class ProfieScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      formkey.currentState?.validate();
+                                    },
                                     child: const Text('Save')),
                               ],
                             ),

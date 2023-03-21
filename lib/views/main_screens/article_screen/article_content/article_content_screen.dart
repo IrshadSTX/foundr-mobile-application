@@ -3,7 +3,6 @@ import 'package:flutter_html/flutter_html.dart';
 
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ArticleContentScreen extends StatelessWidget {
   const ArticleContentScreen(

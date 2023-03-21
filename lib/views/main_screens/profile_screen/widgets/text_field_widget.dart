@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
-import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class TextFormWidget extends StatelessWidget {
   TextFormWidget({
     required this.validator,
@@ -11,13 +10,12 @@ class TextFormWidget extends StatelessWidget {
   });
   final String hinttext;
   final TextEditingController controller;
-
   String? Function(String?) validator;
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
     return TextFormField(
+      keyboardAppearance: Brightness.light,
       controller: controller,
       validator: validator,
       decoration: InputDecoration(
