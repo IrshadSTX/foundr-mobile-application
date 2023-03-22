@@ -7,4 +7,6 @@ class ApiEndPoints {
   static String getArticles = "/api/user/getArticles";
   static String getEvents = "/api/user/getEvents";
   static String joinEvent = "/api/user/joinEvent";
+  static String getUser = "/api/user/getUser";
+  static String getUserPhoto = "/api/user/profilePhoto";
 }
