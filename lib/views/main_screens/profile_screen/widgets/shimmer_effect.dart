@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:foundr_project/views/widgets/snackbar_widget.dart';
 
 class ShimmerLoadingEffect extends StatelessWidget {
   const ShimmerLoadingEffect({
@@ -26,9 +28,14 @@ class ShimmerLoadingEffect extends StatelessWidget {
           ),
           Container(
             width: double.infinity,
-            height: 150.0,
+            height: 30.0,
             color: Colors.grey[300],
             margin: EdgeInsets.only(bottom: 8.0),
+            child: Center(
+                child: Text(
+              "Network Error  !😥",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
+            )),
           ),
         ],
       ),

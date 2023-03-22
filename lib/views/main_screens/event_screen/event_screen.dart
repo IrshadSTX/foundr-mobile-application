@@ -62,9 +62,7 @@ class EventScreen extends StatelessWidget {
                 child: FutureBuilder<List<EventModel>?>(
                     future: EventService().getEventService(context),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return ShimmerLoadingEffect();
-                      } else {
+                      if (snapshot.hasData) {
                         return ListView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -83,6 +81,13 @@ class EventScreen extends StatelessWidget {
                           ),
                           itemCount: snapshot.data!.length,
                         );
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return Center(
+                          child: ShimmerLoadingEffect(),
+                        );
+                      } else {
+                        return Center(child: ShimmerLoadingEffect());
                       }
                     }),
               ),
