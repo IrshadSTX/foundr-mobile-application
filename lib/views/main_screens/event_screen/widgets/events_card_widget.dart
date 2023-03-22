@@ -3,7 +3,6 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/main_screens/event_screen/widgets/event_join_screen.dart';
 
 import '../../../../core/widgets/textstyle.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class EventCardWidget extends StatelessWidget {
   const EventCardWidget({

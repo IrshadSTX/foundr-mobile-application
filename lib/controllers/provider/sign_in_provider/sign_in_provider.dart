@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/model/api/sign_in/signin_req.dart';
 import 'package:foundr_project/services/sign_in/sign_in_service.dart';
+import 'package:foundr_project/views/splash_screen.dart';
 import '../../../views/main_screens/home_screen/home_screen.dart';
 
 class SigninProvider with ChangeNotifier {
@@ -23,7 +24,7 @@ class SigninProvider with ChangeNotifier {
               {
                 storage.write(key: "token", value: jsonEncode(value!.token)),
                 Navigator.of(context).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    MaterialPageRoute(builder: (context) => SplashScreen()),
                     (route) => false),
                 disposeTextfield()
               }

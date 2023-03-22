@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/views/main_screens/home_screen/home_screen.dart';
 import 'package:foundr_project/views/sign_/sign_in/sign_in_screen.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreenProvider with ChangeNotifier {
   FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -33,6 +35,8 @@ class SplashScreenProvider with ChangeNotifier {
       } else if (isExpired == false) {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const HomeScreen()));
+        Provider.of<ProfileScreenProvider>(context, listen: false)
+            .getUserDetailsProvider();
       }
     });
   }

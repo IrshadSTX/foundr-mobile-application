@@ -6,8 +6,10 @@ import 'package:foundr_project/services/event_services/event_services.dart';
 
 import 'package:foundr_project/views/main_screens/event_screen/widgets/events_card_widget.dart';
 import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../core/constants.dart';
+import '../profile_screen/widgets/shimmer_effect.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key});
@@ -60,10 +62,8 @@ class EventScreen extends StatelessWidget {
                 child: FutureBuilder<List<EventModel>?>(
                     future: EventService().getEventService(context),
                     builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return ShimmerLoadingEffect();
                       } else {
                         return ListView.builder(
                           shrinkWrap: true,

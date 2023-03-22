@@ -5,6 +5,7 @@ import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/model/api/article/article_model.dart';
 import 'package:foundr_project/services/article_services/article_services.dart';
 import 'package:foundr_project/views/main_screens/article_screen/article_content/article_content_screen.dart';
+import 'package:foundr_project/views/main_screens/profile_screen/widgets/shimmer_effect.dart';
 import 'package:intl/intl.dart';
 
 import 'widgets/article_card_widget.dart';
@@ -97,12 +98,10 @@ class ArticleScreen extends StatelessWidget {
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
                         return const Center(
-                          child: CircularProgressIndicator(),
+                          child: ShimmerLoadingEffect(),
                         );
                       } else {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
+                        return const Center(child: ShimmerLoadingEffect());
                       }
                     }),
               ),
