@@ -93,156 +93,166 @@ class ProfieScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             child: Consumer<ProfileScreenProvider>(
                 builder: (context, data, child) {
-              return Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      data.pickImage(context);
-                    },
-                    child: data.profileDatas != null &&
-                            data.profileDatas!.profilePhoto != null
-                        ? CircleAvatar(
-                            radius: 60,
-                            backgroundColor: Colors.transparent,
-                            backgroundImage: FadeInImage.assetNetwork(
-                              placeholder: 'assets/images/user.png',
-                              image: data.profileDatas!.profilePhoto!,
-                            ).image)
-                        : const CircleAvatar(
-                            radius: 50,
-                            backgroundImage:
-                                AssetImage('assets/images/user.png'),
-                          ),
-                  ),
-                  TextStyleWidget(
-                    title: data.profileDatas!.userName!,
-                    thick: FontWeight.w700,
-                    textcolor: kBrown,
-                    fontsize: 24,
-                  ),
-                  TextStyleWidget(
-                    title: data.profileDatas!.email!,
-                    thick: FontWeight.w400,
-                    textcolor: kGreen,
-                    fontsize: 14,
-                  ),
-                  kHeight10,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CardButtonWidget(
-                        title: 'Connections',
-                        onPressed: () {},
-                      ),
-                      CardButtonWidget(
-                        title: 'Messages',
-                        onPressed: () {},
-                      )
-                    ],
-                  ),
-                  kHeight10,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      TextStyleWidget(
-                          title: 'User Profile',
-                          thick: FontWeight.bold,
+              return data.profileDatas != null
+                  ? Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            data.pickImage(context);
+                          },
+                          child: data.profileDatas != null &&
+                                  data.profileDatas!.profilePhoto != null
+                              ? CircleAvatar(
+                                  radius: 60,
+                                  backgroundColor: Colors.transparent,
+                                  backgroundImage: FadeInImage.assetNetwork(
+                                    placeholder: 'assets/images/user.png',
+                                    image: data.profileDatas!.profilePhoto!,
+                                  ).image)
+                              : const CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage:
+                                      AssetImage('assets/images/user.png'),
+                                ),
+                        ),
+                        TextStyleWidget(
+                          title: data.profileDatas!.userName!,
+                          thick: FontWeight.w700,
                           textcolor: kBrown,
-                          fontsize: 18),
-                    ],
-                  ),
-                  //
-                  //textformfields start here
-                  //
-                  Column(
-                    children: [
-                      Consumer<ProfileScreenProvider>(
-                          builder: (context, value, child) {
-                        return Form(
-                          key: formkey,
-                          child: Column(
-                            children: [
-                              kHeight10,
-                              TextFormWidget(
-                                controller: value.aboutController,
-                                hinttext: 'About yourself',
-                                validator: (data) => value.checkingEmpty(data),
-                              ),
-                              kHeight10,
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: TextFormWidget(
-                                      controller: value.genderController,
-                                      hinttext: 'Gender',
-                                      validator: (data) {},
-                                    ),
-                                  ),
-                                  kWidth10,
-                                  Expanded(
-                                    child: TextFormWidget(
-                                      controller: value.ageController,
-                                      hinttext: 'Age',
-                                      validator: (data) =>
-                                          value.ageValidation(data),
-                                    ),
-                                  ),
-                                  kWidth10, // Add some space between text fields
-                                  Expanded(
-                                    child: TextFormWidget(
-                                      controller: value.nationController,
-                                      hinttext: 'Nation',
-                                      validator: (data) =>
-                                          value.checkingEmpty(data),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              kHeight10,
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: TextFormWidget(
-                                      controller: value.stateController,
-                                      hinttext: 'state',
-                                      validator: (data) =>
-                                          value.checkingEmpty(data),
-                                    ),
-                                  ),
-                                  kWidth10,
-                                  Expanded(
-                                    child: TextFormWidget(
-                                      controller: value.cityController,
-                                      hinttext: 'city/Town',
-                                      validator: (data) =>
-                                          value.checkingEmpty(data),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              kHeight10,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  ElevatedButton(
-                                      onPressed: () {
-                                        formkey.currentState?.validate();
-                                      },
-                                      child: const Text('Save')),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
+                          fontsize: 24,
+                        ),
+                        TextStyleWidget(
+                          title: data.profileDatas!.email!,
+                          thick: FontWeight.w400,
+                          textcolor: kGreen,
+                          fontsize: 14,
+                        ),
+                        kHeight10,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CardButtonWidget(
+                              title: 'Connections',
+                              onPressed: () {},
+                            ),
+                            CardButtonWidget(
+                              title: 'Messages',
+                              onPressed: () {},
+                            )
+                          ],
+                        ),
+                        kHeight10,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: const [
+                            TextStyleWidget(
+                                title: 'User Profile',
+                                thick: FontWeight.bold,
+                                textcolor: kBrown,
+                                fontsize: 18),
+                          ],
+                        ),
                         //
-                        //Textform fields end here
+                        //textformfields start here
                         //
-                      }),
-                      BottomButtonsWidget(size: size)
-                    ],
-                  ),
-                ],
-              );
+                        Column(
+                          children: [
+                            Consumer<ProfileScreenProvider>(
+                                builder: (context, value, child) {
+                              return Form(
+                                key: formkey,
+                                child: Column(
+                                  children: [
+                                    kHeight10,
+                                    TextFormWidget(
+                                      controller: value.aboutController,
+                                      hinttext: 'About yourself',
+                                      validator: (data) =>
+                                          value.checkingEmpty(data),
+                                    ),
+                                    kHeight10,
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormWidget(
+                                            controller: value.genderController,
+                                            hinttext: 'Gender',
+                                            validator: (data) {},
+                                          ),
+                                        ),
+                                        kWidth10,
+                                        Expanded(
+                                          child: TextFormWidget(
+                                            controller: value.ageController,
+                                            hinttext: 'Age',
+                                            validator: (data) =>
+                                                value.ageValidation(data),
+                                          ),
+                                        ),
+                                        kWidth10, // Add some space between text fields
+                                        Expanded(
+                                          child: TextFormWidget(
+                                            controller: value.nationController,
+                                            hinttext: 'Nation',
+                                            validator: (data) =>
+                                                value.checkingEmpty(data),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    kHeight10,
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: TextFormWidget(
+                                            controller: value.stateController,
+                                            hinttext: 'state',
+                                            validator: (data) =>
+                                                value.checkingEmpty(data),
+                                          ),
+                                        ),
+                                        kWidth10,
+                                        Expanded(
+                                          child: TextFormWidget(
+                                            controller: value.cityController,
+                                            hinttext: 'city/Town',
+                                            validator: (data) =>
+                                                value.checkingEmpty(data),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    kHeight10,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              formkey.currentState?.validate();
+                                            },
+                                            child: const Text('Save')),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              );
+                              //
+                              //Textform fields end here
+                              //
+                            }),
+                            BottomButtonsWidget(size: size)
+                          ],
+                        ),
+                      ],
+                    )
+                  : const Center(
+                      child: TextStyleWidget(
+                          title: 'Network lost',
+                          thick: FontWeight.bold,
+                          textcolor: kRose,
+                          fontsize: 26),
+                    );
             }),
           ),
         ),

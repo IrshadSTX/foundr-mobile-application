@@ -5,11 +5,12 @@ import 'package:foundr_project/model/api/events/events_model.dart';
 import 'package:foundr_project/services/event_services/event_services.dart';
 
 import 'package:foundr_project/views/main_screens/event_screen/widgets/events_card_widget.dart';
+import 'package:foundr_project/views/widgets/snackbar_widget.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/constants.dart';
-import '../profile_screen/widgets/shimmer_effect.dart';
+import '../../widgets/shimmer_effect.dart';
 
 class EventScreen extends StatelessWidget {
   const EventScreen({super.key});
@@ -83,11 +84,16 @@ class EventScreen extends StatelessWidget {
                         );
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
-                        return Center(
+                        return const Center(
                           child: ShimmerLoadingEffect(),
                         );
                       } else {
-                        return Center(child: ShimmerLoadingEffect());
+                        return const Center(
+                            child: TextStyleWidget(
+                                title: 'Network lost',
+                                thick: FontWeight.bold,
+                                textcolor: kRose,
+                                fontsize: 26));
                       }
                     }),
               ),

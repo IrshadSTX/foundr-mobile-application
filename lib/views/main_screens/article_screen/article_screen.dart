@@ -5,7 +5,7 @@ import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/model/api/article/article_model.dart';
 import 'package:foundr_project/services/article_services/article_services.dart';
 import 'package:foundr_project/views/main_screens/article_screen/article_content/article_content_screen.dart';
-import 'package:foundr_project/views/main_screens/profile_screen/widgets/shimmer_effect.dart';
+import 'package:foundr_project/views/widgets/shimmer_effect.dart';
 import 'package:intl/intl.dart';
 
 import 'widgets/article_card_widget.dart';
@@ -101,7 +101,12 @@ class ArticleScreen extends StatelessWidget {
                           child: ShimmerLoadingEffect(),
                         );
                       } else {
-                        return const Center(child: ShimmerLoadingEffect());
+                        return const Center(
+                            child: TextStyleWidget(
+                                title: 'Network lost',
+                                thick: FontWeight.bold,
+                                textcolor: kRose,
+                                fontsize: 26));
                       }
                     }),
               ),
