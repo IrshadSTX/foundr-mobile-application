@@ -40,6 +40,7 @@ class ApiServiceSignUp {
   Future<bool?> sendMail(
       String email, BuildContext context, String code, String userName) async {
     String path = kBaseurl + ApiEndPoints.sendMail;
+
     try {
       Response response = await dio.post(
         path,
@@ -49,7 +50,7 @@ class ApiServiceSignUp {
           "userName": userName,
         },
       );
-
+      log(code);
       log("response from send mail :${response.data}");
       if (response.statusCode == 201) {
         //message sent successfully

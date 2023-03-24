@@ -81,10 +81,10 @@ class ProfileScreenProvider with ChangeNotifier {
       intro: about,
       gender: gender,
     );
-    UserProfileServices().updateAboutService(aboutUser).then(
+    UserProfileServices().updateUserService(aboutUser).then(
           (value) => {
             if (value == true)
-              {SnackbarPopUps.popUpB('Profile Updated Successfully', context)}
+              {SnackbarPopUps.popUpG('Profile Updated Successfully', context)}
             else if (value == false)
               {SnackbarPopUps.popUpB('Invalid user', context)}
           },

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
@@ -58,7 +58,7 @@ class UserProfileServices {
     return null;
   }
 
-  Future<bool?> updateAboutService(UpdateUseraboutModel model) async {
+  Future<bool?> updateUserService(UpdateUseraboutModel model) async {
     final path = kBaseurl + ApiEndPoints.updateUserProfile;
     final token = await storage.read(key: 'token');
     try {
