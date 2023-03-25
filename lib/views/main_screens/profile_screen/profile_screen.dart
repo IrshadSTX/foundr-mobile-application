@@ -172,6 +172,7 @@ class ProfieScreen extends StatelessWidget {
                                           child:
                                               DropdownButtonFormField<String>(
                                             decoration: InputDecoration(
+                                                hintText: 'Gender',
                                                 contentPadding:
                                                     const EdgeInsets.symmetric(
                                                         vertical: 5,
