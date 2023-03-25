@@ -16,11 +16,6 @@ class ProfieScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProfileScreenProvider>(listen: false, context);
-    // WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
-    //   provider.getUserDetailsProvider();
-    // });
-
     final size = MediaQuery.of(context).size;
 
     FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -174,10 +169,37 @@ class ProfieScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Expanded(
-                                          child: TextFormWidget(
-                                            controller: value.genderController,
-                                            hinttext: 'Gender',
-                                            validator: (data) {},
+                                          child:
+                                              DropdownButtonFormField<String>(
+                                            decoration: InputDecoration(
+                                                contentPadding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 5,
+                                                        horizontal: 10),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                filled: true,
+                                                fillColor: Colors.white),
+                                            isExpanded: true,
+                                            items: data.dropBoxItems
+                                                .map((String dropdownVal) {
+                                              return DropdownMenuItem<String>(
+                                                value: dropdownVal,
+                                                child: Text(
+                                                  dropdownVal,
+                                                  style: textstyle,
+                                                ),
+                                              );
+                                            }).toList(),
+                                            onChanged: (value) {
+                                              data.onChangeGender(value!);
+                                            },
+                                            validator: (value) =>
+                                                data.onChangeGender(value!),
+                                            value: data.profileDatas!.gender,
+                                            style: textstyle,
                                           ),
                                         ),
                                         kWidth10,
@@ -229,7 +251,11 @@ class ProfieScreen extends StatelessWidget {
                                       children: [
                                         ElevatedButton(
                                             onPressed: () {
-                                              formkey.currentState?.validate();
+                                              if (formkey.currentState!
+                                                  .validate()) {
+                                                data.updateAboutProvider(
+                                                    context);
+                                              }
                                             },
                                             child: const Text('Save')),
                                       ],

@@ -36,6 +36,8 @@ TextStyle kHeading = GoogleFonts.poppins(
   fontSize: 24,
   fontWeight: FontWeight.bold,
 );
+const textstyle =
+    TextStyle(color: kBrown, fontSize: 16, fontWeight: FontWeight.w400);
 //snackbars
 const snackBar = SnackBar(content: Text('Invalid Email or Password'));
 const emailExists = SnackBar(content: Text('Email Already Exists'));

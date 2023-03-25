@@ -23,6 +23,7 @@ class ProfileScreenProvider with ChangeNotifier {
   TextEditingController genderController = TextEditingController();
   var dropBoxItems = ['Gender', 'Male', 'Female', 'Other'];
   String drpSelected = 'Gender';
+
   //
   //getting user details
   //
@@ -61,6 +62,18 @@ class ProfileScreenProvider with ChangeNotifier {
               {SnackbarPopUps.popUpB('Invalid user', context)}
           },
         );
+  }
+//
+//drop down lists managment
+//
+
+  onChangeGender(String val) {
+    if (val == 'Gender') {
+      return 'Gender couldnot be null';
+    } else {
+      drpSelected = val;
+      notifyListeners();
+    }
   }
 
 //

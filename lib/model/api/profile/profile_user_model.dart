@@ -1,5 +1,25 @@
+class UserProfileModel {
+  UserProfileModel({
+    this.userDetails,
+  });
+
+  final UserDetails? userDetails;
+
+  factory UserProfileModel.fromJson(Map<String, dynamic> json) =>
+      UserProfileModel(
+        userDetails: json["userDetails"] == null
+            ? null
+            : UserDetails.fromJson(json["userDetails"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "userDetails": userDetails?.toJson(),
+      };
+}
+
 class UserDetails {
   UserDetails({
+    this.location,
     this.id,
     this.userName,
     this.email,
@@ -12,8 +32,12 @@ class UserDetails {
     this.updatedAt,
     this.v,
     this.profilePhoto,
+    this.age,
+    this.gender,
+    this.intro,
   });
 
+  final Location? location;
   final String? id;
   final String? userName;
   final String? email;
@@ -26,25 +50,46 @@ class UserDetails {
   final DateTime? updatedAt;
   final int? v;
   final String? profilePhoto;
+  final int? age;
+  final String? gender;
+  final String? intro;
 
   factory UserDetails.fromJson(Map<String, dynamic> json) => UserDetails(
+        location: json["location"] == null
+            ? null
+            : Location.fromJson(json["location"]),
         id: json["_id"],
         userName: json["userName"],
         email: json["email"],
         status: json["status"],
-        responsibilities:
-            List<dynamic>.from(json["responsibilities"].map((x) => x)),
-        interests: List<dynamic>.from(json["interests"].map((x) => x)),
-        cofounderResponsibilities:
-            List<dynamic>.from(json["cofounderResponsibilities"].map((x) => x)),
-        connections: List<dynamic>.from(json["connections"].map((x) => x)),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        responsibilities: json["responsibilities"] == null
+            ? []
+            : List<dynamic>.from(json["responsibilities"]!.map((x) => x)),
+        interests: json["interests"] == null
+            ? []
+            : List<dynamic>.from(json["interests"]!.map((x) => x)),
+        cofounderResponsibilities: json["cofounderResponsibilities"] == null
+            ? []
+            : List<dynamic>.from(
+                json["cofounderResponsibilities"]!.map((x) => x)),
+        connections: json["connections"] == null
+            ? []
+            : List<dynamic>.from(json["connections"]!.map((x) => x)),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
         profilePhoto: json["profilePhoto"],
+        age: json["age"],
+        gender: json["gender"],
+        intro: json["intro"],
       );
+
   Map<String, dynamic> toJson() => {
-        // "location": location?.toJson(),
+        "location": location?.toJson(),
         "_id": id,
         "userName": userName,
         "email": email,
@@ -65,8 +110,32 @@ class UserDetails {
         "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
         "profilePhoto": profilePhoto,
-        // "age": age,
-        // "gender": gender,
-        // "intro": intro,
+        "age": age,
+        "gender": gender,
+        "intro": intro,
+      };
+}
+
+class Location {
+  Location({
+    this.country,
+    this.state,
+    this.city,
+  });
+
+  final String? country;
+  final String? state;
+  final String? city;
+
+  factory Location.fromJson(Map<String, dynamic> json) => Location(
+        country: json["country"],
+        state: json["state"],
+        city: json["city"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "country": country,
+        "state": state,
+        "city": city,
       };
 }
