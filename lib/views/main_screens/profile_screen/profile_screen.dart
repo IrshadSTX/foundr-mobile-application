@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
@@ -254,6 +256,10 @@ class ProfieScreen extends StatelessWidget {
                                             onPressed: () {
                                               if (formkey.currentState!
                                                   .validate()) {
+                                                log(data.nationController.text);
+                                                log(data.aboutController.text);
+                                                log(data.ageController.text);
+                                                log(data.drpSelected);
                                                 data.updateAboutProvider(
                                                     context);
                                               }
