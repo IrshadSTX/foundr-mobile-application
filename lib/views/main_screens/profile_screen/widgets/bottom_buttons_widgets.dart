@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/profile_screen/about_me/about_me_screen.dart';
+import 'package:foundr_project/views/main_screens/profile_screen/co-founder/co_founder_screen.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/card_button_widget.dart';
 
 class BottomButtonsWidget extends StatelessWidget {
@@ -27,12 +29,12 @@ class BottomButtonsWidget extends StatelessWidget {
           children: [
             CardButtonWidget(
               title: 'About Me',
-              onPressed: () {},
+              navigate: AboutMeScreen(),
             ),
             kWidth10,
             CardButtonWidget(
               title: 'Co-Founder',
-              onPressed: () {},
+              navigate: CoFounderScreen(),
             )
           ],
         ),

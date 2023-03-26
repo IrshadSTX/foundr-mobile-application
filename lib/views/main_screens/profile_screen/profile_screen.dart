@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
@@ -15,9 +13,26 @@ import 'widgets/card_button_widget.dart';
 
 class ProfieScreen extends StatelessWidget {
   ProfieScreen({super.key});
+
   final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    provider.genderController =
+        TextEditingController(text: provider.profileDatas!.gender);
+    provider.ageController =
+        TextEditingController(text: provider.profileDatas!.age.toString());
+
+    provider.aboutController =
+        TextEditingController(text: provider.profileDatas!.intro);
+    provider.nationController =
+        TextEditingController(text: provider.profileDatas!.location!.country);
+    provider.stateController =
+        TextEditingController(text: provider.profileDatas!.location!.state);
+    provider.cityController =
+        TextEditingController(text: provider.profileDatas!.location!.city);
+    // });
     final size = MediaQuery.of(context).size;
 
     FlutterSecureStorage storage = const FlutterSecureStorage();
@@ -130,11 +145,9 @@ class ProfieScreen extends StatelessWidget {
                           children: [
                             CardButtonWidget(
                               title: 'Connections',
-                              onPressed: () {},
                             ),
                             CardButtonWidget(
                               title: 'Messages',
-                              onPressed: () {},
                             )
                           ],
                         ),
@@ -256,10 +269,6 @@ class ProfieScreen extends StatelessWidget {
                                             onPressed: () {
                                               if (formkey.currentState!
                                                   .validate()) {
-                                                log(data.nationController.text);
-                                                log(data.aboutController.text);
-                                                log(data.ageController.text);
-                                                log(data.drpSelected);
                                                 data.updateAboutProvider(
                                                     context);
                                               }

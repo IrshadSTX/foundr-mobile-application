@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 
+// ignore: must_be_immutable
 class CardButtonWidget extends StatelessWidget {
-  CardButtonWidget({super.key, required this.title, required this.onPressed});
+  CardButtonWidget({super.key, required this.title, this.navigate});
   final String title;
-  Function onPressed;
+  Widget? navigate;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => navigate!)),
       child: Card(
         elevation: 5,
         color: kYellow,

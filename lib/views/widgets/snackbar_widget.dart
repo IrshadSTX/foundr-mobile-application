@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foundr_project/core/colors.dart';
 
 class SnackbarPopUps {
   static Future<void> popUpB(String text, BuildContext context) async {
@@ -9,7 +8,7 @@ class SnackbarPopUps {
           text,
           style: const TextStyle(color: Colors.white),
         ),
-        backgroundColor: kRose,
+        backgroundColor: Colors.red,
         behavior: SnackBarBehavior.floating,
       ),
     );
@@ -22,7 +21,7 @@ class SnackbarPopUps {
           text,
           style: const TextStyle(color: Colors.white),
         ),
-        backgroundColor: kGreen,
+        backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
       ),
     );

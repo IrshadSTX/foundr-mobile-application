@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
@@ -36,6 +37,34 @@ TextStyle kHeading = GoogleFonts.poppins(
   fontSize: 24,
   fontWeight: FontWeight.bold,
 );
+
+void textHeading(String text) {
+  TextStyleWidget(
+    title: text,
+    thick: FontWeight.bold,
+    textcolor: kBrown,
+    fontsize: 24,
+  );
+}
+
+void textMiniHeading(String text) {
+  TextStyleWidget(
+    title: text,
+    thick: FontWeight.bold,
+    textcolor: kBrown,
+    fontsize: 18,
+  );
+}
+
+void textParagraph(String text) {
+  TextStyleWidget(
+    title: text,
+    thick: FontWeight.bold,
+    textcolor: kGreen,
+    fontsize: 12,
+  );
+}
+
 const textstyle =
     TextStyle(color: kBrown, fontSize: 16, fontWeight: FontWeight.w400);
 //snackbars
