@@ -30,6 +30,9 @@ SizedBox kHeight30 = const SizedBox(
 SizedBox kHeight40 = const SizedBox(
   height: 40,
 );
+Divider divider = const Divider(
+  thickness: 2,
+);
 //textstyle
 
 TextStyle kHeading = GoogleFonts.poppins(
@@ -38,8 +41,8 @@ TextStyle kHeading = GoogleFonts.poppins(
   fontWeight: FontWeight.bold,
 );
 
-void textHeading(String text) {
-  TextStyleWidget(
+Widget textHeading(String text) {
+  return TextStyleWidget(
     title: text,
     thick: FontWeight.bold,
     textcolor: kBrown,
@@ -47,8 +50,8 @@ void textHeading(String text) {
   );
 }
 
-void textMiniHeading(String text) {
-  TextStyleWidget(
+Widget textMiniHeading(String text) {
+  return TextStyleWidget(
     title: text,
     thick: FontWeight.bold,
     textcolor: kBrown,
@@ -56,12 +59,31 @@ void textMiniHeading(String text) {
   );
 }
 
-void textParagraph(String text) {
-  TextStyleWidget(
+Widget textParagraph(String text) {
+  return TextStyleWidget(
     title: text,
-    thick: FontWeight.bold,
+    thick: FontWeight.w500,
     textcolor: kGreen,
     fontsize: 12,
+  );
+}
+
+Widget textParagraphBlack(String text) {
+  return TextStyleWidget(
+    title: text,
+    thick: FontWeight.w400,
+    textcolor: Colors.black,
+    fontsize: 12,
+  );
+}
+
+Row questionAir(String number, String question) {
+  return Row(
+    children: [
+      textMiniHeading(number),
+      kWidth10,
+      Expanded(child: textParagraphBlack(question))
+    ],
   );
 }
 

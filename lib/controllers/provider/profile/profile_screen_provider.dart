@@ -125,4 +125,71 @@ class ProfileScreenProvider with ChangeNotifier {
     }
     return null;
   }
+
+  InputDecoration fieldDecor() {
+    return InputDecoration(
+        hintText: 'Gender',
+        contentPadding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        filled: true,
+        fillColor: Colors.white);
+  }
+
+//***about me section***//
+  //responseFounder
+  List<String>? responseFounderSelected = [];
+  String? respFounder = 'select one';
+  var responseFounderitems = [
+    'select one',
+    'Product',
+    'Engineer',
+    'Design',
+    'Sales and Marketing',
+    'Operations'
+  ];
+  onchangeResponseFounder(String value) {
+    if (value == 'select one' || value.isEmpty) {
+      return 'select field';
+    } else {
+      if (responseFounderSelected!.contains(value)) {
+        responseFounderSelected!.remove(value);
+        notifyListeners();
+      } else {
+        responseFounderSelected!.add(value);
+        notifyListeners();
+      }
+    }
+  }
+
+  //InterestedFounder
+  List<String?> interestedSelected = [];
+  String? intrstFounder = 'select one';
+  var interestedItems = [
+    'select one',
+    'Agriculture / Agtech',
+    'Artificial Intelligence',
+    'Augmented Reality / Virtual Reality',
+    'B2B / Enterprise',
+    'Biomedical / Biotech',
+    'Education / Edtech',
+    'Entertainment',
+    'Government',
+    'Health / Wellness',
+    'Travel / Tourism'
+  ];
+  onchangeInterestedFounder(String value) {
+    if (value == 'select one' || value.isEmpty) {
+      return 'select field';
+    } else {
+      if (interestedSelected.contains(value)) {
+        responseFounderSelected!.remove(value);
+        notifyListeners();
+      } else {
+        interestedSelected.add(value);
+        notifyListeners();
+      }
+    }
+  }
 }

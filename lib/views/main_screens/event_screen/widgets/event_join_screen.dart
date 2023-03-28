@@ -113,7 +113,7 @@ class EventJoinScreen extends StatelessWidget {
                                 context,
                               );
                             },
-                            child: Text('Join in Discord')),
+                            child: const Text('Join in Discord')),
                       ],
                     )
                   ],

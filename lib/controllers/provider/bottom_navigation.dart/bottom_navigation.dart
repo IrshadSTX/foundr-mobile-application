@@ -7,21 +7,20 @@ import 'package:foundr_project/views/main_screens/profile_screen/profile_screen.
 import '../../../views/main_screens/first_screen/first_screen.dart';
 
 class NavigationBarProvider extends ChangeNotifier {
-  int _currentPage = 0;
+  int currentPage = 0;
+  int? index;
   final List<Widget> _pages = [
     FirstScreen(),
-    ArticleScreen(),
-    EventScreen(),
+    const ArticleScreen(),
+    const EventScreen(),
     MessageScreen(),
     ProfieScreen(),
   ];
 
-  int get currentPage => _currentPage;
-
   List<Widget> get pages => _pages;
 
   void setCurrentPage(int index) {
-    _currentPage = index;
+    currentPage = index;
     notifyListeners();
   }
 }

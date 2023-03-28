@@ -1,18 +1,29 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/home_screen/home_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../controllers/provider/bottom_navigation.dart/bottom_navigation.dart';
 
 // ignore: must_be_immutable
 class CardButtonWidget extends StatelessWidget {
-  CardButtonWidget({super.key, required this.title, this.navigate});
+  CardButtonWidget({
+    super.key,
+    required this.title,
+    this.navigate,
+  });
   final String title;
   Widget? navigate;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
-          context, MaterialPageRoute(builder: (context) => navigate!)),
+      onTap: () => navigate != null
+          ? Navigator.push(
+              context, MaterialPageRoute(builder: (context) => navigate!))
+          : changer(context),
       child: Card(
         elevation: 5,
         color: kYellow,
@@ -34,5 +45,12 @@ class CardButtonWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void changer(context) {
+    Provider.of<NavigationBarProvider>(context, listen: false)
+        .setCurrentPage(3);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const HomeScreen()));
   }
 }
