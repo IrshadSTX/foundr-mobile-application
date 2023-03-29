@@ -89,6 +89,8 @@ Row questionAir(String number, String question) {
 
 const textstyle =
     TextStyle(color: kBrown, fontSize: 16, fontWeight: FontWeight.w400);
+const textstyle2 =
+    TextStyle(color: kBrown, fontSize: 13, fontWeight: FontWeight.w400);
 //snackbars
 const snackBar = SnackBar(content: Text('Invalid Email or Password'));
 const emailExists = SnackBar(content: Text('Email Already Exists'));

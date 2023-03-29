@@ -7,7 +7,6 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 
 import 'package:foundr_project/core/widgets/textstyle.dart';
-import 'package:foundr_project/views/main_screens/profile_screen/widgets/card_button_widget.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -29,8 +28,9 @@ class AboutMeScreen extends StatelessWidget {
         backgroundColor: kYellow,
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(15.0),
           child: SizedBox(
             width: size.width * 0.95,
             child: Column(
@@ -108,7 +108,9 @@ class AboutMeScreen extends StatelessWidget {
                   "write about your great accomplishment so far",
                 ),
                 kHeight5,
-                TextFormWidget(),
+                TextFormWidget(
+                  
+                ),
                 const Divider(),
                 textMiniHeading('Education'),
                 textParagraph(
@@ -178,6 +180,7 @@ class AboutMeScreen extends StatelessWidget {
                     'Which topics and industries are interested in?'),
                 textParagraph(
                     "We’ll try to show you more profiles from founders with common interests."),
+                kHeight5,
                 Consumer<ProfileScreenProvider>(
                     builder: (context, data, child) {
                   return Container(
@@ -231,6 +234,7 @@ class AboutMeScreen extends StatelessWidget {
                     value: data.respFounder,
                   );
                 }),
+                kHeight10,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

@@ -137,7 +137,8 @@ class ProfileScreenProvider with ChangeNotifier {
         fillColor: Colors.white);
   }
 
-//***about me section***//
+//**************ABOUT ME SECTION**************//
+
   //responseFounder
   List<String>? responseFounderSelected = [];
   String? respFounder = 'select one';
@@ -188,6 +189,90 @@ class ProfileScreenProvider with ChangeNotifier {
         notifyListeners();
       } else {
         interestedSelected.add(value);
+        notifyListeners();
+      }
+    }
+  }
+
+  //**************CO-FOUNDER SECTION**************//
+
+  //technical or non technical
+  String? techOrNonTechSelected = 'select one';
+
+  var techOrNonTechItems = [
+    'select one',
+    'Technical',
+    'Non-Technical',
+    'No Preference'
+  ];
+  onChangeTechOrNonTech(String val) {
+    if (val == 'select one') {
+      return 'select field';
+    } else {
+      techOrNonTechSelected = val;
+      notifyListeners();
+    }
+  }
+
+  //Do have idea
+  String? ideaHaveSelected = 'select one';
+  var ideaHaveItems = [
+    'select one',
+    'I Want to see Co-founders who are not set on a specific idea',
+    'I Want to see Co-founders who have a specific idea',
+    'No Preference'
+  ];
+  onChangeIdeaHave(String val) {
+    if (val == 'select one') {
+      return 'select field';
+    } else {
+      ideaHaveSelected = val;
+      notifyListeners();
+    }
+  }
+
+  //location preference
+  String? locationPrefSelected = 'select one';
+  var locationPrefItems = [
+    'select one',
+    'Within a certain distance of me',
+    'In my country',
+    'No preference'
+  ];
+  onChangeLocationPref(String val) {
+    if (val == 'select one') {
+      return 'select field';
+    } else {
+      locationPrefSelected = val;
+      notifyListeners();
+    }
+  }
+
+  //AREA OF RESPONSIBILITY
+  List<String?> areaOfResponsibilitySelected = [];
+  String? areaOfResponsibility = 'select one';
+  var areaOfResponsibilityitems = [
+    'select one',
+    'Agriculture / Agtech',
+    'Artificial Intelligence',
+    'Augmented Reality / Virtual Reality',
+    'B2B / Enterprise',
+    'Biomedical / Biotech',
+    'Education / Edtech',
+    'Entertainment',
+    'Government',
+    'Health / Wellness',
+    'Travel / Tourism'
+  ];
+  onChangeAreaOfResponsibility(String value) {
+    if (value == 'select one' || value.isEmpty) {
+      return 'select field';
+    } else {
+      if (areaOfResponsibilitySelected.contains(value)) {
+        areaOfResponsibilitySelected.remove(value);
+        notifyListeners();
+      } else {
+        areaOfResponsibilitySelected.add(value);
         notifyListeners();
       }
     }
