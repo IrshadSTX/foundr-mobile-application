@@ -139,6 +139,21 @@ class ProfileScreenProvider with ChangeNotifier {
 
 //**************ABOUT ME SECTION**************//
 
+  final accomplishmentController = TextEditingController();
+  final educationController = TextEditingController();
+
+  int? isTechnical;
+  int? haveIdeaSelected;
+  String? onChangehaveIdea(int val) {
+    if (val == 0) {
+      return 'definiteIdea';
+    } else if (val == 1) {
+      return 'readyToExplore';
+    } else {
+      return 'noIdea';
+    }
+  }
+
   //responseFounder
   List<String>? responseFounderSelected = [];
   String? respFounder = 'select one';
@@ -197,8 +212,8 @@ class ProfileScreenProvider with ChangeNotifier {
   //**************CO-FOUNDER SECTION**************//
 
   //technical or non technical
-  String? techOrNonTechSelected = 'select one';
 
+  String? techOrNonTechSelected = 'select one';
   var techOrNonTechItems = [
     'select one',
     'Technical',

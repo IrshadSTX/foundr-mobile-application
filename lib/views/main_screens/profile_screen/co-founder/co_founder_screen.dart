@@ -8,8 +8,8 @@ import '../../../../core/colors.dart';
 import '../../../../core/widgets/textstyle.dart';
 
 class CoFounderScreen extends StatelessWidget {
-  const CoFounderScreen({super.key});
-
+  CoFounderScreen({super.key});
+  final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

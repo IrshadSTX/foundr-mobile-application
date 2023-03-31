@@ -21,6 +21,7 @@ class UserProfileServices {
     final option = Options(headers: {'Authorization': 'Bearer $token'});
     try {
       Response response = await dio.get(path, options: option);
+
       //
       log(response.data.toString(), name: 'getUser');
       if (response.statusCode == 200) {
