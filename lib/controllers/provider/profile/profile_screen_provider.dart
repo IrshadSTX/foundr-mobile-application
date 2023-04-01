@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:foundr_project/model/api/profile/about_me_model.dart';
 
 import 'package:foundr_project/model/api/profile/profile_user_model.dart';
 import 'package:foundr_project/model/api/profile/update_profile_model.dart';
@@ -14,13 +15,17 @@ import 'package:image_picker/image_picker.dart';
 class ProfileScreenProvider with ChangeNotifier {
   File? file;
   UserDetails? profileDatas;
-
+  AboutMeModel? aboutMeModel;
+  TextEditingController employmentController = TextEditingController();
   TextEditingController aboutController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController nationController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController genderController = TextEditingController();
+  TextEditingController accomplishmentController = TextEditingController();
+  TextEditingController educationController = TextEditingController();
+
   var dropBoxItems = ['Gender', 'Male', 'Female', 'Other'];
   String drpSelected = 'Gender';
 
@@ -139,15 +144,45 @@ class ProfileScreenProvider with ChangeNotifier {
 
 //**************ABOUT ME SECTION**************//
 
-  final accomplishmentController = TextEditingController();
-  final educationController = TextEditingController();
+  Future<void> updateAboutMeProvider(BuildContext context) async {
+    log('Entered Update about me provider');
+    final accomplishment = accomplishmentController.text;
+    final education = educationController.text;
+    final employment = employmentController.text;
+    final aboutMe = AboutMeModel(
+      isTechnical: isTechnical!,
+      haveIdea: onChangehaveIdea(),
+      accomplishments: accomplishment,
+      education: education,
+      employment: employment,
+      responsibilities: responseFounderSelected,
+      interests: interestedSelected,
+    );
+    log(
+      accomplishment +
+          education +
+          employment +
+          haveIdea! +
+          isTechnical.toString(),
+    );
+    UserProfileServices().updateAboutMeService(aboutMe).then((value) => {
+          if (value == true)
+            {
+              SnackbarPopUps.popUpG(
+                  'About me section updated successfully', context)
+            }
+          else if (value == false)
+            {SnackbarPopUps.popUpB('Something went wrong', context)}
+        });
+  }
 
-  int? isTechnical;
-  int? haveIdeaSelected;
-  String? onChangehaveIdea(int val) {
-    if (val == 0) {
+  int? isTechnical = 0;
+  int? haveIdeaSelected = 1;
+  String? haveIdea = 'readyToExplore';
+  onChangehaveIdea() {
+    if (haveIdeaSelected == 0) {
       return 'definiteIdea';
-    } else if (val == 1) {
+    } else if (haveIdeaSelected == 1) {
       return 'readyToExplore';
     } else {
       return 'noIdea';

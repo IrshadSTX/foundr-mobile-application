@@ -2,12 +2,17 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
+import 'package:foundr_project/model/api/profile/about_me_model.dart';
 import 'package:foundr_project/model/api/profile/profile_user_model.dart';
 import 'package:foundr_project/model/api/profile/update_profile_model.dart';
+import 'package:provider/provider.dart';
 
 class UserProfileServices {
   Dio dio = Dio();
@@ -27,6 +32,7 @@ class UserProfileServices {
       if (response.statusCode == 200) {
         final json = response.data["userDetails"];
         final res = UserDetails.fromJson(json);
+
         return res;
       }
     } catch (e) {
@@ -59,6 +65,7 @@ class UserProfileServices {
     return null;
   }
 
+  //Updating userprofile datas
   Future<bool?> updateUserService(UpdateUseraboutModel model) async {
     final path = kBaseurl + ApiEndPoints.updateUserProfile;
     final token = await storage.read(key: 'token');
@@ -76,6 +83,24 @@ class UserProfileServices {
       }
     } catch (e) {
       log(e.toString());
+    }
+    return null;
+  }
+
+  //Updating Aboutme datas
+  Future<bool?> updateAboutMeService(AboutMeModel model) async {
+    final path = kBaseurl + ApiEndPoints.aboutMe;
+    final token = await storage.read(key: 'token');
+    try {
+      Response response = await dio.post(path,
+          data: jsonEncode(model.toJson()),
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      if (response.statusCode == 201) {
+        log(response.data.toString());
+        return true;
+      }
+    } catch (e) {
+      log(e.toString(), name: 'updateAboutMeError');
     }
     return null;
   }

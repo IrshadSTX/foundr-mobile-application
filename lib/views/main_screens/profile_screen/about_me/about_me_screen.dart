@@ -7,6 +7,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/model/api/profile/about_me_model.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -16,6 +17,10 @@ class AboutMeScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    provider.accomplishmentController =
+        TextEditingController(text: provider.aboutMeModel!.accomplishments);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +65,7 @@ class AboutMeScreen extends StatelessWidget {
                       ],
                       onToggle: (index) {
                         data.isTechnical = index!;
-                        print('switched to: ${data.isTechnical}');
+                        log('yes or no FOUNDER ${data.isTechnical}');
                       },
                     ),
                     divider,
@@ -100,9 +105,7 @@ class AboutMeScreen extends StatelessWidget {
                       onToggle: (index) {
                         data.haveIdeaSelected = index;
                         log(data.haveIdeaSelected.toString());
-                        log(data
-                            .onChangehaveIdea(data.haveIdeaSelected!)
-                            .toString());
+                        log(data.onChangehaveIdea().toString());
                       },
                     ),
                     divider,
@@ -125,6 +128,15 @@ class AboutMeScreen extends StatelessWidget {
                     kHeight5,
                     TextFormWidget(
                       controller: data.educationController,
+                      validator: (value) => data.checkingEmpty(value),
+                    ),
+                    const Divider(),
+                    textMiniHeading('Employment'),
+                    textParagraph(
+                      "employers, position / titles, and dates. Use a separate line for each job, most recent first.",
+                    ),
+                    TextFormWidget(
+                      controller: data.employmentController,
                       validator: (value) => data.checkingEmpty(value),
                     ),
                     divider,
@@ -242,7 +254,9 @@ class AboutMeScreen extends StatelessWidget {
                       children: [
                         ElevatedButton(
                             onPressed: () {
-                              formkey.currentState!.validate();
+                              if (formkey.currentState!.validate()) {
+                                data.updateAboutMeProvider(context);
+                              }
                               log('saved about me');
                             },
                             child: Text('Save'))

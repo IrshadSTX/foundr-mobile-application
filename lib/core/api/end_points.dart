@@ -10,4 +10,5 @@ class ApiEndPoints {
   static String getUser = "/api/user/getUser";
   static String getUserPhoto = "/api/user/profilePhoto";
   static String updateUserProfile = "/api/user/updateUserProfile";
+  static String aboutMe = "/api/user/updateAbout";
 }
