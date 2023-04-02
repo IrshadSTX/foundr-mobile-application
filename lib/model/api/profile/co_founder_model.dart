@@ -1,17 +1,17 @@
 class CoFounderModel {
   CoFounderModel({
-    required this.activelySeeking,
-    required this.cofounderTechnical,
-    required this.cofounderHasIdea,
-    required this.locationPreference,
-    required this.cofounderResponsibilities,
+    this.activelySeeking,
+    this.cofounderTechnical,
+    this.cofounderHasIdea,
+    this.locationPreference,
+    this.cofounderResponsibilities,
   });
 
-  String activelySeeking;
-  String cofounderTechnical;
-  String cofounderHasIdea;
-  String locationPreference;
-  List<dynamic> cofounderResponsibilities;
+  String? activelySeeking;
+  String? cofounderTechnical;
+  String? cofounderHasIdea;
+  String? locationPreference;
+  List<dynamic>? cofounderResponsibilities;
 
   factory CoFounderModel.fromJson(Map<String, dynamic> json) => CoFounderModel(
         activelySeeking: json["activelySeeking"],
@@ -27,7 +27,10 @@ class CoFounderModel {
         "cofounderTechnical": cofounderTechnical,
         "cofounderHasIdea": cofounderHasIdea,
         "locationPreference": locationPreference,
-        "cofounderResponsibilities":
-            List<dynamic>.from(cofounderResponsibilities.map((x) => x)),
+        "cofounderResponsibilities": List<dynamic>.from(
+          cofounderResponsibilities == null
+              ? []
+              : List<dynamic>.from(cofounderResponsibilities!.map((e) => e)),
+        )
       };
 }

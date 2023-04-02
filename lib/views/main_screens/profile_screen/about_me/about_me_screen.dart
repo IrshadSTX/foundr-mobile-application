@@ -7,7 +7,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 
 import 'package:foundr_project/core/widgets/textstyle.dart';
-import 'package:foundr_project/model/api/profile/about_me_model.dart';
+
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -18,9 +18,7 @@ class AboutMeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    provider.accomplishmentController =
-        TextEditingController(text: provider.aboutMeModel!.accomplishments);
+    provider.educationController = TextEditingController();
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(

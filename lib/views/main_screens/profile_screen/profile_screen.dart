@@ -21,7 +21,8 @@ class ProfieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+
+    //some issues with this when lack of data deals null error//
     provider.genderController =
         TextEditingController(text: provider.profileDatas!.gender);
     provider.ageController =
@@ -35,7 +36,7 @@ class ProfieScreen extends StatelessWidget {
         TextEditingController(text: provider.profileDatas!.location!.state);
     provider.cityController =
         TextEditingController(text: provider.profileDatas!.location!.city);
-    // });
+    //----------------//
     final size = MediaQuery.of(context).size;
 
     FlutterSecureStorage storage = const FlutterSecureStorage();

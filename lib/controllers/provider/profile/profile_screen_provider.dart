@@ -4,7 +4,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/model/api/profile/about_me_model.dart';
+import 'package:foundr_project/model/api/profile/co_founder_model.dart';
 
 import 'package:foundr_project/model/api/profile/profile_user_model.dart';
 import 'package:foundr_project/model/api/profile/update_profile_model.dart';
@@ -245,9 +247,22 @@ class ProfileScreenProvider with ChangeNotifier {
   }
 
   //**************CO-FOUNDER SECTION**************//
+  Future<void> updateCoFounderProvider(BuildContext context) async {
+    final coFounder = CoFounderModel(
+        activelySeeking: areYouSeeking.toString(),
+        cofounderTechnical: technical,
+        cofounderHasIdea: hasIdea,
+        locationPreference: location,
+        cofounderResponsibilities: areaOfResponsibilitySelected);
+    UserProfileServices().updateCoFounderService(coFounder).then((value) => {
+          if (value == true)
+            {SnackbarPopUps.popUpG('Co-Founder successfully updated', context)},
+        });
+  }
 
+  int? areYouSeeking = 0;
   //technical or non technical
-
+  String? technical;
   String? techOrNonTechSelected = 'select one';
   var techOrNonTechItems = [
     'select one',
@@ -261,11 +276,19 @@ class ProfileScreenProvider with ChangeNotifier {
     } else {
       techOrNonTechSelected = val;
       notifyListeners();
+      if (techOrNonTechSelected == 'Technical') {
+        technical = '1';
+      } else if (techOrNonTechSelected == 'Non-Technical') {
+        technical = '2';
+      } else if (techOrNonTechSelected == 'No-preference') {
+        technical = '3';
+      }
     }
   }
 
   //Do have idea
   String? ideaHaveSelected = 'select one';
+  String? hasIdea;
   var ideaHaveItems = [
     'select one',
     'I Want to see Co-founders who are not set on a specific idea',
@@ -278,10 +301,20 @@ class ProfileScreenProvider with ChangeNotifier {
     } else {
       ideaHaveSelected = val;
       notifyListeners();
+      if (ideaHaveSelected ==
+          'I want to see co-founders who have a specific idea') {
+        hasIdea = '1';
+      } else if (ideaHaveSelected ==
+          'I want to see co-founders who are not set on a specific idea') {
+        hasIdea = '2';
+      } else if (ideaHaveSelected == 'No-preferences') {
+        hasIdea = '3';
+      }
     }
   }
 
   //location preference
+  String? location;
   String? locationPrefSelected = 'select one';
   var locationPrefItems = [
     'select one',
@@ -295,6 +328,13 @@ class ProfileScreenProvider with ChangeNotifier {
     } else {
       locationPrefSelected = val;
       notifyListeners();
+      if (locationPrefSelected == 'Within a certain distance of me') {
+        location = '1';
+      } else if (locationPrefSelected == 'In My country') {
+        location = '2';
+      } else if (locationPrefSelected == 'No-preferences') {
+        location = '3';
+      }
     }
   }
 

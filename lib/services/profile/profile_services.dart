@@ -10,6 +10,7 @@ import 'package:foundr_project/controllers/provider/profile/profile_screen_provi
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
 import 'package:foundr_project/model/api/profile/about_me_model.dart';
+import 'package:foundr_project/model/api/profile/co_founder_model.dart';
 import 'package:foundr_project/model/api/profile/profile_user_model.dart';
 import 'package:foundr_project/model/api/profile/update_profile_model.dart';
 import 'package:provider/provider.dart';
@@ -101,6 +102,23 @@ class UserProfileServices {
       }
     } catch (e) {
       log(e.toString(), name: 'updateAboutMeError');
+    }
+    return null;
+  }
+
+  //function for co-founder services
+  Future<bool?> updateCoFounderService(CoFounderModel model) async {
+    final path = kBaseurl + ApiEndPoints.coFounder;
+    final token = await storage.read(key: 'token');
+    try {
+      Response response = await dio.post(path,
+          data: jsonEncode(model.toJson()),
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      if (response.statusCode == 201) {
+        return true;
+      }
+    } catch (e) {
+      log(e.toString(), name: 'updateCofounderError');
     }
     return null;
   }
