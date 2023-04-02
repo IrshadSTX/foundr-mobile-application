@@ -22,7 +22,7 @@ class ProfieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
 
-    //some issues with this when lack of data deals null error//
+    //some issues with this, when lack of data deals null error//
     provider.genderController =
         TextEditingController(text: provider.profileDatas!.gender);
     provider.ageController =
