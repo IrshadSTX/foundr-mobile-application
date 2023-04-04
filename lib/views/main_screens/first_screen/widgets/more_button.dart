@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/first_screen/widgets/more_matches_screen.dart';
 
 class MoreButtonWidget extends StatelessWidget {
   const MoreButtonWidget({
@@ -13,7 +14,12 @@ class MoreButtonWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const MoreMatchingScreen()));
+            },
             child: const TextStyleWidget(
               title: 'more',
               thick: FontWeight.w600,
