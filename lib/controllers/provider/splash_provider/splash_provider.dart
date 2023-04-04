@@ -9,6 +9,8 @@ import 'package:foundr_project/views/sign_/sign_in/sign_in_screen.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 
+import '../matching_profile/matching_profile_provider.dart';
+
 class SplashScreenProvider with ChangeNotifier {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   bool? isExpired;
@@ -37,6 +39,7 @@ class SplashScreenProvider with ChangeNotifier {
       } else if (isExpired == false) {
         Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const HomeScreen()));
+
         Provider.of<ProfileScreenProvider>(context, listen: false)
             .getUserDetailsProvider();
       }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
 import 'package:foundr_project/controllers/provider/splash_provider/splash_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<SplashScreenProvider>(context, listen: false)
         .splashTimer(context);
+    Provider.of<MatchingProfileProvider>(context).getAllMatchingProfiles();
     return const Scaffold(
       backgroundColor: kYellow,
       body: Center(
