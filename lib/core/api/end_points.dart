@@ -11,5 +11,7 @@ class ApiEndPoints {
   static String getUserPhoto = "/api/user/profilePhoto";
   static String updateUserProfile = "/api/user/updateUserProfile";
   static String aboutMe = "/api/user/updateAbout";
-  static String coFounder = "/api/user//updateCofounderPreference";
+  static String coFounder = "/api/user/updateCofounderPreference";
+
+  static String matchingProfile = "/api/user/matchingProfiles";
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -16,6 +17,7 @@ class SplashScreenProvider with ChangeNotifier {
   splashTimer(BuildContext context) async {
     String? checkLogin = await storage.read(key: "token");
     if (checkLogin != null) {
+      log(checkLogin);
       isExpired = JwtDecoder.isExpired(checkLogin.toString());
       notifyListeners();
 

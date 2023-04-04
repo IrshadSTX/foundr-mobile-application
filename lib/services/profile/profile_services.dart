@@ -2,18 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
 import 'package:foundr_project/model/api/profile/about_me_model.dart';
 import 'package:foundr_project/model/api/profile/co_founder_model.dart';
 import 'package:foundr_project/model/api/profile/profile_user_model.dart';
 import 'package:foundr_project/model/api/profile/update_profile_model.dart';
-import 'package:provider/provider.dart';
 
 class UserProfileServices {
   Dio dio = Dio();
