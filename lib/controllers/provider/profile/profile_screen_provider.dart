@@ -18,6 +18,7 @@ class ProfileScreenProvider with ChangeNotifier {
   File? file;
   UserDetails? profileDatas;
   AboutMeModel? aboutMeModel;
+
   TextEditingController employmentController = TextEditingController();
   TextEditingController aboutController = TextEditingController();
   TextEditingController stateController = TextEditingController();
@@ -149,20 +150,20 @@ class ProfileScreenProvider with ChangeNotifier {
   Future<void> updateAboutMeProvider(BuildContext context) async {
     log('Entered Update about me provider');
     final accomplishment = accomplishmentController.text;
-    final education = educationController.text;
+    final educations = educationController.text;
     final employment = employmentController.text;
     final aboutMe = AboutMeModel(
       isTechnical: isTechnical!,
       haveIdea: onChangehaveIdea(),
       accomplishments: accomplishment,
-      education: education,
+      education: educations,
       employment: employment,
       responsibilities: responseFounderSelected,
       interests: interestedSelected,
     );
     log(
       accomplishment +
-          education +
+          educations +
           employment +
           haveIdea! +
           isTechnical.toString(),

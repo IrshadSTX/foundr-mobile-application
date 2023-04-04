@@ -22,21 +22,31 @@ class ProfieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
 
-    //some issues with this, when lack of data deals null error//
     provider.genderController =
-        TextEditingController(text: provider.profileDatas!.gender);
-    provider.ageController =
-        TextEditingController(text: provider.profileDatas!.age.toString());
+        TextEditingController(text: provider.profileDatas!.gender ?? '');
+    provider.ageController = TextEditingController(
+        text: provider.profileDatas!.age != null
+            ? provider.profileDatas!.age.toString()
+            : '');
 
     provider.aboutController =
-        TextEditingController(text: provider.profileDatas!.intro);
-    provider.nationController =
-        TextEditingController(text: provider.profileDatas!.location!.country);
-    provider.stateController =
-        TextEditingController(text: provider.profileDatas!.location!.state);
-    provider.cityController =
-        TextEditingController(text: provider.profileDatas!.location!.city);
-    //----------------//
+        TextEditingController(text: provider.profileDatas!.intro ?? '');
+    provider.nationController = TextEditingController(
+        text: provider.profileDatas != null &&
+                provider.profileDatas!.location != null
+            ? provider.profileDatas!.location!.country
+            : "");
+    provider.stateController = TextEditingController(
+        text: provider.profileDatas != null &&
+                provider.profileDatas!.location != null
+            ? provider.profileDatas!.location!.state
+            : "");
+    provider.cityController = TextEditingController(
+        text: provider.profileDatas != null &&
+                provider.profileDatas!.location != null
+            ? provider.profileDatas!.location!.city
+            : "");
+    // //----------------//
     final size = MediaQuery.of(context).size;
 
     FlutterSecureStorage storage = const FlutterSecureStorage();

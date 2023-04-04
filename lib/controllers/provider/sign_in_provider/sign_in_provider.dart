@@ -5,6 +5,9 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/model/api/sign_in/signin_req.dart';
 import 'package:foundr_project/services/sign_in/sign_in_service.dart';
 import 'package:foundr_project/views/splash_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../profile/profile_screen_provider.dart';
 
 class SigninProvider with ChangeNotifier {
   final emailcontroller = TextEditingController();
@@ -22,6 +25,8 @@ class SigninProvider with ChangeNotifier {
             if (value?.token != null)
               {
                 storage.write(key: "token", value: jsonEncode(value!.token)),
+                Provider.of<ProfileScreenProvider>(context, listen: false)
+                    .getUserDetailsProvider(),
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
                         builder: (context) => const SplashScreen()),
