@@ -59,6 +59,15 @@ Widget textMiniHeading(String text) {
   );
 }
 
+Widget textMiniHeading2(String text) {
+  return TextStyleWidget(
+    title: text,
+    thick: FontWeight.w600,
+    textcolor: kBrown,
+    fontsize: 15,
+  );
+}
+
 Widget textParagraph(String text) {
   return TextStyleWidget(
     title: text,
