@@ -21,6 +21,7 @@ class MatchingProfileServices {
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['matchingProfiles'];
         final res = data.map((e) => MatchingProfile.fromJson(e)).toList();
+        log('inside matchingprofiles');
         return res;
       } else {
         log('error', name: 'matching profile services');

@@ -262,7 +262,7 @@ class ProfileScreenProvider with ChangeNotifier {
   }
 
   int? areYouSeeking = 0;
-  //technical or non technical
+  //technical or non technical-
   String? technical;
   String? techOrNonTechSelected = 'select one';
   var techOrNonTechItems = [
@@ -331,9 +331,9 @@ class ProfileScreenProvider with ChangeNotifier {
       notifyListeners();
       if (locationPrefSelected == 'Within a certain distance of me') {
         location = '1';
-      } else if (locationPrefSelected == 'In My country') {
+      } else if (locationPrefSelected == 'In my country') {
         location = '2';
-      } else if (locationPrefSelected == 'No-preferences') {
+      } else if (locationPrefSelected == 'No preference') {
         location = '3';
       }
     }

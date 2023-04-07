@@ -8,8 +8,38 @@ import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:provider/provider.dart';
 
 class ViewProfileScreen extends StatelessWidget {
-  const ViewProfileScreen({super.key});
-
+  const ViewProfileScreen(
+      {super.key,
+      required this.profileId,
+      required this.profileImage,
+      required this.userName,
+      required this.location,
+      required this.email,
+      required this.about,
+      required this.accomplishment,
+      required this.education,
+      required this.technical,
+      required this.idea,
+      required this.interests,
+      required this.responsibilities,
+      this.userId,
+      required this.intro,
+      required this.employment});
+  final String employment;
+  final String intro;
+  final String profileId;
+  final String profileImage;
+  final String userName;
+  final String location;
+  final String email;
+  final String about;
+  final String accomplishment;
+  final String education;
+  final String technical;
+  final String idea;
+  final List<dynamic> interests;
+  final List<dynamic> responsibilities;
+  final String? userId;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -39,26 +69,26 @@ class ViewProfileScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   child: SizedBox(
                       width: size.width * .90,
-                      height: size.height * .33,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 60,
                               backgroundColor: Colors.transparent,
-                              backgroundImage:
-                                  AssetImage("assets/images/user.png"),
+                              backgroundImage: NetworkImage(profileImage != null
+                                  ? profileImage
+                                  : 'photo'),
                             ),
                             kHeight5,
                             TextStyleWidget(
-                              title: 'user',
+                              title: userName != null ? userName : 'nil',
                               thick: FontWeight.w600,
                               textcolor: kBrown,
                               fontsize: 20,
                             ),
-                            const TextStyleWidget(
-                              title: 'Developer',
+                            TextStyleWidget(
+                              title: intro != null ? intro : 'nil',
                               thick: FontWeight.w500,
                               textcolor: kGreen,
                               fontsize: 14,
@@ -104,25 +134,53 @@ class ViewProfileScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          textMiniHeading2('About'),
-                          textParagraphBlack('Intro'),
+                          textMiniHeading2('Email'),
+                          textParagraphBlack(
+                            email != null ? email : 'nil',
+                          ),
                           kHeight5,
                           textMiniHeading2('Impressive Accomplishments'),
-                          textParagraphBlack('Accomplishment'),
+                          textParagraphBlack(
+                            accomplishment != null ? accomplishment : 'nil',
+                          ),
                           kHeight5,
                           textMiniHeading2('Education'),
-                          textParagraphBlack('schools'),
+                          textParagraphBlack(
+                            education != null ? education : 'nil',
+                          ),
                           kHeight5,
                           textMiniHeading2('Employment'),
-                          textParagraphBlack('works'),
+                          textParagraphBlack(
+                            employment != null ? employment : 'nil',
+                          ),
                           kHeight5,
-                          rowBottomSheetAnswers('Is Technical', 'Nil'),
+                          rowBottomSheetAnswers(
+                            'Is Technical',
+                            technical != null ? technical : 'nil',
+                          ),
                           kHeight5,
-                          rowBottomSheetAnswers('Has Idea', 'Nil'),
+                          rowBottomSheetAnswers(
+                            'Has Idea',
+                            idea != null ? idea : 'nil',
+                          ),
                           kHeight5,
-                          rowBottomSheetAnswers('Interests', 'Nil'),
+                          rowBottomSheetAnswers(
+                              'Interests',
+                              interests != null
+                                  ? interests
+                                      .toString()
+                                      .replaceAll('[', '')
+                                      .replaceAll(']', '')
+                                  : 'nil'),
                           kHeight5,
-                          rowBottomSheetAnswers('Responsiblities', 'Nil'),
+                          rowBottomSheetAnswers(
+                              'Responsiblities',
+                              responsibilities != null
+                                  ? responsibilities
+                                      .toString()
+                                      .replaceAll('[', '')
+                                      .replaceAll(']', '')
+                                  : 'nil'),
                         ],
                       ),
                     )),
@@ -142,7 +200,7 @@ class ViewProfileScreen extends StatelessWidget {
           child: textMiniHeading2(left),
         ),
         Expanded(
-          flex: 2,
+          flex: 3,
           child: Container(
             decoration: BoxDecoration(
                 color: kRoseCream, borderRadius: BorderRadius.circular(10)),

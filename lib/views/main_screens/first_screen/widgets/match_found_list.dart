@@ -3,7 +3,6 @@ import 'package:foundr_project/controllers/provider/matching_profile/matching_pr
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/views/main_screens/first_screen/view_profile_screen.dart';
-import 'package:foundr_project/views/main_screens/first_screen/widgets/more_matches_screen.dart';
 import 'package:provider/provider.dart';
 
 class MatchingFoundLists extends StatelessWidget {
@@ -19,6 +18,7 @@ class MatchingFoundLists extends StatelessWidget {
         return ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
+            var value = data.matchingProfileDatas![index];
             return Card(
               elevation: 5,
               shape: RoundedRectangleBorder(
@@ -65,7 +65,31 @@ class MatchingFoundLists extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ViewProfileScreen()));
+                                  builder: (context) => ViewProfileScreen(
+                                        profileImage:
+                                            value.profilePhoto ?? 'null',
+                                        profileId: value.id!,
+                                        userName: value.userName!,
+                                        location:
+                                            '${value.location!.country!},${value.location!.city!}',
+                                        email: value.email!,
+                                        about: value.userName!,
+                                        accomplishment: value.accomplishments!,
+                                        education: value.education!,
+                                        technical: value.isTechnical == 1
+                                            ? 'Yes'
+                                            : 'no',
+                                        idea: value.haveIdea == 'definiteIdea'
+                                            ? 'Yes'
+                                            : value.haveIdea == 'readyToExplore'
+                                                ? 'No'
+                                                : 'don\'t have any idea',
+                                        interests: value.interests!,
+                                        responsibilities:
+                                            value.responsibilities!,
+                                        intro: value.intro!,
+                                        employment: value.employment!,
+                                      )));
                         },
                         child: Container(
                           decoration: BoxDecoration(
