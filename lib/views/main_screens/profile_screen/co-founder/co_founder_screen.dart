@@ -1,8 +1,11 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/constants.dart';
+import 'package:foundr_project/model/api/profile/co_founder_model.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -108,11 +111,12 @@ class CoFounderScreen extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.white),
                     isExpanded: true,
-                    items: data.ideaHaveItems.map((String val) {
+                    items: data.ideaHaveItems.map((String? val) {
                       return DropdownMenuItem<String>(
+                        // ignore: prefer_if_null_operators
                         value: val,
                         child: Text(
-                          val,
+                          val!,
                           style: textstyle2,
                         ),
                       );
@@ -122,10 +126,9 @@ class CoFounderScreen extends StatelessWidget {
                     },
                     // validator: (value) => data.onChangeTechOrNonTech(value!),
                     // value: data.profileDatas!.gender,
-                    // style: textstyle,
                   ),
                   divider,
-                  //**************HAVE IDEA?? DROPDOWN*************/
+                  //**************Location Preference*************/
                   textMiniHeading('Do you have a location preference?'),
                   kHeight10,
                   DropdownButtonFormField<String>(

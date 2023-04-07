@@ -112,7 +112,9 @@ class MatchingFoundLists extends StatelessWidget {
                   )),
             );
           },
-          itemCount: 5,
+          itemCount: data.matchingProfileDatas!.length > 5
+              ? 5
+              : data.matchingProfileDatas!.length,
         );
       }),
     );

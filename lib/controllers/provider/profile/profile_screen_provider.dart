@@ -303,12 +303,12 @@ class ProfileScreenProvider with ChangeNotifier {
       ideaHaveSelected = val;
       notifyListeners();
       if (ideaHaveSelected ==
-          'I want to see co-founders who have a specific idea') {
+          'I Want to see Co-founders who are not set on a specific idea') {
         hasIdea = '1';
       } else if (ideaHaveSelected ==
-          'I want to see co-founders who are not set on a specific idea') {
+          'I Want to see Co-founders who have a specific idea') {
         hasIdea = '2';
-      } else if (ideaHaveSelected == 'No-preferences') {
+      } else if (ideaHaveSelected == 'No Preference') {
         hasIdea = '3';
       }
     }
