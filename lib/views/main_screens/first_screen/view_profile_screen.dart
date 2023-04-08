@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
@@ -10,38 +12,39 @@ import 'package:provider/provider.dart';
 class ViewProfileScreen extends StatelessWidget {
   const ViewProfileScreen(
       {super.key,
-      required this.profileId,
-      required this.profileImage,
-      required this.userName,
-      required this.location,
-      required this.email,
-      required this.about,
-      required this.accomplishment,
-      required this.education,
-      required this.technical,
-      required this.idea,
-      required this.interests,
-      required this.responsibilities,
+      this.profileId,
+      this.profileImage,
+      this.userName,
+      this.location,
+      this.email,
+      this.about,
+      this.accomplishment,
+      this.education,
+      this.technical,
+      this.idea,
+      this.interests,
+      this.responsibilities,
       this.userId,
-      required this.intro,
-      required this.employment});
-  final String employment;
-  final String intro;
-  final String profileId;
-  final String profileImage;
-  final String userName;
-  final String location;
-  final String email;
-  final String about;
-  final String accomplishment;
-  final String education;
-  final String technical;
-  final String idea;
-  final List<dynamic> interests;
-  final List<dynamic> responsibilities;
+      this.intro,
+      this.employment});
+  final String? employment;
+  final String? intro;
+  final String? profileId;
+  final String? profileImage;
+  final String? userName;
+  final String? location;
+  final String? email;
+  final String? about;
+  final String? accomplishment;
+  final String? education;
+  final String? technical;
+  final String? idea;
+  final List<dynamic>? interests;
+  final List<dynamic>? responsibilities;
   final String? userId;
   @override
   Widget build(BuildContext context) {
+    log(profileImage!, name: 'profile image');
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -74,21 +77,37 @@ class ViewProfileScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             CircleAvatar(
-                              radius: 60,
-                              backgroundColor: Colors.transparent,
-                              backgroundImage: NetworkImage(profileImage != null
-                                  ? profileImage
-                                  : 'photo'),
+                              radius: 50,
+                              child: profileImage != 'null'
+                                  ? Expanded(
+                                      child: CircleAvatar(
+                                          radius: 50,
+                                          backgroundImage:
+                                              FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/images/user.png',
+                                            image: profileImage!,
+                                            fit: BoxFit.fill,
+                                            fadeInDuration: const Duration(
+                                                milliseconds: 500),
+                                          ).image),
+                                    )
+                                  : const CircleAvatar(
+                                      radius: 50,
+                                      backgroundColor: Colors.transparent,
+                                      backgroundImage:
+                                          AssetImage("assets/images/user.png"),
+                                    ),
                             ),
                             kHeight5,
                             TextStyleWidget(
-                              title: userName != null ? userName : 'nil',
+                              title: userName!,
                               thick: FontWeight.w600,
                               textcolor: kBrown,
                               fontsize: 20,
                             ),
                             TextStyleWidget(
-                              title: intro != null ? intro : 'nil',
+                              title: intro!,
                               thick: FontWeight.w500,
                               textcolor: kGreen,
                               fontsize: 14,
@@ -136,33 +155,39 @@ class ViewProfileScreen extends StatelessWidget {
                         children: [
                           textMiniHeading2('Email'),
                           textParagraphBlack(
-                            email != null ? email : 'nil',
+                            email!,
                           ),
+                          divider,
                           kHeight5,
                           textMiniHeading2('Impressive Accomplishments'),
                           textParagraphBlack(
-                            accomplishment != null ? accomplishment : 'nil',
+                            accomplishment!,
                           ),
+                          divider,
                           kHeight5,
                           textMiniHeading2('Education'),
                           textParagraphBlack(
-                            education != null ? education : 'nil',
+                            education!,
                           ),
+                          divider,
                           kHeight5,
                           textMiniHeading2('Employment'),
                           textParagraphBlack(
-                            employment != null ? employment : 'nil',
+                            employment!,
                           ),
+                          divider,
                           kHeight5,
                           rowBottomSheetAnswers(
                             'Is Technical',
-                            technical != null ? technical : 'nil',
+                            technical!,
                           ),
+                          divider,
                           kHeight5,
                           rowBottomSheetAnswers(
                             'Has Idea',
-                            idea != null ? idea : 'nil',
+                            idea!,
                           ),
+                          divider,
                           kHeight5,
                           rowBottomSheetAnswers(
                               'Interests',
@@ -172,6 +197,7 @@ class ViewProfileScreen extends StatelessWidget {
                                       .replaceAll('[', '')
                                       .replaceAll(']', '')
                                   : 'nil'),
+                          divider,
                           kHeight5,
                           rowBottomSheetAnswers(
                               'Responsiblities',

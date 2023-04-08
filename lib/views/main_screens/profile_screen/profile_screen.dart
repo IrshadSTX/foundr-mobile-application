@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
@@ -19,30 +21,32 @@ class ProfieScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
 
-    provider.genderController =
-        TextEditingController(text: provider.profileDatas!.gender ?? '');
-    provider.ageController = TextEditingController(
-        text: provider.profileDatas!.age != null
-            ? provider.profileDatas!.age.toString()
-            : '');
+    if (provider.profileDatas != null) {
+      provider.genderController =
+          TextEditingController(text: provider.profileDatas!.gender ?? '');
+      provider.ageController = TextEditingController(
+          text: provider.profileDatas!.age != null
+              ? provider.profileDatas!.age.toString()
+              : '');
 
-    provider.aboutController =
-        TextEditingController(text: provider.profileDatas!.intro ?? '');
-    provider.nationController = TextEditingController(
-        text: provider.profileDatas != null &&
-                provider.profileDatas!.location != null
-            ? provider.profileDatas!.location!.country
-            : "");
-    provider.stateController = TextEditingController(
-        text: provider.profileDatas != null &&
-                provider.profileDatas!.location != null
-            ? provider.profileDatas!.location!.state
-            : "");
-    provider.cityController = TextEditingController(
-        text: provider.profileDatas != null &&
-                provider.profileDatas!.location != null
-            ? provider.profileDatas!.location!.city
-            : "");
+      provider.aboutController =
+          TextEditingController(text: provider.profileDatas!.intro ?? '');
+      provider.nationController = TextEditingController(
+          text: provider.profileDatas != null &&
+                  provider.profileDatas!.location != null
+              ? provider.profileDatas!.location!.country
+              : "");
+      provider.stateController = TextEditingController(
+          text: provider.profileDatas != null &&
+                  provider.profileDatas!.location != null
+              ? provider.profileDatas!.location!.state
+              : "");
+      provider.cityController = TextEditingController(
+          text: provider.profileDatas != null &&
+                  provider.profileDatas!.location != null
+              ? provider.profileDatas!.location!.city
+              : "");
+    }
     // //----------------//
     final size = MediaQuery.of(context).size;
 
@@ -282,6 +286,13 @@ class ProfieScreen extends StatelessWidget {
                                             onPressed: () {
                                               if (formkey.currentState!
                                                   .validate()) {
+                                                log('saved user profile');
+                                                log(data.aboutController.text);
+                                                log(data.genderController.text);
+                                                log(data.ageController.text);
+                                                log(data.nationController.text);
+                                                log(data.stateController.text);
+                                                log(data.cityController.text);
                                                 data.updateAboutProvider(
                                                     context);
                                               }

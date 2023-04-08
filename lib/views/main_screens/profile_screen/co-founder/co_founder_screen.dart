@@ -217,6 +217,9 @@ class CoFounderScreen extends StatelessWidget {
                       ElevatedButton(
                           onPressed: () {
                             if (formkey.currentState!.validate()) {
+                              log(data.hasIdea!, name: 'has Idea');
+                              log(data.location!, name: 'location');
+                              log(data.technical!, name: 'tech or non');
                               data.updateCoFounderProvider(context);
                             }
                           },

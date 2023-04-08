@@ -43,7 +43,7 @@ class FirstScreen extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: size.width * 0.55,
+                    width: size.width * 0.65,
                     child: const TextStyleWidget(
                       title:
                           '''Connect with co-founders based on your preferences for interests, skills, location, and more, and start building your company.''',
