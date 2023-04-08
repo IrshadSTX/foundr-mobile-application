@@ -17,8 +17,6 @@ class AboutMeScreen extends StatelessWidget {
   final GlobalKey<FormState> formkey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
-
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(

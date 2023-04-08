@@ -7,7 +7,7 @@ import 'package:foundr_project/views/main_screens/first_screen/widgets/match_fou
 import 'package:foundr_project/views/main_screens/first_screen/widgets/more_button.dart';
 
 class FirstScreen extends StatelessWidget {
-  FirstScreen({super.key});
+  const FirstScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -45,7 +45,7 @@ class ArticleContentScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextStyleWidget(
-                            title: 'Published : ${date}',
+                            title: 'Published : $date',
                             thick: FontWeight.bold,
                             textcolor: kRose,
                             fontsize: 12),

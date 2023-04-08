@@ -13,6 +13,7 @@ class MatchingFoundLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<MatchingProfileProvider>(context).getAllMatchingProfiles();
     return SizedBox(
       height: 200,
       child: Consumer<MatchingProfileProvider>(builder: (context, data, child) {
@@ -124,7 +125,10 @@ class MatchingFoundLists extends StatelessWidget {
                         )),
                   );
                 },
-                itemCount: 3);
+                itemCount: data.matchingProfileDatas!.length < 5
+                    ? data.matchingProfileDatas!.length
+                    : 5,
+              );
       }),
     );
   }

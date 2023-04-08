@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:foundr_project/core/constants.dart';
+
 import 'package:foundr_project/model/api/profile/about_me_model.dart';
 import 'package:foundr_project/model/api/profile/co_founder_model.dart';
 

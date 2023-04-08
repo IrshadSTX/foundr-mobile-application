@@ -10,10 +10,10 @@ class NavigationBarProvider extends ChangeNotifier {
   int currentPage = 0;
   int? index;
   final List<Widget> _pages = [
-    FirstScreen(),
+    const FirstScreen(),
     const ArticleScreen(),
     const EventScreen(),
-    MessageScreen(),
+    const MessageScreen(),
     ProfieScreen(),
   ];
 

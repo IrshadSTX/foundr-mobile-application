@@ -45,7 +45,7 @@ class OtpProvider with ChangeNotifier {
                               .getUserDetailsProvider(),
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
-                                builder: (context) => SplashScreen(),
+                                builder: (context) => const SplashScreen(),
                               ),
                               (route) => false),
                           disposeTextfield(context)

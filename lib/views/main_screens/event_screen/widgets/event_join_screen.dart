@@ -33,6 +33,7 @@ class EventJoinScreen extends StatelessWidget {
   final int fee;
   final String eventId;
 
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(

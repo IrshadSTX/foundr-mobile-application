@@ -22,6 +22,7 @@ class ArticleService {
 
         return res;
       } else if (response.statusCode == 501) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(dataFailsMsg);
       }
     } on DioError catch (e) {

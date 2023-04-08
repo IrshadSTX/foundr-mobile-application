@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';

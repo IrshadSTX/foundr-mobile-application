@@ -18,6 +18,7 @@ class EventService {
         final res = data.map((e) => EventModel.fromJson(e)).toList();
         return res;
       } else if (response.statusCode == 501) {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(dataFailsMsg);
       }
     } catch (e) {

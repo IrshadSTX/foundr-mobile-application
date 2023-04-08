@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/constants.dart';
-import 'package:foundr_project/model/api/profile/co_founder_model.dart';
+
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
