@@ -8,6 +8,7 @@ import 'package:foundr_project/controllers/provider/profile/profile_screen_provi
 import 'package:foundr_project/controllers/provider/sign_in_provider/sign_in_provider.dart';
 import 'package:foundr_project/controllers/provider/sign_up_provider/sign_up_provider.dart';
 import 'package:foundr_project/controllers/provider/splash_provider/splash_provider.dart';
+import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,6 +68,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => MatchingProfileProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => ViewProfileProvider(),
         ),
       ],
       child: MaterialApp(

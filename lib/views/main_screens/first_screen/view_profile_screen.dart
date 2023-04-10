@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
+import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
@@ -61,6 +62,7 @@ class ViewProfileScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child:
             Consumer<MatchingProfileProvider>(builder: (context, data, child) {
+          bool clickedConnect = false;
           return Column(
             children: [
               kHeight10,
@@ -79,19 +81,15 @@ class ViewProfileScreen extends StatelessWidget {
                             CircleAvatar(
                               radius: 50,
                               child: profileImage != 'null'
-                                  ? Expanded(
-                                      child: CircleAvatar(
-                                          radius: 50,
-                                          backgroundImage:
-                                              FadeInImage.assetNetwork(
-                                            placeholder:
-                                                'assets/images/user.png',
-                                            image: profileImage!,
-                                            fit: BoxFit.fill,
-                                            fadeInDuration: const Duration(
-                                                milliseconds: 500),
-                                          ).image),
-                                    )
+                                  ? CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage: FadeInImage.assetNetwork(
+                                        placeholder: 'assets/images/user.png',
+                                        image: profileImage!,
+                                        fit: BoxFit.fill,
+                                        fadeInDuration:
+                                            const Duration(milliseconds: 500),
+                                      ).image)
                                   : const CircleAvatar(
                                       radius: 50,
                                       backgroundColor: Colors.transparent,
@@ -116,25 +114,52 @@ class ViewProfileScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: MaterialStatePropertyAll(
-                                          Color.fromARGB(255, 32, 106, 167))),
-                                  onPressed: () {},
-                                  child: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.person_add,
-                                        size: 16,
-                                      ),
-                                      kWidth10,
-                                      const Text(
-                                        'Connect',
-                                        style: TextStyle(fontSize: 12),
-                                      )
-                                    ],
-                                  ),
-                                )
+                                Consumer<ViewProfileProvider>(
+                                    builder: (context, data, child) {
+                                  return ElevatedButton(
+                                      style: const ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStatePropertyAll(
+                                                  Color.fromARGB(
+                                                      255, 32, 106, 167))),
+                                      onPressed: () {
+                                        Provider.of<ViewProfileProvider>(
+                                                listen: false, context)
+                                            .onClickedConnect();
+                                      },
+                                      child: Provider.of<ViewProfileProvider>(
+                                                      listen: false, context)
+                                                  .clickedConnect ==
+                                              false
+                                          ? Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.person_add,
+                                                  size: 16,
+                                                ),
+                                                kWidth10,
+                                                const Text(
+                                                  'Connect',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                )
+                                              ],
+                                            )
+                                          : Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.person_add,
+                                                  size: 16,
+                                                ),
+                                                kWidth10,
+                                                const Text(
+                                                  'Requested',
+                                                  style:
+                                                      TextStyle(fontSize: 12),
+                                                )
+                                              ],
+                                            ));
+                                })
                               ],
                             )
                           ],
