@@ -1,5 +1,5 @@
-class ConnectionResModel {
-  ConnectionResModel({
+class ConnectionUpdateModel {
+  ConnectionUpdateModel({
     this.reqFrom,
     this.response,
     this.type,
@@ -11,8 +11,8 @@ class ConnectionResModel {
   final String? type;
   final String? message;
 
-  factory ConnectionResModel.fromJson(Map<String, dynamic> json) =>
-      ConnectionResModel(
+  factory ConnectionUpdateModel.fromJson(Map<String, dynamic> json) =>
+      ConnectionUpdateModel(
         reqFrom: json["reqFrom"],
         response: json["response"],
         type: json["type"],

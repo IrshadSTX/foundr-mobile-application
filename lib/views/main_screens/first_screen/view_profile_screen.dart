@@ -62,7 +62,6 @@ class ViewProfileScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child:
             Consumer<MatchingProfileProvider>(builder: (context, data, child) {
-          bool clickedConnect = false;
           return Column(
             children: [
               kHeight10,

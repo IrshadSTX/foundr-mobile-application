@@ -27,7 +27,8 @@ class MatchingFoundLists extends StatelessWidget {
                     elevation: 5,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    child: SizedBox(
+                    child: Container(
+                        padding: const EdgeInsets.all(7),
                         width: 160,
                         child: Column(
                           children: [
@@ -48,7 +49,7 @@ class MatchingFoundLists extends StatelessWidget {
                                         ).image),
                                   )
                                 : const CircleAvatar(
-                                    radius: 50,
+                                    radius: 45,
                                     backgroundColor: Colors.transparent,
                                     backgroundImage:
                                         AssetImage("assets/images/user.png"),
