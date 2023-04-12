@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
+import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/views/main_screens/first_screen/view_profile_screen.dart';
@@ -13,6 +14,7 @@ class MatchingFoundLists extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ViewProfileProvider>(context, listen: false);
     Provider.of<MatchingProfileProvider>(context).getAllMatchingProfiles();
     return SizedBox(
       height: 200,
@@ -71,7 +73,7 @@ class MatchingFoundLists extends StatelessWidget {
                               fontsize: 12,
                             ),
                             TextButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -103,6 +105,8 @@ class MatchingFoundLists extends StatelessWidget {
                                               intro: value.intro!,
                                               employment: value.employment!,
                                             )));
+                                await provider.buttonFunction(value.id!);
+                                await provider.getallConnectionReq();
                               },
                               child: Container(
                                 decoration: BoxDecoration(

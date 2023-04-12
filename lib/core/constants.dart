@@ -109,3 +109,54 @@ const oTPvarified = SnackBar(content: Text('OTP varified'));
 const sWWrong = SnackBar(content: Text('Something went wrong!'));
 const incorrectOTP = SnackBar(content: Text('INCORRECT OTP'));
 const dataFailsMsg = SnackBar(content: Text('Could not Retrieve data'));
+
+//methods
+
+Row rowBottomSheetAnswers(String left, String right) {
+  return Row(
+    children: [
+      Expanded(
+        flex: 2,
+        child: textMiniHeading2(left),
+      ),
+      Expanded(
+        flex: 3,
+        child: Container(
+          decoration: BoxDecoration(
+              color: kRoseCream, borderRadius: BorderRadius.circular(10)),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(right),
+          ),
+        ),
+      )
+    ],
+  );
+}
+
+connectButtons(
+    {double? height1,
+    double? width1,
+    Color? color,
+    text,
+    void Function()? onPress,
+    IconData? icons}) {
+  return SizedBox(
+    width: width1,
+    // color: Colors.blueAccent,
+    height: height1,
+    child: ElevatedButton.icon(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(
+          color,
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+        ),
+      ),
+      onPressed: onPress,
+      icon: Icon(icons),
+      label: Text(text),
+    ),
+  );
+}

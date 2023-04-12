@@ -7,6 +7,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/bottom_buttons_widgets.dart';
+import 'package:foundr_project/views/main_screens/profile_screen/widgets/connection_screen.dart';
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:provider/provider.dart';
@@ -158,9 +159,33 @@ class ProfieScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CardButtonWidget(
-                              navigate: null,
-                              title: 'Connections',
+                            InkWell(
+                              onTap: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          ConnectionScreen())),
+                              child: Card(
+                                elevation: 5,
+                                color: kYellow,
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      color: Colors.brown, width: 1),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: const SizedBox(
+                                  height: 45,
+                                  width: 160,
+                                  child: Center(
+                                    child: TextStyleWidget(
+                                      title: 'Connections ',
+                                      thick: FontWeight.w700,
+                                      textcolor: Colors.white,
+                                      fontsize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                             CardButtonWidget(
                               navigate: null,

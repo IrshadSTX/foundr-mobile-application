@@ -1,14 +1,3 @@
-// ignore_for_file: file_names
-// To parse this JSON data, do
-//
-//     final connectionResModel = connectionResModelFromJson(jsonString);
-
-// import 'dart:convert';
-
-// ConnectionResModel connectionResModelFromJson(String str) => ConnectionResModel.fromJson(json.decode(str));
-
-// String connectionResModelToJson(ConnectionResModel data) => json.encode(data.toJson());
-
 class ConnectionResModel {
   ConnectionResModel({
     this.connections,

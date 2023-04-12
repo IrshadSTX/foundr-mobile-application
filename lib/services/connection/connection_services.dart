@@ -37,7 +37,7 @@ class ConnectionServices {
   }
 
 //------ get all connection requests------//
-  Future<List<ConnectionRequest>?> getConnetionReqService(String token) async {
+  Future<List<ConnectionRequest>?> getConnectionReqService(String token) async {
     String path = kBaseurl + ApiEndPoints.connectionReq;
     try {
       Response response = await dio.get(
@@ -61,13 +61,9 @@ class ConnectionServices {
       ConnectionUpdateModel model, String token) async {
     String path = kBaseurl + ApiEndPoints.connectionReq;
     try {
-      Response response = await dio.patch(
-        path,
-        data: jsonEncode(model.toJson()),
-        options: Options(
-          headers: {'Authorization': 'Bearer $token'},
-        ),
-      );
+      Response response = await dio.patch(path,
+          data: jsonEncode(model.toJson()),
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
       if (response.statusCode == 201) {
         return true;
       } else {

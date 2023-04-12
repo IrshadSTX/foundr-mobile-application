@@ -54,7 +54,7 @@ class ShimmerLoadingMatchFound extends StatelessWidget {
     return Shimmer.fromColors(
       period: const Duration(milliseconds: 1000),
       baseColor: Colors.blueGrey,
-      highlightColor: Colors.white,
+      highlightColor: const Color.fromARGB(137, 87, 73, 73),
       child: Container(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

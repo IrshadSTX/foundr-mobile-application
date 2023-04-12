@@ -26,12 +26,18 @@ class ConnectionRequest {
     this.sender,
     this.receiver,
     this.status,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
   });
 
   final String? id;
   final String? sender;
   final String? receiver;
   final String? status;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final int? v;
 
   factory ConnectionRequest.fromJson(Map<String, dynamic> json) =>
       ConnectionRequest(
@@ -39,6 +45,13 @@ class ConnectionRequest {
         sender: json["sender"],
         receiver: json["receiver"],
         status: json["status"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
+        v: json["__v"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -46,5 +59,8 @@ class ConnectionRequest {
         "sender": sender,
         "receiver": receiver,
         "status": status,
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
+        "__v": v,
       };
 }
