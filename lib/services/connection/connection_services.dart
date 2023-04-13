@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:dio/dio.dart';
 
 import 'package:foundr_project/core/api/api_config.dart';

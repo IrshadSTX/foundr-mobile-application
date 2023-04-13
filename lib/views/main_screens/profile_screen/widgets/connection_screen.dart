@@ -10,6 +10,7 @@ import 'package:foundr_project/views/main_screens/first_screen/view_profile_scre
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class ConnectionScreen extends StatelessWidget {
   ConnectionScreen({super.key});
   String? userId;
