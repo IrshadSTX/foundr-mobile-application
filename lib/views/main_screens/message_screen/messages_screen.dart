@@ -20,13 +20,7 @@ class MessageScreen extends StatelessWidget {
           fontsize: 32,
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              size: 35,
-            ),
-          ),
+          notificationBtnIcon(context),
         ],
       ),
       backgroundColor: kCream,

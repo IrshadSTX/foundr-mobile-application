@@ -17,13 +17,7 @@ class FirstScreen extends StatelessWidget {
         backgroundColor: kYellow,
         title: Image.asset('assets/images/foundr_logo.png', width: 150),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              size: 35,
-            ),
-          ),
+          notificationBtnIcon(context),
         ],
       ),
       backgroundColor: kCream,

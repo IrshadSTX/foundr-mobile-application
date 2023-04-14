@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
@@ -19,8 +18,6 @@ class ConnectionScreen extends StatelessWidget {
     getId();
     return Scaffold(
       appBar: AppBar(
-          systemOverlayStyle:
-              const SystemUiOverlayStyle(statusBarColor: Colors.white),
           toolbarHeight: 70,
           backgroundColor: kYellow,
           title: TextStyleWidget(
@@ -67,8 +64,7 @@ class ConnectionScreen extends StatelessWidget {
                                     radius: 30,
                                     backgroundColor: Colors.transparent,
                                     backgroundImage: data.profilePhoto == null
-                                        ? Image.asset(
-                                                'assets/images/event-image.png')
+                                        ? Image.asset('assets/images/user.png')
                                             .image
                                         : Image.network(data.profilePhoto!)
                                             .image),
@@ -82,41 +78,49 @@ class ConnectionScreen extends StatelessWidget {
                                     : '${data.intro}',
                               ),
                               trailing: Padding(
-                                  padding: const EdgeInsets.only(right: 15),
-                                  child: ElevatedButton(
-                                      onPressed: () {},
-                                      child: const Text('ViewProfile'))),
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => ViewProfileScreen(
-                                          intro: data.intro,
-                                          employment: data.employment,
-                                          profileId: data.id!,
-                                          userName: data.userName!,
-                                          location:
-                                              "${data.location!.country!}, ${data.location!.state!}",
-                                          email: data.email!,
-                                          about: data.intro!,
-                                          accomplishment: data.accomplishments!,
-                                          education: data.education!,
-                                          technical: data.isTechnical == 1
-                                              ? 'yes'
-                                              : 'no',
-                                          idea: data.haveIdea == 'definiteIdea'
-                                              ? 'Yes'
-                                              : data.haveIdea ==
-                                                      'readyToExplore'
-                                                  ? 'No'
-                                                  : 'don\'t have any idea',
-                                          interests: data.interests!,
-                                          responsibilities:
-                                              data.responsibilities!,
-                                          profileImage:
-                                              data.profilePhoto ?? 'null',
-                                          userId: userId,
-                                        )));
-                                value.buttonFunction(data.id!);
-                              },
+                                padding: const EdgeInsets.only(right: 15),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ViewProfileScreen(
+                                                  intro: data.intro,
+                                                  employment: data.employment,
+                                                  profileId: data.id!,
+                                                  userName: data.userName!,
+                                                  location:
+                                                      "${data.location!.country!}, ${data.location!.state!}",
+                                                  email: data.email!,
+                                                  about: data.intro!,
+                                                  accomplishment:
+                                                      data.accomplishments!,
+                                                  education: data.education!,
+                                                  technical:
+                                                      data.isTechnical == 1
+                                                          ? 'yes'
+                                                          : 'no',
+                                                  idea: data.haveIdea ==
+                                                          'definiteIdea'
+                                                      ? 'Yes'
+                                                      : data.haveIdea ==
+                                                              'readyToExplore'
+                                                          ? 'No'
+                                                          : 'don\'t have any idea',
+                                                  interests: data.interests!,
+                                                  responsibilities:
+                                                      data.responsibilities!,
+                                                  profileImage:
+                                                      data.profilePhoto ??
+                                                          'null',
+                                                  userId: userId,
+                                                )));
+                                    value.buttonFunction(data.id!);
+                                  },
+                                  child: const Text('ViewProfile'),
+                                ),
+                              ),
+                              onTap: () {},
                             ),
                           );
                         },

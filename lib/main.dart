@@ -76,6 +76,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            // useMaterial3: true,
             primarySwatch: createMaterialColor(kBrown),
             fontFamily: GoogleFonts.poppins().fontFamily),
         home: const SplashScreen(),

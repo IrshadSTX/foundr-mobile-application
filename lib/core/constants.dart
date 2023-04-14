@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/notification/notification_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'colors.dart';
@@ -131,6 +132,22 @@ Row rowBottomSheetAnswers(String left, String right) {
         ),
       )
     ],
+  );
+}
+
+IconButton notificationBtnIcon(BuildContext context) {
+  return IconButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NotificationScreen(),
+          ));
+    },
+    icon: const Icon(
+      Icons.notifications,
+      size: 30,
+    ),
   );
 }
 

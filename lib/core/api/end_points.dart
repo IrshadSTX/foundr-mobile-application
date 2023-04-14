@@ -15,4 +15,5 @@ class ApiEndPoints {
   static String matchingProfile = "/api/user/matchingProfiles";
   static String connectionReq = "/api/user/connectionRequest";
   static String getAllConnection = "/api/user/getConnections";
+  static String getNotifications = "/api/user/getNotifications";
 }
