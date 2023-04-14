@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/core/api/end_points.dart';
@@ -21,7 +21,7 @@ class NotificationServices {
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['notifications'];
         final res = data.map((e) => NotificationElement.fromJson(e)).toList();
-        log(res.toString());
+        log(res.toString(), name: 'notification');
         return res;
       }
     } catch (e) {

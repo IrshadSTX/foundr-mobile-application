@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
 import 'package:foundr_project/controllers/provider/profile/profile_screen_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
@@ -21,7 +22,8 @@ class ProfieScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProfileScreenProvider>(context, listen: false);
-
+    Provider.of<MatchingProfileProvider>(context, listen: false)
+        .getAllMatchingProfiles();
     if (provider.profileDatas != null) {
       provider.genderController =
           TextEditingController(text: provider.profileDatas!.gender ?? '');

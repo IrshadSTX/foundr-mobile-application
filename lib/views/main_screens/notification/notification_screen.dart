@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/notification/notification_provider.dart';
 import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
@@ -12,7 +14,10 @@ class NotificationScreen extends StatelessWidget {
   String? userId;
   @override
   Widget build(BuildContext context) {
+    Provider.of<NotificationProvider>(context)
+        .getAllNotificationProvider(context);
     return Scaffold(
+      backgroundColor: kCream,
       appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: kYellow,
@@ -25,29 +30,28 @@ class NotificationScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              kHeight10,
+              kHeight5,
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.78,
-                child: Consumer<ViewProfileProvider>(
+                child: Consumer<NotificationProvider>(
                   builder: (context, value, child) {
-                    if (value.alltheConnection == null ||
-                        value.alltheConnection!.isEmpty) {
+                    if (value.notificationData == null ||
+                        value.notificationData!.isEmpty) {
                       return const Center(
                         child: Text(
-                          "You dont have any connections",
+                          "No Notification",
                           style: textstyle,
                         ),
                       );
                     } else {
                       return ListView.builder(
                         shrinkWrap: true,
-                        itemCount: value.alltheConnection!.length,
+                        itemCount: value.notificationData!.length,
                         itemBuilder: (context, index) {
-                          final data = value.alltheConnection![index];
+                          final data = value.notificationData![index];
                           return Card(
-                            color: kCream,
+                            color: Colors.white,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             child: ListTile(
@@ -58,21 +62,29 @@ class NotificationScreen extends StatelessWidget {
                                 child: CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Colors.transparent,
-                                    backgroundImage: data.profilePhoto == null
+                                    backgroundImage: data
+                                                .sender!.profilePhoto ==
+                                            null
                                         ? Image.asset('assets/images/user.png')
                                             .image
-                                        : Image.network(data.profilePhoto!)
+                                        : Image.network(
+                                                data.sender!.profilePhoto!)
                                             .image),
                               ),
                               title: textMiniHeading2(
-                                data.userName ?? 'username',
+                                data.sender!.userName ?? 'username',
                               ),
                               subtitle: textParagraph(
-                                data.location == null
-                                    ? 'about'
-                                    : '${data.intro}',
+                                data.message ?? '',
                               ),
-                              onTap: () {},
+                              trailing: Padding(
+                                padding: const EdgeInsets.only(right: 15),
+                                child: textParagraphBlack(
+                                  dateChange(value
+                                      .notificationData![index].createdAt
+                                      .toString()),
+                                ),
+                              ),
                             ),
                           );
                         },
@@ -86,5 +98,12 @@ class NotificationScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  dateChange(String date) {
+    DateTime dateTime = DateTime.parse(date);
+    // String formatteddate = DateFormat('dd-MMMM-yyyy', 'en_US').format(dateTime);
+    String time = DateFormat('h:mm a').format(dateTime);
+    return time;
   }
 }
