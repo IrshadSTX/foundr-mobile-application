@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/notification/notification_provider.dart';
-import 'package:foundr_project/controllers/provider/view_profile/view_profile_provider.dart';
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
