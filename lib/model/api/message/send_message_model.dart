@@ -1,28 +1,20 @@
-class MessageSendModel {
-  MessageSendModel({
-    required this.sender,
-    required this.receiver,
-    required this.message,
-    required this.id,
+class SendMessageModel {
+  SendMessageModel({
+    this.to,
+    this.message,
   });
 
-  String sender;
-  String receiver;
-  String message;
-  String id;
+  final String? to;
+  final String? message;
 
-  factory MessageSendModel.fromJson(Map<String, dynamic> json) =>
-      MessageSendModel(
-        sender: json["sender"],
-        receiver: json["receiver"],
+  factory SendMessageModel.fromJson(Map<String, dynamic> json) =>
+      SendMessageModel(
+        to: json["to"],
         message: json["message"],
-        id: json["_id"],
       );
 
   Map<String, dynamic> toJson() => {
-        "sender": sender,
-        "receiver": receiver,
+        "to": to,
         "message": message,
-        "_id": id,
       };
 }

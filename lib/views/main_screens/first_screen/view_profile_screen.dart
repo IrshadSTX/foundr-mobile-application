@@ -7,6 +7,7 @@ import 'package:foundr_project/controllers/provider/view_profile/view_profile_pr
 import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
+import 'package:foundr_project/views/main_screens/message_screen/chat_screen.dart';
 import 'package:foundr_project/views/main_screens/message_screen/messages_screen.dart';
 
 import 'package:provider/provider.dart';
@@ -196,7 +197,11 @@ class ViewProfileScreen extends StatelessWidget {
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const MessageScreen()),
+                                                            MessagingUser(
+                                                              selectedId:
+                                                                  profileId,
+                                                              userId: userId,
+                                                            )),
                                                   );
                                                 },
                                               ),

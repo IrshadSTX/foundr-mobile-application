@@ -30,7 +30,7 @@ class MessageService {
     return null;
   }
 
-  Future<void> sendMessageService(MessageSendModel model) async {
+  Future<void> sendMessageService(SendMessageModel model) async {
     String? token = await storage.read(key: 'token');
     String path = kBaseurl + ApiEndPoints.chatting;
     try {

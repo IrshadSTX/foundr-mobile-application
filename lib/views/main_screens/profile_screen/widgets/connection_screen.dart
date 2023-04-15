@@ -120,7 +120,6 @@ class ConnectionScreen extends StatelessWidget {
                                   child: const Text('ViewProfile'),
                                 ),
                               ),
-                              onTap: () {},
                             ),
                           );
                         },
