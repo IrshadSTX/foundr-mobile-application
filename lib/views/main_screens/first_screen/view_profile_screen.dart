@@ -198,6 +198,10 @@ class ViewProfileScreen extends StatelessWidget {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             MessagingUser(
+                                                              profilePhoto:
+                                                                  profileImage,
+                                                              userName:
+                                                                  userName,
                                                               selectedId:
                                                                   profileId,
                                                               userId: userId,

@@ -16,8 +16,14 @@ import 'package:foundr_project/views/main_screens/message_screen/widgets/send_ca
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MessagingUser extends StatefulWidget {
-  MessagingUser({super.key, this.selectedId, this.userId});
-
+  MessagingUser(
+      {super.key,
+      this.selectedId,
+      this.profilePhoto,
+      this.userName,
+      this.userId});
+  final String? profilePhoto;
+  final String? userName;
   String? selectedId;
   String? userId;
   List<GetMessageModel>? msgs = [];
@@ -80,8 +86,8 @@ class _MessagingUserState extends State<MessagingUser> {
       backgroundColor: kCream,
       appBar: AppBar(
         backgroundColor: kGreen,
-        title: const Text(
-          "Messager Name",
+        title: Text(
+          widget.userName ?? '',
           style: TextStyle(
             color: Color.fromARGB(255, 50, 103, 137),
           ),
