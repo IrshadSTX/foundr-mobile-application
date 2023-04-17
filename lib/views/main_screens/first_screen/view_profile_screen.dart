@@ -107,7 +107,7 @@ class ViewProfileScreen extends StatelessWidget {
                               fontsize: 20,
                             ),
                             TextStyleWidget(
-                              title: intro!,
+                              title: intro != 'null' ? intro! : 'Nil',
                               thick: FontWeight.w500,
                               textcolor: kGreen,
                               fontsize: 14,

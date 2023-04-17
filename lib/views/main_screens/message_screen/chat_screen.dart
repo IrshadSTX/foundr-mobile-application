@@ -1,172 +1,138 @@
-// ignore_for_file: must_be_immutable
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:foundr_project/core/api/api_config.dart';
-
+import 'package:foundr_project/controllers/provider/chat/messaging_provider.dart';
 import 'package:foundr_project/core/colors.dart';
-import 'package:foundr_project/model/api/message/get_message_model.dart';
-import 'package:foundr_project/model/api/message/send_message_model.dart';
-import 'package:foundr_project/services/messaging/messaging_services.dart';
+import 'package:foundr_project/core/constants.dart';
+import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/views/main_screens/message_screen/widgets/replay_card_widget.dart';
 import 'package:foundr_project/views/main_screens/message_screen/widgets/send_card_widget.dart';
+import 'package:provider/provider.dart';
 
-// ignore: library_prefixes
-import 'package:socket_io_client/socket_io_client.dart' as IO;
-
-class MessagingUser extends StatefulWidget {
-  MessagingUser(
-      {super.key,
-      this.selectedId,
-      this.profilePhoto,
-      this.userName,
-      this.userId});
-  final String? profilePhoto;
+class MessagingUser extends StatelessWidget {
+  const MessagingUser({
+    super.key,
+    this.userName,
+    this.selectedId,
+    this.profilePhoto,
+    this.userId,
+  });
   final String? userName;
-  String? selectedId;
-  String? userId;
-  List<GetMessageModel>? msgs = [];
-  @override
-  State<MessagingUser> createState() => _MessagingUserState();
-}
-
-class _MessagingUserState extends State<MessagingUser> {
-  TextEditingController msgController = TextEditingController();
-  late IO.Socket socket;
-
-  @override
-  void dispose() {
-    super.dispose();
-    socket.disconnect();
-    socket.emit('disconnect', widget.userId);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    log(widget.userId.toString(), name: 'kjjjjjjjjjjjj');
-    log(widget.selectedId.toString(), name: 'llllll');
-    connect();
-    getMessage();
-  }
-
-  void connect() {
-    socket = IO.io('http://$kBaseurl:8000', <String, dynamic>{
-      "transports": ["websocket"],
-      "autoConnect": false,
-    });
-    socket.connect();
-    log("connected");
-    socket.emit("addUser", widget.userId);
-    socket.on("msg-receive", (data) {
-      GetMessageModel model = GetMessageModel(
-          myself: false, message: data, time: DateTime.now().toString());
-      log("emmited");
-      setState(() {
-        widget.msgs!.add(model);
-      });
-      setState(() {});
-    });
-  }
-
-  getMessage() async {
-    await MessageService()
-        .getMessageService(widget.selectedId!)
-        .then((value) => {
-              setState(() {
-                widget.msgs = value;
-              }),
-            });
-  }
-
+  final String? selectedId;
+  final String? profilePhoto;
+  final String? userId;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final provider = Provider.of<MessagingUserProvider>(context, listen: false);
+
     return Scaffold(
       backgroundColor: kCream,
-      appBar: AppBar(
-        backgroundColor: kGreen,
-        title: Text(
-          widget.userName ?? '',
-          style: TextStyle(
-            color: Color.fromARGB(255, 50, 103, 137),
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: widget.msgs!.isEmpty
-                  ? const Center(child: Text("No messages"))
-                  : Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        itemCount: widget.msgs!.length,
-                        itemBuilder: (context, index) {
-                          if (widget.msgs![index].myself == true) {
-                            return sendCardWidget(
-                                context, widget.msgs![index].message!);
-                          } else {
-                            return replayCardWidget(
-                                context, widget.msgs![index].message!);
-                          }
-                        },
-                      ),
-                    ),
-            ),
-            TextField(
-              controller: msgController,
-              keyboardType: TextInputType.multiline,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.all(17),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18),
-                    borderSide: BorderSide.none,
-                  ),
-                  labelText: 'message',
-                  floatingLabelBehavior: FloatingLabelBehavior.never,
-                  labelStyle: const TextStyle(
-                    fontSize: 14,
-                    color: Color.fromARGB(255, 50, 103, 137),
-                  ),
-                  filled: true,
-                  fillColor: const Color.fromARGB(255, 121, 161, 191),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: IconButton(
+      body: SizedBox(
+        child: Consumer<MessagingUserProvider>(builder: (context, data, child) {
+          return Column(
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 50),
+                width: double.infinity,
+                height: size.height * .175,
+                color: kYellow,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    IconButton(
                       onPressed: () {
-                        sendMessage(msgController.text);
-                        msgController.clear();
+                        Navigator.pop(context);
                       },
                       icon: const Icon(
-                        Icons.send,
-                        size: 25,
-                        color: Color.fromARGB(255, 6, 39, 66),
+                        Icons.arrow_back,
+                        color: Colors.white,
                       ),
-                      splashColor: Colors.transparent,
                     ),
-                  )),
-            ),
-          ],
-        ),
+                    kWidth10,
+                    CircleAvatar(
+                      radius: 25,
+                      child: profilePhoto != 'null'
+                          ? CircleAvatar(
+                              radius: 25,
+                              backgroundImage: FadeInImage.assetNetwork(
+                                placeholder: 'assets/images/user.png',
+                                image: profilePhoto!,
+                                fit: BoxFit.fill,
+                                fadeInDuration:
+                                    const Duration(milliseconds: 500),
+                              ).image)
+                          : const CircleAvatar(
+                              radius: 25,
+                              backgroundColor: Colors.transparent,
+                              backgroundImage:
+                                  AssetImage("assets/images/user.png"),
+                            ),
+                    ),
+                    kWidth20,
+                    TextStyleWidget(
+                      fontsize: 22,
+                      textcolor: Colors.white,
+                      thick: FontWeight.bold,
+                      title: userName!,
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                child: data.msgs!.isEmpty
+                    ? const Center(child: Text("No messages"))
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
+                          itemCount: data.msgs!.length,
+                          itemBuilder: (context, index) {
+                            if (data.msgs![index].myself == true) {
+                              return sendCardWidget(
+                                  context, data.msgs![index].message!);
+                            } else {
+                              return replayCardWidget(
+                                  context, data.msgs![index].message!);
+                            }
+                          },
+                        ),
+                      ),
+              ),
+              TextField(
+                controller: data.msgController,
+                keyboardType: TextInputType.multiline,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(17),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                    ),
+                    labelText: 'message',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    labelStyle: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 50, 103, 137),
+                    ),
+                    filled: true,
+                    fillColor: const Color.fromARGB(255, 121, 161, 191),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: IconButton(
+                        onPressed: () {
+                          data.sendMessage(data.msgController.text);
+                          data.msgController.clear();
+                        },
+                        icon: const Icon(
+                          Icons.send,
+                          size: 25,
+                          color: Color.fromARGB(255, 6, 39, 66),
+                        ),
+                        splashColor: Colors.transparent,
+                      ),
+                    )),
+              ),
+            ],
+          );
+        }),
       ),
     );
-  }
-
-  void sendMessage(String msg) async {
-    GetMessageModel model = GetMessageModel(myself: true, message: msg);
-    SendMessageModel sendModel =
-        SendMessageModel(to: widget.selectedId, message: msg);
-    setState(() {
-      widget.msgs!.add(model);
-    });
-    socket.emit("send-msg", {"to": widget.selectedId, "message": msg});
-    log("send messaged");
-
-    await MessageService().sendMessageService(sendModel);
   }
 }

@@ -18,7 +18,7 @@ class ShimmerLoadingEffect extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Container(
               width: double.infinity,
               height: 150.0,

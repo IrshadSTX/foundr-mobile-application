@@ -102,7 +102,7 @@ class MatchingFoundLists extends StatelessWidget {
                                               interests: value.interests!,
                                               responsibilities:
                                                   value.responsibilities!,
-                                              intro: value.intro!,
+                                              intro: value.intro ?? 'null',
                                               employment: value.employment!,
                                             )));
                                 await provider.buttonFunction(value.id!);
