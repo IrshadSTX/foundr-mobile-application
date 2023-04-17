@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/model/api/message/get_message_model.dart';
@@ -12,15 +14,16 @@ class MessagingUserProvider with ChangeNotifier {
   String? selectedId;
   String? userId;
   TextEditingController msgController = TextEditingController();
-  late IO.Socket socket;
+  IO.Socket? socket;
 
   void clearDispose() {
     super.dispose();
-    socket.disconnect();
-    socket.emit('disconnect', userId);
+    socket?.disconnect();
+    socket?.emit('disconnect', userId);
   }
 
-  void firstRunState() {
+  void firstRunState({required String selectedId}) {
+    this.selectedId = selectedId;
     connect();
     getMessage();
   }
@@ -30,9 +33,10 @@ class MessagingUserProvider with ChangeNotifier {
       "transports": ["websocket"],
       "autoConnect": false,
     });
-    socket.connect();
-    socket.emit('addUser', userId);
-    socket.on('msg-recieve', (data) {
+
+    socket?.connect();
+    socket?.emit('addUser', userId);
+    socket?.on('msg-recieve', (data) {
       GetMessageModel model = GetMessageModel(
           myself: false, message: data, time: DateTime.now().toString());
       msgs!.add(model);
@@ -52,7 +56,7 @@ class MessagingUserProvider with ChangeNotifier {
     SendMessageModel sendModel = SendMessageModel(to: selectedId, message: msg);
     msgs!.add(model);
     notifyListeners();
-    socket.emit("send-msg", {"to": selectedId, "message": msg});
+    socket!.emit("send-msg", {"to": selectedId, "message": msg});
     await MessageService().sendMessageService(sendModel);
     msgController.clear();
     notifyListeners();

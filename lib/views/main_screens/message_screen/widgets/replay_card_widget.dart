@@ -11,11 +11,12 @@ Widget replayCardWidget(context, String msg) {
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
           child: Container(
             decoration: BoxDecoration(
-                color: kCream, borderRadius: BorderRadius.circular(5)),
+                color: kGreen, borderRadius: BorderRadius.circular(5)),
             child: Padding(
               padding: const EdgeInsets.all(12),
               child: Text(
                 msg,
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),
