@@ -23,7 +23,7 @@ class MessagingUser extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final provider = Provider.of<MessagingUserProvider>(context, listen: false);
-
+    provider.firstRunState(selectedId: selectedId!);
     return Scaffold(
       backgroundColor: kCream,
       body: SizedBox(
@@ -82,7 +82,7 @@ class MessagingUser extends StatelessWidget {
                     ? const Center(child: Text("No messages"))
                     : Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
+                        child: ListView.separated(
                           itemCount: data.msgs!.length,
                           itemBuilder: (context, index) {
                             if (data.msgs![index].myself == true) {
@@ -93,41 +93,49 @@ class MessagingUser extends StatelessWidget {
                                   context, data.msgs![index].message!);
                             }
                           },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return kHeight5;
+                          },
                         ),
                       ),
               ),
-              TextField(
-                controller: data.msgController,
-                keyboardType: TextInputType.multiline,
-                style: const TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.all(17),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                    ),
-                    labelText: 'message',
-                    floatingLabelBehavior: FloatingLabelBehavior.never,
-                    labelStyle: const TextStyle(
-                      fontSize: 14,
-                      color: Color.fromARGB(255, 50, 103, 137),
-                    ),
-                    filled: true,
-                    fillColor: const Color.fromARGB(255, 121, 161, 191),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: IconButton(
-                        onPressed: () {
-                          data.sendMessage(data.msgController.text);
-                          data.msgController.clear();
-                        },
-                        icon: const Icon(
-                          Icons.send,
-                          size: 25,
-                          color: Color.fromARGB(255, 6, 39, 66),
-                        ),
-                        splashColor: Colors.transparent,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  controller: data.msgController,
+                  keyboardType: TextInputType.multiline,
+                  style: const TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(17),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(3),
+                          borderSide: BorderSide(width: 1, color: kYellow)),
+                      labelText: 'message',
+                      floatingLabelBehavior: FloatingLabelBehavior.never,
+                      labelStyle: const TextStyle(
+                        fontSize: 14,
+                        color: Color.fromARGB(255, 50, 103, 137),
                       ),
-                    )),
+                      filled: true,
+                      fillColor: Colors.white,
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: IconButton(
+                          onPressed: () {
+                            if (data.msgController.text.isNotEmpty) {
+                              data.sendMessage(data.msgController.text);
+                              data.msgController.clear();
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.send,
+                            size: 25,
+                            color: Color.fromARGB(255, 6, 39, 66),
+                          ),
+                          splashColor: Colors.transparent,
+                        ),
+                      )),
+                ),
               ),
             ],
           );
