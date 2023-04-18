@@ -108,7 +108,7 @@ class MessagingUser extends StatelessWidget {
                   decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(17),
                       border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(3),
+                          borderRadius: BorderRadius.circular(30),
                           borderSide: BorderSide(width: 1, color: kYellow)),
                       labelText: 'message',
                       floatingLabelBehavior: FloatingLabelBehavior.never,

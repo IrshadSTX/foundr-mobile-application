@@ -8,11 +8,10 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:foundr_project/core/widgets/textstyle.dart';
 import 'package:foundr_project/views/main_screens/message_screen/chat_screen.dart';
-import 'package:foundr_project/views/main_screens/message_screen/messages_screen.dart';
 
 import 'package:provider/provider.dart';
 
-class ViewProfileScreen extends StatelessWidget {
+class ViewProfileScreen extends StatefulWidget {
   const ViewProfileScreen(
       {super.key,
       required this.profileId,
@@ -45,10 +44,23 @@ class ViewProfileScreen extends StatelessWidget {
   final List<dynamic>? interests;
   final List<dynamic>? responsibilities;
   final String? userId;
+
+  @override
+  State<ViewProfileScreen> createState() => _ViewProfileScreenState();
+}
+
+class _ViewProfileScreenState extends State<ViewProfileScreen> {
+  @override
+  void initState() {
+    Provider.of<ViewProfileProvider>(context, listen: false)
+        .getallConnectionReq();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    log(profileImage!, name: 'profile image');
-    log(profileId.toString());
+    log(widget.profileImage!, name: 'profile image');
+    log(widget.profileId.toString());
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -82,12 +94,12 @@ class ViewProfileScreen extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 50,
-                              child: profileImage != 'null'
+                              child: widget.profileImage != 'null'
                                   ? CircleAvatar(
                                       radius: 50,
                                       backgroundImage: FadeInImage.assetNetwork(
                                         placeholder: 'assets/images/user.png',
-                                        image: profileImage!,
+                                        image: widget.profileImage!,
                                         fit: BoxFit.fill,
                                         fadeInDuration:
                                             const Duration(milliseconds: 500),
@@ -101,13 +113,15 @@ class ViewProfileScreen extends StatelessWidget {
                             ),
                             kHeight5,
                             TextStyleWidget(
-                              title: userName!,
+                              title: widget.userName!,
                               thick: FontWeight.w600,
                               textcolor: kBrown,
                               fontsize: 20,
                             ),
                             TextStyleWidget(
-                              title: intro != 'null' ? intro! : 'Nil',
+                              title: widget.intro != 'null'
+                                  ? widget.intro!
+                                  : 'Nil',
                               thick: FontWeight.w500,
                               textcolor: kGreen,
                               fontsize: 14,
@@ -126,8 +140,9 @@ class ViewProfileScreen extends StatelessWidget {
                                       icons: Icons.person_add_alt_sharp,
                                       onPress: () async {
                                         value.sendConnection(
-                                            profileId, context);
-                                        await value.buttonFunction(profileId);
+                                            widget.profileId, context);
+                                        await value
+                                            .buttonFunction(widget.profileId);
                                       },
                                     ),
                                   );
@@ -163,7 +178,7 @@ class ViewProfileScreen extends StatelessWidget {
                                                         value
                                                             .updateConnectionProvider(
                                                           "true",
-                                                          profileId,
+                                                          widget.profileId,
                                                           context,
                                                         );
                                                       },
@@ -178,7 +193,7 @@ class ViewProfileScreen extends StatelessWidget {
                                                         value
                                                             .updateConnectionProvider(
                                                           "false",
-                                                          profileId,
+                                                          widget.profileId,
                                                           context,
                                                         );
                                                       },
@@ -198,13 +213,14 @@ class ViewProfileScreen extends StatelessWidget {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             MessagingUser(
-                                                              profilePhoto:
-                                                                  profileImage,
-                                                              userName:
-                                                                  userName,
-                                                              selectedId:
-                                                                  profileId,
-                                                              userId: userId,
+                                                              profilePhoto: widget
+                                                                  .profileImage,
+                                                              userName: widget
+                                                                  .userName,
+                                                              selectedId: widget
+                                                                  .profileId,
+                                                              userId:
+                                                                  widget.userId,
                                                             )),
                                                   );
                                                 },
@@ -234,25 +250,25 @@ class ViewProfileScreen extends StatelessWidget {
                           children: [
                             textMiniHeading2('Email'),
                             textParagraphBlack(
-                              email!,
+                              widget.email!,
                             ),
                             divider,
                             kHeight5,
                             textMiniHeading2('Impressive Accomplishments'),
                             textParagraphBlack(
-                              accomplishment!,
+                              widget.accomplishment!,
                             ),
                             divider,
                             kHeight5,
                             textMiniHeading2('Education'),
                             textParagraphBlack(
-                              education!,
+                              widget.education!,
                             ),
                             divider,
                             kHeight5,
                             textMiniHeading2('Employment'),
                             textParagraphBlack(
-                              employment!,
+                              widget.employment!,
                             ),
                           ],
                         ),
@@ -269,20 +285,20 @@ class ViewProfileScreen extends StatelessWidget {
                             kHeight5,
                             rowBottomSheetAnswers(
                               'Is Technical',
-                              technical!,
+                              widget.technical!,
                             ),
                             divider,
                             kHeight5,
                             rowBottomSheetAnswers(
                               'Has Idea',
-                              idea!,
+                              widget.idea!,
                             ),
                             divider,
                             kHeight5,
                             rowBottomSheetAnswers(
                                 'Interests',
-                                interests != null
-                                    ? interests
+                                widget.interests != null
+                                    ? widget.interests
                                         .toString()
                                         .replaceAll('[', '')
                                         .replaceAll(']', '')
@@ -291,8 +307,8 @@ class ViewProfileScreen extends StatelessWidget {
                             kHeight5,
                             rowBottomSheetAnswers(
                                 'Responsiblities',
-                                responsibilities != null
-                                    ? responsibilities
+                                widget.responsibilities != null
+                                    ? widget.responsibilities
                                         .toString()
                                         .replaceAll('[', '')
                                         .replaceAll(']', '')

@@ -159,7 +159,7 @@ class ProfieScreen extends StatelessWidget {
                         ),
                         kHeight10,
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             InkWell(
                               onTap: () => Navigator.push(
@@ -175,10 +175,10 @@ class ProfieScreen extends StatelessWidget {
                                       color: Colors.brown, width: 1),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: const SizedBox(
+                                child: SizedBox(
                                   height: 45,
-                                  width: 160,
-                                  child: Center(
+                                  width: size.width * 0.5,
+                                  child: const Center(
                                     child: TextStyleWidget(
                                       title: 'Connections ',
                                       thick: FontWeight.w700,
@@ -189,10 +189,6 @@ class ProfieScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            CardButtonWidget(
-                              navigate: null,
-                              title: 'Messages',
-                            )
                           ],
                         ),
                         kHeight10,
@@ -306,20 +302,12 @@ class ProfieScreen extends StatelessWidget {
                                     ),
                                     kHeight10,
                                     Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         ElevatedButton(
                                             onPressed: () {
                                               if (formkey.currentState!
                                                   .validate()) {
-                                                log('saved user profile');
-                                                log(data.aboutController.text);
-                                                log(data.genderController.text);
-                                                log(data.ageController.text);
-                                                log(data.nationController.text);
-                                                log(data.stateController.text);
-                                                log(data.cityController.text);
                                                 data.updateAboutProvider(
                                                     context);
                                               }

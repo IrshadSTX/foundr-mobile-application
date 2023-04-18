@@ -95,16 +95,17 @@ class SignInScreen extends StatelessWidget {
                                       ),
                                     );
                                   }),
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Forgot password?',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12),
-                                      textAlign: TextAlign.right,
-                                    ),
-                                  ),
+                                  kHeight20,
+                                  // TextButton(
+                                  //   onPressed: () {},
+                                  //   child: const Text(
+                                  //     'Forgot password?',
+                                  //     style: TextStyle(
+                                  //         fontWeight: FontWeight.bold,
+                                  //         fontSize: 12),
+                                  //     textAlign: TextAlign.right,
+                                  //   ),
+                                  // ),
                                   Consumer<SigninProvider>(
                                       builder: (context, data, child) {
                                     return ElevatedButton(

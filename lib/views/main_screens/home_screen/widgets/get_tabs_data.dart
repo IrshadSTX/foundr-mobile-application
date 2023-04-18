@@ -22,12 +22,6 @@ List<TabData> getTabsData() {
       fontWeight: FontWeight.bold,
     ),
     TabData(
-      icon: Icons.message_outlined,
-      iconSize: 27,
-      fontSize: 10,
-      fontWeight: FontWeight.bold,
-    ),
-    TabData(
       icon: Icons.person_2_outlined,
       iconSize: 27,
       fontSize: 10,
