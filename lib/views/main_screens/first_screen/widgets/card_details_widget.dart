@@ -29,7 +29,7 @@ class CardDetailsWidget extends StatelessWidget {
               ),
               TextStyleWidget(
                 title: subtitle,
-                thick: FontWeight.w600,
+                thick: FontWeight.w400,
                 textcolor: kGreen,
                 fontsize: 12,
               ),

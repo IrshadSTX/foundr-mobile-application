@@ -5,6 +5,7 @@ import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/model/api/message/get_message_model.dart';
 import 'package:foundr_project/model/api/message/send_message_model.dart';
 import 'package:foundr_project/services/messaging/messaging_services.dart';
+import 'package:intl/intl.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class MessagingUserProvider with ChangeNotifier {
@@ -52,13 +53,23 @@ class MessagingUserProvider with ChangeNotifier {
   }
 
   void sendMessage(String msg) async {
-    GetMessageModel model = GetMessageModel(myself: true, message: msg);
+    DateTime now = DateTime.now();
+
+    GetMessageModel model = GetMessageModel(
+        myself: true, message: msg, time: now.toIso8601String());
     SendMessageModel sendModel = SendMessageModel(to: selectedId, message: msg);
     msgs!.add(model);
     notifyListeners();
-    socket!.emit("send-msg", {"to": selectedId, "message": msg});
+    socket!.emit("send-msg",
+        {"to": selectedId, "message": msg, "time": now.toIso8601String()});
     await MessageService().sendMessageService(sendModel);
     msgController.clear();
     notifyListeners();
+  }
+
+  dateChange(String date) {
+    DateTime dateTime = DateTime.parse(date);
+    String time = DateFormat('h:mm a').format(dateTime);
+    return time;
   }
 }

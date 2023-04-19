@@ -101,7 +101,7 @@ class NotificationScreen extends StatelessWidget {
 
   dateChange(String date) {
     DateTime dateTime = DateTime.parse(date);
-    // String formatteddate = DateFormat('dd-MMMM-yyyy', 'en_US').format(dateTime);
+
     String time = DateFormat('h:mm a').format(dateTime);
     return time;
   }

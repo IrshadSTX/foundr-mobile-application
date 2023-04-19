@@ -21,6 +21,7 @@ class MessagingUser extends StatelessWidget {
   final String? userId;
   @override
   Widget build(BuildContext context) {
+    var time = DateTime.now();
     final size = MediaQuery.of(context).size;
     final provider = Provider.of<MessagingUserProvider>(context, listen: false);
     provider.firstRunState(selectedId: selectedId!);
@@ -87,10 +88,14 @@ class MessagingUser extends StatelessWidget {
                           itemBuilder: (context, index) {
                             if (data.msgs![index].myself == true) {
                               return sendCardWidget(
-                                  context, data.msgs![index].message!);
+                                  context,
+                                  data.msgs![index].message!,
+                                  data.msgs![index].time!);
                             } else {
                               return replayCardWidget(
-                                  context, data.msgs![index].message!);
+                                  context,
+                                  data.msgs![index].message!,
+                                  data.msgs![index].time!);
                             }
                           },
                           separatorBuilder: (BuildContext context, int index) {
@@ -109,7 +114,8 @@ class MessagingUser extends StatelessWidget {
                       contentPadding: const EdgeInsets.all(17),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(width: 1, color: kYellow)),
+                          borderSide:
+                              const BorderSide(width: 1, color: kYellow)),
                       labelText: 'message',
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       labelStyle: const TextStyle(

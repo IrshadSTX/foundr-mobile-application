@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:foundr_project/controllers/provider/chat/messaging_provider.dart';
 import 'package:foundr_project/core/colors.dart';
+import 'package:provider/provider.dart';
 
-Widget replayCardWidget(context, String msg) {
+import '../../../../core/widgets/textstyle.dart';
+
+Widget replayCardWidget(context, String msg, String time) {
   return Column(
     children: [
       Align(
@@ -13,10 +17,22 @@ Widget replayCardWidget(context, String msg) {
             decoration: BoxDecoration(
                 color: kGreen, borderRadius: BorderRadius.circular(5)),
             child: Padding(
-              padding: const EdgeInsets.all(12),
-              child: Text(
-                msg,
-                style: TextStyle(color: Colors.white),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    msg,
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                  TextStyleWidget(
+                      title: Provider.of<MessagingUserProvider>(context,
+                              listen: false)
+                          .dateChange(time),
+                      thick: FontWeight.w500,
+                      textcolor: kCream,
+                      fontsize: 10)
+                ],
               ),
             ),
           ),
