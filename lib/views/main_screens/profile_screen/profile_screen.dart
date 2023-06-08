@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
@@ -12,8 +10,6 @@ import 'package:foundr_project/views/main_screens/profile_screen/widgets/connect
 import 'package:foundr_project/views/main_screens/profile_screen/widgets/text_field_widget.dart';
 import 'package:foundr_project/views/splash_screen.dart';
 import 'package:provider/provider.dart';
-
-import 'widgets/card_button_widget.dart';
 
 class ProfieScreen extends StatelessWidget {
   ProfieScreen({super.key});
@@ -81,7 +77,7 @@ class ProfieScreen extends StatelessWidget {
                     ),
                     content: SingleChildScrollView(
                       child: ListBody(
-                        children: const <Widget>[
+                        children: <Widget>[
                           Text(
                             'Are you sure want to Sign Out',
                           ),
@@ -194,7 +190,7 @@ class ProfieScreen extends StatelessWidget {
                         kHeight10,
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          children: const [
+                          children: [
                             TextStyleWidget(
                                 title: 'User Profile',
                                 thick: FontWeight.bold,

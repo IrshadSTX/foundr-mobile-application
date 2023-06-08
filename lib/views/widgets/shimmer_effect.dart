@@ -22,19 +22,22 @@ class ShimmerLoadingEffect extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 150.0,
-              color: Colors.grey[300],
+              decoration: BoxDecoration(
+                  color: Colors.grey, borderRadius: BorderRadius.circular(10)),
               margin: const EdgeInsets.only(bottom: 8.0),
             ),
             Container(
               width: double.infinity,
               height: 150.0,
-              color: Colors.grey[300],
+              decoration: BoxDecoration(
+                  color: Colors.grey, borderRadius: BorderRadius.circular(10)),
               margin: const EdgeInsets.only(bottom: 8.0),
             ),
             Container(
               width: double.infinity,
               height: 150.0,
-              color: Colors.grey[300],
+              decoration: BoxDecoration(
+                  color: Colors.grey, borderRadius: BorderRadius.circular(10)),
               margin: const EdgeInsets.only(bottom: 8.0),
             ),
           ],

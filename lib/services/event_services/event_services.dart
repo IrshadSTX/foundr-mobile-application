@@ -15,6 +15,7 @@ class EventService {
       Response response = await dio.get(path);
       if (response.statusCode == 200) {
         List<dynamic> data = response.data['events'];
+        log(data.toString(), name: 'events services');
         final res = data.map((e) => EventModel.fromJson(e)).toList();
         return res;
       } else if (response.statusCode == 501) {

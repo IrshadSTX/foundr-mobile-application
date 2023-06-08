@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:foundr_project/core/api/api_config.dart';
 import 'package:foundr_project/model/api/message/get_message_model.dart';

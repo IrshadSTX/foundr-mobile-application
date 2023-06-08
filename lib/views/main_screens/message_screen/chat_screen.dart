@@ -32,7 +32,7 @@ class MessagingUser extends StatelessWidget {
           return Column(
             children: [
               Container(
-                padding: EdgeInsets.only(top: 50),
+                padding: const EdgeInsets.only(top: 50),
                 width: double.infinity,
                 height: size.height * .175,
                 color: kYellow,
