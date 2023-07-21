@@ -121,7 +121,7 @@ class EventCardWidget extends StatelessWidget {
                               ),
                             );
                           },
-                          child: const TextStyleWidget(
+                          child: TextStyleWidget(
                             title: 'Join Now',
                             thick: FontWeight.w600,
                             textcolor: kCream,

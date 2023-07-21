@@ -20,7 +20,7 @@ class MoreButtonWidget extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const MoreMatchingScreen()));
             },
-            child: const TextStyleWidget(
+            child: TextStyleWidget(
               title: 'more',
               thick: FontWeight.w600,
               textcolor: kGreen,

@@ -19,7 +19,7 @@ class ArticleScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kYellow,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
           title: 'Articles',
           thick: FontWeight.bold,
           textcolor: Colors.white,
@@ -38,7 +38,7 @@ class ArticleScreen extends StatelessWidget {
               kHeight10,
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   TextStyleWidget(
                     title: 'Gain some ideas!',
                     thick: FontWeight.bold,
@@ -95,7 +95,7 @@ class ArticleScreen extends StatelessWidget {
                           child: ShimmerLoadingEffect(),
                         );
                       } else {
-                        return const Center(
+                        return Center(
                             child: TextStyleWidget(
                                 title: 'Network lost',
                                 thick: FontWeight.bold,

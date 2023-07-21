@@ -6,6 +6,7 @@ import 'package:foundr_project/core/colors.dart';
 import 'package:foundr_project/core/constants.dart';
 import 'package:provider/provider.dart';
 
+import '../forgot/forgot_password_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -97,7 +98,13 @@ class SignInScreen extends StatelessWidget {
                                   }),
                                   kHeight20,
                                   // TextButton(
-                                  //   onPressed: () {},
+                                  //   onPressed: () {
+                                  //     Navigator.push(
+                                  //         context,
+                                  //         MaterialPageRoute(
+                                  //             builder: (context) =>
+                                  //                 ForgotPWDScreen()));
+                                  //   },
                                   //   child: const Text(
                                   //     'Forgot password?',
                                   //     style: TextStyle(
@@ -134,7 +141,7 @@ class SignInScreen extends StatelessWidget {
                                       const Text("Don't have an account ? "),
                                       TextButton(
                                           onPressed: () {
-                                            Navigator.push(
+                                            Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>

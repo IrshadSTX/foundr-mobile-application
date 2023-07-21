@@ -118,7 +118,7 @@ class MoreMatchingScreen extends StatelessWidget {
                                   border: Border.all(
                                     color: Colors.black38,
                                   )),
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 child: TextStyleWidget(
                                   title: 'View Profile',

@@ -20,7 +20,7 @@ class EventScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kYellow,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
           title: 'Events',
           thick: FontWeight.bold,
           textcolor: Colors.white,
@@ -38,13 +38,13 @@ class EventScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               kHeight10,
-              const TextStyleWidget(
+              TextStyleWidget(
                 title: 'Join Now!',
                 thick: FontWeight.bold,
                 textcolor: kBrown,
                 fontsize: 24,
               ),
-              const TextStyleWidget(
+              TextStyleWidget(
                 title:
                     "Game-Changing Advice from Founders Who have made millions",
                 thick: FontWeight.w500,
@@ -81,7 +81,7 @@ class EventScreen extends StatelessWidget {
                           child: ShimmerLoadingEffect(),
                         );
                       } else {
-                        return const Center(
+                        return Center(
                             child: TextStyleWidget(
                                 title: 'Network lost',
                                 thick: FontWeight.bold,

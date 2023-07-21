@@ -19,7 +19,7 @@ class BottomButtonsWidget extends StatelessWidget {
     return Column(
       children: [
         kHeight10,
-        const TextStyleWidget(
+        TextStyleWidget(
             title: 'More Details',
             thick: FontWeight.bold,
             textcolor: kBrown,

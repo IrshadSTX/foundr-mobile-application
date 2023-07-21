@@ -25,8 +25,8 @@ class ArticleService {
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(dataFailsMsg);
       }
-    } on DioError catch (e) {
-      DioException().dioError(e, context);
+    } on DioException catch (e) {
+      DioException1().dioError(e, context);
       log(e.toString());
     }
     return null;

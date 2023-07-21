@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleWidget extends StatelessWidget {
-  const TextStyleWidget({
-    super.key,
-    required this.title,
-    required this.thick,
-    required this.textcolor,
-    required this.fontsize,
-  });
+  TextStyleWidget(
+      {super.key,
+      required this.title,
+      required this.thick,
+      required this.textcolor,
+      required this.fontsize,
+      this.textAlign});
   final String title;
   final FontWeight thick;
   final Color textcolor;
   final double fontsize;
+  TextAlign? textAlign;
 
   @override
   Widget build(BuildContext context) {

@@ -28,7 +28,7 @@ class FirstScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               kHeight30,
-              const TextStyleWidget(
+              TextStyleWidget(
                 title: 'Connecting Better.',
                 thick: FontWeight.bold,
                 textcolor: kBrown,
@@ -38,7 +38,7 @@ class FirstScreen extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: size.width * 0.65,
-                    child: const TextStyleWidget(
+                    child: TextStyleWidget(
                       title:
                           '''Connect with co-founders based on your preferences for interests, skills, location, and more, and start building your company.''',
                       thick: FontWeight.w400,
@@ -53,13 +53,13 @@ class FirstScreen extends StatelessWidget {
                 ],
               ),
               kHeight10,
-              const TextStyleWidget(
+              TextStyleWidget(
                 title: 'Match Found!',
                 thick: FontWeight.bold,
                 textcolor: kBrown,
                 fontsize: 24,
               ),
-              const TextStyleWidget(
+              TextStyleWidget(
                 title: 'These profiles have some matches with your profile',
                 thick: FontWeight.w400,
                 textcolor: kGreen,

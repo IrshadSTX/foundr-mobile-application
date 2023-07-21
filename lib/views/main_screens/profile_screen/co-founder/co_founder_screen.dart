@@ -20,7 +20,7 @@ class CoFounderScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
             title: 'Co-Founder',
             thick: FontWeight.bold,
             textcolor: Colors.white,

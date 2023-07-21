@@ -33,7 +33,6 @@ dependencies:
   toggle_switch: ^2.0.1
   shimmer:
   image_picker: 
-  cached_network_image: ^3.2.3 
   fluttertoast: 
   circle_bottom_navigation_bar: ^1.0.0
   cupertino_icons: ^1.0.2
@@ -46,7 +45,6 @@ dependencies:
   introduction_screen: ^3.1.6
   jwt_decoder: ^2.0.1
   provider: ^6.0.5
-  shared_preferences: 2.0.16
   smooth_page_indicator: 1.0.0+2
   intl: ^0.18.0
   flutter_html:

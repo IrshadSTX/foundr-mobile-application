@@ -39,7 +39,7 @@ class EventJoinScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kYellow,
-          title: const TextStyleWidget(
+          title: TextStyleWidget(
               title: 'Book your Event',
               thick: FontWeight.bold,
               textcolor: Colors.white,
@@ -91,7 +91,7 @@ class EventJoinScreen extends StatelessWidget {
                       textcolor: Colors.black,
                       fontsize: 14,
                     ),
-                    const TextStyleWidget(
+                    TextStyleWidget(
                       title: 'get the invitation link to the registered email',
                       thick: FontWeight.w500,
                       textcolor: kGreen,

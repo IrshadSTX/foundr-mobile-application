@@ -23,7 +23,7 @@ class ArticleContentScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kYellow,
-          title: const TextStyleWidget(
+          title: TextStyleWidget(
               title: 'Article-Home',
               thick: FontWeight.bold,
               textcolor: Colors.white,

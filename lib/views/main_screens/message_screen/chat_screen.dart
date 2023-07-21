@@ -21,7 +21,6 @@ class MessagingUser extends StatelessWidget {
   final String? userId;
   @override
   Widget build(BuildContext context) {
-    var time = DateTime.now();
     final size = MediaQuery.of(context).size;
     final provider = Provider.of<MessagingUserProvider>(context, listen: false);
     provider.firstRunState(selectedId: selectedId!);

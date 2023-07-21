@@ -31,7 +31,7 @@ class ApiServiceSignUp {
         return response.data.toString();
       }
     } on DioException catch (e) {
-      DioException().dioError(e, context);
+      DioException1().dioError(e, context);
     }
     return null;
   }
@@ -59,8 +59,8 @@ class ApiServiceSignUp {
         //message not successful
         return false;
       }
-    } on DioError catch (e) {
-      DioException().dioError(e, context);
+    } on DioException catch (e) {
+      DioException1().dioError(e, context);
     }
     return null;
   }
@@ -86,9 +86,9 @@ class ApiServiceSignUp {
         log(response.data.toString());
         log(response.statusCode.toString());
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       log("error part in sign up");
-      DioException().dioError(e, context);
+      DioException1().dioError(e, context);
     }
     return null;
   }

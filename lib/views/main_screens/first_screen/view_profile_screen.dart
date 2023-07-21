@@ -65,7 +65,7 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
             title: 'View Profile',
             thick: FontWeight.bold,
             textcolor: Colors.white,
@@ -242,7 +242,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                     Card(
                       elevation: 4,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
@@ -256,19 +257,25 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                             kHeight5,
                             textMiniHeading2('Impressive Accomplishments'),
                             textParagraphBlack(
-                              widget.accomplishment!,
+                              widget.accomplishment == null
+                                  ? "not found"
+                                  : widget.accomplishment!,
                             ),
                             divider,
                             kHeight5,
                             textMiniHeading2('Education'),
                             textParagraphBlack(
-                              widget.education!,
+                              widget.education == null
+                                  ? "not found"
+                                  : widget.education!,
                             ),
                             divider,
                             kHeight5,
                             textMiniHeading2('Employment'),
                             textParagraphBlack(
-                              widget.employment!,
+                              widget.employment == null
+                                  ? "not found"
+                                  : widget.employment!,
                             ),
                           ],
                         ),
@@ -277,7 +284,8 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                     Card(
                       elevation: 4,
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
@@ -285,38 +293,42 @@ class _ViewProfileScreenState extends State<ViewProfileScreen> {
                             kHeight5,
                             rowBottomSheetAnswers(
                               'Is Technical',
-                              widget.technical!,
+                              widget.technical == null
+                                  ? "not found"
+                                  : widget.technical!,
                             ),
                             divider,
                             kHeight5,
                             rowBottomSheetAnswers(
                               'Has Idea',
-                              widget.idea!,
+                              widget.idea == null ? "not found" : widget.idea!,
                             ),
                             divider,
                             kHeight5,
                             rowBottomSheetAnswers(
-                                'Interests',
-                                widget.interests != null
-                                    ? widget.interests
-                                        .toString()
-                                        .replaceAll('[', '')
-                                        .replaceAll(']', '')
-                                    : 'nil'),
+                              'Interests',
+                              widget.interests != null
+                                  ? widget.interests
+                                      .toString()
+                                      .replaceAll('[', '')
+                                      .replaceAll(']', '')
+                                  : 'nil',
+                            ),
                             divider,
                             kHeight5,
                             rowBottomSheetAnswers(
-                                'Responsiblities',
-                                widget.responsibilities != null
-                                    ? widget.responsibilities
-                                        .toString()
-                                        .replaceAll('[', '')
-                                        .replaceAll(']', '')
-                                    : 'nil'),
+                              'Responsibilities',
+                              widget.responsibilities != null
+                                  ? widget.responsibilities
+                                      .toString()
+                                      .replaceAll('[', '')
+                                      .replaceAll(']', '')
+                                  : 'nil',
+                            ),
                           ],
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

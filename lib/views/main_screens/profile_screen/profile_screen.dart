@@ -54,7 +54,7 @@ class ProfieScreen extends StatelessWidget {
       backgroundColor: kCream,
       appBar: AppBar(
         backgroundColor: kYellow,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
           title: 'Profile',
           thick: FontWeight.bold,
           textcolor: Colors.white,
@@ -174,7 +174,7 @@ class ProfieScreen extends StatelessWidget {
                                 child: SizedBox(
                                   height: 45,
                                   width: size.width * 0.5,
-                                  child: const Center(
+                                  child:  Center(
                                     child: TextStyleWidget(
                                       title: 'Connections ',
                                       thick: FontWeight.w700,
@@ -323,7 +323,7 @@ class ProfieScreen extends StatelessWidget {
                         ),
                       ],
                     )
-                  : const Center(
+                  : Center(
                       child: TextStyleWidget(
                           title: 'Network lost',
                           thick: FontWeight.bold,

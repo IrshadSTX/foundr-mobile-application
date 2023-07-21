@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/bottom_navigation.dart/bottom_navigation.dart';
 import 'package:foundr_project/controllers/provider/chat/messaging_provider.dart';
 import 'package:foundr_project/controllers/provider/event/event_payment_provider.dart';
+import 'package:foundr_project/controllers/provider/forgot_provider/forgot_provider.dart';
 import 'package:foundr_project/controllers/provider/matching_profile/matching_profile_provider.dart';
 import 'package:foundr_project/controllers/provider/notification/notification_provider.dart';
 import 'package:foundr_project/controllers/provider/otp_provider/otp_provider.dart';
@@ -79,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (BuildContext context) => MessagingUserProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (BuildContext context) => ForgotPWDProvider(),
         ),
       ],
       child: MaterialApp(

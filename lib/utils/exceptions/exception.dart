@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
 
-class DioException {
+class DioException1 {
   var dio = Dio();
 
   void dioError(Object e, BuildContext context) {
-    if (e is DioError) {
+    if (e is DioException) {
       if (e.response?.statusCode == 404) {
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       } else if (e.response?.statusCode == 401) {

@@ -13,7 +13,7 @@ class MessageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kYellow,
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
           title: 'Messages',
           thick: FontWeight.bold,
           textcolor: Colors.white,

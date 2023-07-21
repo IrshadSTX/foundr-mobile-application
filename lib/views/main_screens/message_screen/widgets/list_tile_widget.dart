@@ -16,7 +16,7 @@ class ListTileWidget extends StatelessWidget {
           radius: 30,
           child: Image.asset('assets/images/user.png'),
         ),
-        title: const TextStyleWidget(
+        title: TextStyleWidget(
           title: 'Event Seeker',
           thick: FontWeight.w600,
           textcolor: kBrown,
