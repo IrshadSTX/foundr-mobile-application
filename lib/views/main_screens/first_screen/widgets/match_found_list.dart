@@ -51,7 +51,7 @@ class MatchingFoundLists extends StatelessWidget {
                                     ).image),
                               )
                             : const CircleAvatar(
-                                radius: 45,
+                                radius: 53,
                                 backgroundColor: Colors.transparent,
                                 backgroundImage:
                                     AssetImage("assets/images/user.png"),
@@ -62,14 +62,14 @@ class MatchingFoundLists extends StatelessWidget {
                           textcolor: Colors.black,
                           fontsize: 14,
                         ),
-                        TextStyleWidget(
-                          title: data.matchingProfileDatas![index].intro != null
-                              ? data.matchingProfileDatas![index].intro!
-                              : 'Nil',
-                          thick: FontWeight.w400,
-                          textcolor: kGreen,
-                          fontsize: 12,
-                        ),
+                        // TextStyleWidget(
+                        //   title: data.matchingProfileDatas![index].intro != null
+                        //       ? data.matchingProfileDatas![index].intro!
+                        //       : 'Nil',
+                        //   thick: FontWeight.w400,
+                        //   textcolor: kGreen,
+                        //   fontsize: 12,
+                        // ),
                         TextButton(
                           onPressed: () async {
                             List notFound = ['not found'];

@@ -17,6 +17,7 @@ class CardButtonWidget extends StatelessWidget {
   Widget? navigate;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return InkWell(
       onTap: () => navigate != null
           ? Navigator.push(
@@ -31,7 +32,7 @@ class CardButtonWidget extends StatelessWidget {
         ),
         child: SizedBox(
           height: 45,
-          width: 160,
+          width: size.width * 0.4,
           child: Center(
             child: TextStyleWidget(
               title: title,

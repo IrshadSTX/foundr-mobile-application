@@ -69,15 +69,15 @@ class MoreMatchingScreen extends StatelessWidget {
                             textcolor: Colors.black,
                             fontsize: 14,
                           ),
-                          TextStyleWidget(
-                            title:
-                                data.matchingProfileDatas![index].intro != null
-                                    ? data.matchingProfileDatas![index].intro!
-                                    : 'Nil',
-                            thick: FontWeight.w400,
-                            textcolor: kGreen,
-                            fontsize: 12,
-                          ),
+                          // TextStyleWidget(
+                          //   title:
+                          //       data.matchingProfileDatas![index].intro != null
+                          //           ? data.matchingProfileDatas![index].intro!
+                          //           : 'Nil',
+                          //   thick: FontWeight.w400,
+                          //   textcolor: kGreen,
+                          //   fontsize: 12,
+                          // ),
                           TextButton(
                             onPressed: () {
                               Navigator.push(

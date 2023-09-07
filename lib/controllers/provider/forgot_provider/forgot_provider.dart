@@ -56,16 +56,16 @@ class ForgotPWDProvider with ChangeNotifier {
   Future<void> verifyUserProvider(BuildContext context) async {
     log('inside verifyUser');
     isLoading = true;
-    final provider = Provider.of<OtpProvider>(context, listen: false);
-    final email = provider.emailController.text;
-    final userName = provider.usernameController.text;
+    // final provider = Provider.of<OtpProvider>(context, listen: false);
+    final email = emailController.text;
+
     await ApiServiceSignUp()
         .verifyUserNGenerateService(email, context)
         .then((value) => {
               if (value == "Email Already Exists")
                 {
                   ApiServiceSignUp()
-                      .sendMail(email, context, userName, email)
+                      .sendMail(email, context, email, email)
                       .then((value) => {
                             if (value == true)
                               {

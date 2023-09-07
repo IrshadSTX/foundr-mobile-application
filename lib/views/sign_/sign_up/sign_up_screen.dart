@@ -115,21 +115,25 @@ class SignUpScreen extends StatelessWidget {
                                       ),
                                     ),
                                     kHeight10,
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        final validate =
-                                            formkey.currentState!.validate();
-                                        if (!validate) {
-                                          return;
-                                        }
-                                        providerWOL.verifyUserProvider(context);
-                                      },
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 3, horizontal: 50),
-                                        child: Text('Register'),
-                                      ),
-                                    ),
+                                    providerWOL.isLoading
+                                        ? const CircularProgressIndicator()
+                                        : ElevatedButton(
+                                            onPressed: () {
+                                              final validate = formkey
+                                                  .currentState!
+                                                  .validate();
+                                              if (!validate) {
+                                                return;
+                                              }
+                                              providerWOL
+                                                  .verifyUserProvider(context);
+                                            },
+                                            child: const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 3, horizontal: 50),
+                                              child: Text('Register'),
+                                            ),
+                                          ),
                                     kHeight10,
                                     const Divider(
                                       thickness: 3,

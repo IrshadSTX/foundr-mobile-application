@@ -3,6 +3,7 @@ class ApiEndPoints {
   static String verifyUser = "/api/user/verifyuser";
   static String sendMail = "/api/user/sendMail";
   static String signUp = "/api/user/signup";
+  static String forgotPWD = "/api/user//changePassword";
   static String verifyOTP = "/api/user/verifyOtp";
   static String getArticles = "/api/user/getArticles";
   static String getEvents = "/api/user/getEvents";

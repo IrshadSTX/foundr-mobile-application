@@ -17,6 +17,7 @@ class BottomButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         kHeight10,
         TextStyleWidget(
@@ -40,7 +41,7 @@ class BottomButtonsWidget extends StatelessWidget {
         ),
         kHeight5,
         SizedBox(
-          width: size.width * 0.9,
+          width: size.width,
           child: const Text(
             'Co-Founder Matches will be found according to the details provided in the About me and Co-Founder sections',
             style: TextStyle(

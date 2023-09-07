@@ -7,9 +7,12 @@ import '../../../core/colors.dart';
 import '../../../core/constants.dart';
 
 class ForgotOTPScreen extends StatelessWidget {
-  ForgotOTPScreen({super.key, required this.email});
+  ForgotOTPScreen({
+    super.key,
+    required this.textFormFieldValue,
+  });
 
-  final email;
+  final TextEditingController textFormFieldValue;
   final formkey = GlobalKey<FormState>();
 
   @override
@@ -57,8 +60,8 @@ class ForgotOTPScreen extends StatelessWidget {
                                   children: [
                                     TextFormField(
                                       readOnly: true,
-                                      controller:
-                                          TextEditingController(text: email),
+                                      controller: TextEditingController(
+                                          text: textFormFieldValue.text),
                                       decoration: const InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(
                                               vertical: 3, horizontal: 3),

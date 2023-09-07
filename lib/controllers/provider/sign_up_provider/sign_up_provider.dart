@@ -6,11 +6,13 @@ import 'package:foundr_project/views/sign_/otp/otp_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignUpProvider with ChangeNotifier {
+  bool isLoading = false;
   final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   Future<void> verifyUserProvider(BuildContext context) async {
+    isLoading = true;
     final provider = Provider.of<OtpProvider>(context, listen: false);
     final email = provider.emailController.text;
     final userName = provider.usernameController.text;
@@ -32,7 +34,8 @@ class SignUpProvider with ChangeNotifier {
                                   builder: (context) => OtpScreen(
                                       textFormFieldValue:
                                           textFormFieldValue.toString()),
-                                ))
+                                )),
+                                isLoading = false
                               }
                           })
                 }

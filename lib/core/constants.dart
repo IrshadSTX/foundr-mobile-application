@@ -106,7 +106,7 @@ const textstyle2 =
 //snackbars
 const snackBar = SnackBar(content: Text('Invalid Email or Password'));
 const emailExists = SnackBar(content: Text('Email Already Exists'));
-const oTPvarified = SnackBar(content: Text('OTP varified'));
+const oTPvarified = SnackBar(content: Text('OTP verified'));
 const sWWrong = SnackBar(content: Text('Something went wrong!'));
 const incorrectOTP = SnackBar(content: Text('INCORRECT OTP'));
 const dataFailsMsg = SnackBar(content: Text('Could not Retrieve data'));

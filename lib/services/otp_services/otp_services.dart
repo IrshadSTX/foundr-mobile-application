@@ -27,7 +27,7 @@ class ApiServiceOTP {
         log(response.statusCode.toString());
         return false;
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       log(e.message.toString());
     }
     return null;

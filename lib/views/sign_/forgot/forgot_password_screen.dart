@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foundr_project/controllers/provider/forgot_provider/forgot_provider.dart';
@@ -10,7 +11,9 @@ import '../../../core/colors.dart';
 import '../../../core/constants.dart';
 
 class ForgotPWDScreen extends StatelessWidget {
-  ForgotPWDScreen({super.key});
+  ForgotPWDScreen({
+    super.key,
+  });
   final formkey = GlobalKey<FormState>();
 
   @override
@@ -83,19 +86,11 @@ class ForgotPWDScreen extends StatelessWidget {
                                     ),
                                     kHeight10,
                                     ElevatedButton(
-                                      onPressed: () {
-                                        log('buttonpressed');
+                                      onPressed: () async {
                                         if (formkey.currentState!.validate()) {
-                                          return;
+                                          provider.verifyUserProvider(context);
+                                          log('sent oTP');
                                         }
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ForgotOTPScreen(
-                                                        email: provider
-                                                            .emailController)));
-
                                       },
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
@@ -119,7 +114,6 @@ class ForgotPWDScreen extends StatelessWidget {
       ),
     );
   }
-  void clearTextfield(){
-    
-  }
+
+  void clearTextfield() {}
 }
